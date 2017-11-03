@@ -7,6 +7,8 @@ import Html.Events exposing (onClick)
 import Http exposing (..)
 import Json.Decode as JD
 import Dict as D exposing (..)
+import Material.Layout as Layout
+
 
 -- Model && Types
 
@@ -22,7 +24,8 @@ type alias Model =
   , beds : List Int
   , currentPatient : Int
   , error : String
-  }
+  , mdl : Material.Model
+}
 
 
 type alias Patient =
@@ -49,13 +52,13 @@ main = Html.program
   { init = init
   , view = view
   , update = update
-  , subscriptions = \_ -> Sub.none
+  , subscriptions = Layout.subs Mdl model
   }
 
 -- initialisation
 
 init : (Model, Cmd Msg)
-init = (Model patientList [] [] 0 "", Cmd.none)
+init = (Model patientList [] [] 0 "", Layout.sub0 Mdl)
 
 
 -- Msg and Update
@@ -64,6 +67,7 @@ type Msg
   = CreateJob Job
   | ClickPatient Patient
   | CompleteJob Int
+  | Mdl (Material.Msg Msg)
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
