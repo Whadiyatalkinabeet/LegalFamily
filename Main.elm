@@ -17,11 +17,8 @@ import Material.List as Lists
 
 -- Model && Types
 
-patientList : Dict Int Patient
-patientList = D.fromList [
-  (0, Patient "John Smith" "12/04/1993" "24"),
-  (1, Patient "Karl Nolland" "19/08/1970" "47"),
-  (2, Patient "Pearl Kyza" "25/01/1964" "53")]
+import Patient exposing (..)
+import PatientList exposing (..)
 
 type alias Model =
   { patients : Dict Int Patient
@@ -32,6 +29,7 @@ type alias Model =
   , mdl : Material.Model
 }
 
+<<<<<<< HEAD
 type alias Mdl = Material.Model
 
 type alias Patient =
@@ -40,6 +38,8 @@ type alias Patient =
   , age: String
   }
 
+=======
+>>>>>>> 866a87843d86aaf9fea4b65223ed82d588209063
 type alias Job =
   { id: Int
   , patientID: Int
