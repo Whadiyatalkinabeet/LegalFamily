@@ -10,11 +10,8 @@ import Dict as D exposing (..)
 
 -- Model && Types
 
-patientList : Dict Int Patient
-patientList = D.fromList [
-  (0, Patient "John Smith" "12/04/1993" "24"),
-  (1, Patient "Karl Nolland" "19/08/1970" "47"),
-  (2, Patient "Pearl Kyza" "25/01/1964" "53")]
+import Patient exposing (..)
+import PatientList exposing (..)
 
 type alias Model =
   { patients : Dict Int Patient
@@ -22,13 +19,6 @@ type alias Model =
   , beds : List Int
   , currentPatient : Int
   , error : String
-  }
-
-
-type alias Patient =
-  { name : String
-  , dob: String
-  , age: String
   }
 
 type alias Job =
