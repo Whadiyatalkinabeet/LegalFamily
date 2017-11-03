@@ -12,21 +12,21 @@ Built on technology so bleeding edge we've got the scars to prove it.
 
 ## Adoption
 
+* Opportunities:
+    * User-unfriendliness (of Trakcare).
+    * Unification could reduce wasted time, lost "bed days", accuracy of data (reduced re-entry).
+    * Pressures/trends to open data silos (c.f OpenBanking).
+    * Hook power-user early adopters via customisable, extensible.
+    * Regional fragmentation allows a foot in the door on a smaller scale than huge national roll-out?
 * Threats/obstacles:
     * "Dogma" re existing systems.
     * Siloed data.
-* Opportunities:
-    * User-unfriendliness (of Trakcare).
-    * Unification could reduce wasted time, lost "bed days".
-    * Pressures/trends to open data silos (c.f OpenBanking).
-    * Hook power user early adopters via customisable, extensible.
-    * Regional fragmentation allows a foot in the door.
 * Strengths:
     * Mobile-first.  EMR on the move.  No more COWs (computers on wheels).
     * Uses robust and efficient functional programming.
 * Weaknesses:
     * No good story on unified back end.
-    
+
 ## Dependencies
 
 You'll need node (nodejs) via brew or apt-get or whatever.
