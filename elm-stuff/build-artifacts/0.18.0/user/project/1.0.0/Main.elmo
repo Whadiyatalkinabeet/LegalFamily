@@ -2,56 +2,38 @@ var _user$project$Main$viewPatient = function (_p0) {
 	var _p1 = _p0;
 	var _p2 = _p1._1;
 	return A2(
-		_elm_lang$html$Html$div,
+		_debois$elm_mdl$Material_List$li,
 		{ctor: '[]'},
 		{
 			ctor: '::',
-			_0: _elm_lang$html$Html$text(_p2.name),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html$text(_p2.age),
-				_1: {
+			_0: A2(
+				_debois$elm_mdl$Material_List$content,
+				{ctor: '[]'},
+				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(_p2.dob),
-					_1: {ctor: '[]'}
-				}
-			}
+					_0: _elm_lang$html$Html$text(_p2.name),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html$text(_p2.age),
+						_1: {
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(_p2.dob),
+							_1: {ctor: '[]'}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$view = function (model) {
+var _user$project$Main$viewBody = function (model) {
 	var patientsView = A2(
 		_elm_lang$core$List$map,
 		_user$project$Main$viewPatient,
 		_elm_lang$core$Dict$toList(model.patients));
 	return A2(
-		_elm_lang$html$Html$div,
+		_debois$elm_mdl$Material_List$ul,
 		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$h1,
-						{ctor: '[]'},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text('CommUnity'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{ctor: '[]'},
-					patientsView),
-				_1: {ctor: '[]'}
-			}
-		});
+		patientsView);
 };
 var _user$project$Main$updateJob = F2(
 	function (id, job) {
@@ -59,47 +41,10 @@ var _user$project$Main$updateJob = F2(
 			job,
 			{completed: true}) : job;
 	});
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p3 = msg;
-		switch (_p3.ctor) {
-			case 'CreateJob':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							jobs: {ctor: '::', _0: _p3._0, _1: model.jobs}
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'ClickPatient':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{currentPatient: 0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			default:
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							jobs: A2(
-								_elm_lang$core$List$map,
-								_user$project$Main$updateJob(_p3._0),
-								model.jobs)
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-		}
-	});
 var _user$project$Main$firebaseDB = 'https://legalfamily-95414.firebaseio.com/';
-var _user$project$Main$Model = F5(
-	function (a, b, c, d, e) {
-		return {patients: a, jobs: b, beds: c, currentPatient: d, error: e};
+var _user$project$Main$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {patients: a, jobs: b, beds: c, currentPatient: d, error: e, mdl: f};
 	});
 var _user$project$Main$Patient = F3(
 	function (a, b, c) {
@@ -131,26 +76,6 @@ var _user$project$Main$patientList = _elm_lang$core$Dict$fromList(
 			}
 		}
 	});
-var _user$project$Main$init = {
-	ctor: '_Tuple2',
-	_0: A5(
-		_user$project$Main$Model,
-		_user$project$Main$patientList,
-		{ctor: '[]'},
-		{ctor: '[]'},
-		0,
-		''),
-	_1: _elm_lang$core$Platform_Cmd$none
-};
-var _user$project$Main$main = _elm_lang$html$Html$program(
-	{
-		init: _user$project$Main$init,
-		view: _user$project$Main$view,
-		update: _user$project$Main$update,
-		subscriptions: function (_p4) {
-			return _elm_lang$core$Platform_Sub$none;
-		}
-	})();
 var _user$project$Main$patientDecoder = _elm_lang$core$Json_Decode$list(
 	A4(
 		_elm_lang$core$Json_Decode$map3,
@@ -183,6 +108,112 @@ var _user$project$Main$Job = F4(
 	function (a, b, c, d) {
 		return {id: a, patientID: b, job: c, completed: d};
 	});
+var _user$project$Main$Mdl = function (a) {
+	return {ctor: 'Mdl', _0: a};
+};
+var _user$project$Main$init = {
+	ctor: '_Tuple2',
+	_0: A6(
+		_user$project$Main$Model,
+		_user$project$Main$patientList,
+		{ctor: '[]'},
+		{ctor: '[]'},
+		0,
+		'',
+		_debois$elm_mdl$Material$model),
+	_1: _debois$elm_mdl$Material$init(_user$project$Main$Mdl)
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p3 = msg;
+		switch (_p3.ctor) {
+			case 'CreateJob':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							jobs: {ctor: '::', _0: _p3._0, _1: model.jobs}
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ClickPatient':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{currentPatient: 0}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'CompleteJob':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							jobs: A2(
+								_elm_lang$core$List$map,
+								_user$project$Main$updateJob(_p3._0),
+								model.jobs)
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p3._0, model);
+		}
+	});
+var _user$project$Main$view = function (model) {
+	return A4(
+		_debois$elm_mdl$Material_Layout$render,
+		_user$project$Main$Mdl,
+		model.mdl,
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Layout$fixedHeader,
+			_1: {ctor: '[]'}
+		},
+		{
+			header: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h1,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$style(
+							{
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'padding', _1: '2rem'},
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('CommUnity'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			},
+			drawer: {ctor: '[]'},
+			tabs: {
+				ctor: '_Tuple2',
+				_0: {ctor: '[]'},
+				_1: {ctor: '[]'}
+			},
+			main: {
+				ctor: '::',
+				_0: _user$project$Main$viewBody(model),
+				_1: {ctor: '[]'}
+			}
+		});
+};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{
+		init: _user$project$Main$init,
+		view: _user$project$Main$view,
+		update: _user$project$Main$update,
+		subscriptions: _debois$elm_mdl$Material$subscriptions(_user$project$Main$Mdl)
+	})();
 var _user$project$Main$CompleteJob = function (a) {
 	return {ctor: 'CompleteJob', _0: a};
 };
