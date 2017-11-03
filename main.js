@@ -15437,6 +15437,282 @@ var _debois$elm_mdl$Material_Scheme$top = function (content) {
 	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
 };
 
+var _user$project$Patient$Patient = F3(
+	function (a, b, c) {
+		return {name: a, dob: b, age: c};
+	});
+
+var _user$project$PatientList$patientList = _elm_lang$core$Dict$fromList(
+	{
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 0,
+			_1: A3(_user$project$Patient$Patient, 'Vabdyxxn Ulfrvd', '1947-1-3', '70')
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 1,
+				_1: A3(_user$project$Patient$Patient, 'Gsgqdv Zlios', '1997-11-28', '20')
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 2,
+					_1: A3(_user$project$Patient$Patient, 'Bcnh Lsugv', '1935-12-13', '82')
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 3,
+						_1: A3(_user$project$Patient$Patient, 'Ckljkj Xoeivum', '1972-6-15', '45')
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 4,
+							_1: A3(_user$project$Patient$Patient, 'Uppoelt Ghwhlfq', '1939-11-27', '78')
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 5,
+								_1: A3(_user$project$Patient$Patient, 'Wyrsoj Rrqk', '1944-2-3', '73')
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 6,
+									_1: A3(_user$project$Patient$Patient, 'Bcbesn Mgdq', '1987-1-2', '30')
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 7,
+										_1: A3(_user$project$Patient$Patient, 'Dzxapmui Grcilb', '1983-6-16', '34')
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 8,
+											_1: A3(_user$project$Patient$Patient, 'Gecn Wmczlzj', '1977-10-31', '40')
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 9,
+												_1: A3(_user$project$Patient$Patient, 'Qukchov Dqzrm', '2010-9-18', '7')
+											},
+											_1: {
+												ctor: '::',
+												_0: {
+													ctor: '_Tuple2',
+													_0: 10,
+													_1: A3(_user$project$Patient$Patient, 'Jeuqb Jiegl', '1977-6-30', '40')
+												},
+												_1: {
+													ctor: '::',
+													_0: {
+														ctor: '_Tuple2',
+														_0: 11,
+														_1: A3(_user$project$Patient$Patient, 'Sfrru Kkgljfu', '1999-2-16', '18')
+													},
+													_1: {
+														ctor: '::',
+														_0: {
+															ctor: '_Tuple2',
+															_0: 12,
+															_1: A3(_user$project$Patient$Patient, 'Ioaszn Cqjz', '1963-5-14', '54')
+														},
+														_1: {
+															ctor: '::',
+															_0: {
+																ctor: '_Tuple2',
+																_0: 13,
+																_1: A3(_user$project$Patient$Patient, 'Nbsqrx Tsfsw', '1975-10-8', '42')
+															},
+															_1: {
+																ctor: '::',
+																_0: {
+																	ctor: '_Tuple2',
+																	_0: 14,
+																	_1: A3(_user$project$Patient$Patient, 'Ygclen Knblvpr', '1932-1-27', '85')
+																},
+																_1: {
+																	ctor: '::',
+																	_0: {
+																		ctor: '_Tuple2',
+																		_0: 15,
+																		_1: A3(_user$project$Patient$Patient, 'Onirkpiw Hugpsnj', '1959-2-13', '58')
+																	},
+																	_1: {
+																		ctor: '::',
+																		_0: {
+																			ctor: '_Tuple2',
+																			_0: 16,
+																			_1: A3(_user$project$Patient$Patient, 'Wvlmqcjb Vijxer', '1918-12-8', '99')
+																		},
+																		_1: {
+																			ctor: '::',
+																			_0: {
+																				ctor: '_Tuple2',
+																				_0: 17,
+																				_1: A3(_user$project$Patient$Patient, 'Sdzbxyel Xwyyekff', '1991-9-30', '26')
+																			},
+																			_1: {
+																				ctor: '::',
+																				_0: {
+																					ctor: '_Tuple2',
+																					_0: 18,
+																					_1: A3(_user$project$Patient$Patient, 'Ggazinhj Zjzgy', '1971-3-6', '46')
+																				},
+																				_1: {
+																					ctor: '::',
+																					_0: {
+																						ctor: '_Tuple2',
+																						_0: 19,
+																						_1: A3(_user$project$Patient$Patient, 'Rximkd Dvneh', '1984-8-12', '33')
+																					},
+																					_1: {
+																						ctor: '::',
+																						_0: {
+																							ctor: '_Tuple2',
+																							_0: 20,
+																							_1: A3(_user$project$Patient$Patient, 'Hotypc Rfterl', '1983-3-1', '34')
+																						},
+																						_1: {
+																							ctor: '::',
+																							_0: {
+																								ctor: '_Tuple2',
+																								_0: 21,
+																								_1: A3(_user$project$Patient$Patient, 'Bxogl Rufcmfn', '1963-6-22', '54')
+																							},
+																							_1: {
+																								ctor: '::',
+																								_0: {
+																									ctor: '_Tuple2',
+																									_0: 22,
+																									_1: A3(_user$project$Patient$Patient, 'Mxnwdqdy Dyjaf', '1980-1-8', '37')
+																								},
+																								_1: {
+																									ctor: '::',
+																									_0: {
+																										ctor: '_Tuple2',
+																										_0: 23,
+																										_1: A3(_user$project$Patient$Patient, 'Fqar Dqilitvd', '1950-2-29', '67')
+																									},
+																									_1: {
+																										ctor: '::',
+																										_0: {
+																											ctor: '_Tuple2',
+																											_0: 24,
+																											_1: A3(_user$project$Patient$Patient, 'Lcntwinz Jgqqehgm', '2005-8-8', '12')
+																										},
+																										_1: {
+																											ctor: '::',
+																											_0: {
+																												ctor: '_Tuple2',
+																												_0: 25,
+																												_1: A3(_user$project$Patient$Patient, 'Nljhyo Vmnf', '1960-9-8', '57')
+																											},
+																											_1: {
+																												ctor: '::',
+																												_0: {
+																													ctor: '_Tuple2',
+																													_0: 26,
+																													_1: A3(_user$project$Patient$Patient, 'Vjyu Urll', '1968-6-22', '49')
+																												},
+																												_1: {
+																													ctor: '::',
+																													_0: {
+																														ctor: '_Tuple2',
+																														_0: 27,
+																														_1: A3(_user$project$Patient$Patient, 'Bbosiacq Axwpens', '1979-4-28', '38')
+																													},
+																													_1: {
+																														ctor: '::',
+																														_0: {
+																															ctor: '_Tuple2',
+																															_0: 28,
+																															_1: A3(_user$project$Patient$Patient, 'Ajdogvxp Lxcbl', '1977-7-23', '40')
+																														},
+																														_1: {
+																															ctor: '::',
+																															_0: {
+																																ctor: '_Tuple2',
+																																_0: 29,
+																																_1: A3(_user$project$Patient$Patient, 'Rdmuv Ofyjfe', '1967-7-13', '50')
+																															},
+																															_1: {ctor: '[]'}
+																														}
+																													}
+																												}
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+
+var _user$project$Main$patientDecoder = _elm_lang$core$Json_Decode$list(
+	A4(
+		_elm_lang$core$Json_Decode$map3,
+		_user$project$Patient$Patient,
+		A2(
+			_elm_lang$core$Json_Decode$at,
+			{
+				ctor: '::',
+				_0: 'name',
+				_1: {ctor: '[]'}
+			},
+			_elm_lang$core$Json_Decode$string),
+		A2(
+			_elm_lang$core$Json_Decode$at,
+			{
+				ctor: '::',
+				_0: 'dob',
+				_1: {ctor: '[]'}
+			},
+			_elm_lang$core$Json_Decode$string),
+		A2(
+			_elm_lang$core$Json_Decode$at,
+			{
+				ctor: '::',
+				_0: 'age',
+				_1: {ctor: '[]'}
+			},
+			_elm_lang$core$Json_Decode$string)));
 var _user$project$Main$viewPatient = function (_p0) {
 	var _p1 = _p0;
 	var _p2 = _p1._1;
@@ -15471,7 +15747,11 @@ var _user$project$Main$viewBody = function (model) {
 		_elm_lang$core$Dict$toList(model.patients));
 	return A2(
 		_debois$elm_mdl$Material_List$ul,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Options$cs('my-list-style'),
+			_1: {ctor: '[]'}
+		},
 		patientsView);
 };
 var _user$project$Main$updateJob = F2(
@@ -15485,64 +15765,6 @@ var _user$project$Main$Model = F6(
 	function (a, b, c, d, e, f) {
 		return {patients: a, jobs: b, beds: c, currentPatient: d, error: e, mdl: f};
 	});
-var _user$project$Main$Patient = F3(
-	function (a, b, c) {
-		return {name: a, dob: b, age: c};
-	});
-var _user$project$Main$patientList = _elm_lang$core$Dict$fromList(
-	{
-		ctor: '::',
-		_0: {
-			ctor: '_Tuple2',
-			_0: 0,
-			_1: A3(_user$project$Main$Patient, 'John Smith', '12/04/1993', '24')
-		},
-		_1: {
-			ctor: '::',
-			_0: {
-				ctor: '_Tuple2',
-				_0: 1,
-				_1: A3(_user$project$Main$Patient, 'Karl Nolland', '19/08/1970', '47')
-			},
-			_1: {
-				ctor: '::',
-				_0: {
-					ctor: '_Tuple2',
-					_0: 2,
-					_1: A3(_user$project$Main$Patient, 'Pearl Kyza', '25/01/1964', '53')
-				},
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _user$project$Main$patientDecoder = _elm_lang$core$Json_Decode$list(
-	A4(
-		_elm_lang$core$Json_Decode$map3,
-		_user$project$Main$Patient,
-		A2(
-			_elm_lang$core$Json_Decode$at,
-			{
-				ctor: '::',
-				_0: 'name',
-				_1: {ctor: '[]'}
-			},
-			_elm_lang$core$Json_Decode$string),
-		A2(
-			_elm_lang$core$Json_Decode$at,
-			{
-				ctor: '::',
-				_0: 'dob',
-				_1: {ctor: '[]'}
-			},
-			_elm_lang$core$Json_Decode$string),
-		A2(
-			_elm_lang$core$Json_Decode$at,
-			{
-				ctor: '::',
-				_0: 'age',
-				_1: {ctor: '[]'}
-			},
-			_elm_lang$core$Json_Decode$string)));
 var _user$project$Main$Job = F4(
 	function (a, b, c, d) {
 		return {id: a, patientID: b, job: c, completed: d};
@@ -15554,7 +15776,7 @@ var _user$project$Main$init = {
 	ctor: '_Tuple2',
 	_0: A6(
 		_user$project$Main$Model,
-		_user$project$Main$patientList,
+		_user$project$PatientList$patientList,
 		{ctor: '[]'},
 		{ctor: '[]'},
 		0,
@@ -15622,7 +15844,11 @@ var _user$project$Main$view = function (model) {
 							{
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'padding', _1: '2rem'},
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+									_1: {ctor: '[]'}
+								}
 							}),
 						_1: {ctor: '[]'}
 					},
