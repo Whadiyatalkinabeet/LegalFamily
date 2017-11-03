@@ -63,5 +63,4 @@ console.log('patientList = D.fromList [')
 for (var i=0;i<patients.length;i++) {
     if (i!=0) console.log('  ,')
     console.log('  ('+i+' , Patient '+'"'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" )')
-}
-console.log('  ]')
+}console.log('  ]')

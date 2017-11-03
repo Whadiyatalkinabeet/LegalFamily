@@ -29,17 +29,8 @@ type alias Model =
   , mdl : Material.Model
 }
 
-<<<<<<< HEAD
 type alias Mdl = Material.Model
 
-type alias Patient =
-  { name : String
-  , dob: String
-  , age: String
-  }
-
-=======
->>>>>>> 866a87843d86aaf9fea4b65223ed82d588209063
 type alias Job =
   { id: Int
   , patientID: Int
