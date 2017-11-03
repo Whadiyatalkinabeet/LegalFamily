@@ -4,10 +4,15 @@
 
 import Html exposing (Html, text, h1, div)
 import Html.Events exposing (onClick)
-import Http exposing (..)
+import Html.Attributes
 import Json.Decode as JD
 import Dict as D exposing (..)
 import Material.Layout as Layout
+import Material
+import Material.Scheme as Scheme
+import Material.Button as Button
+import Material.Options exposing (css)
+import Material.List as Lists
 
 
 -- Model && Types
@@ -27,6 +32,7 @@ type alias Model =
   , mdl : Material.Model
 }
 
+type alias Mdl = Material.Model
 
 type alias Patient =
   { name : String
@@ -52,13 +58,13 @@ main = Html.program
   { init = init
   , view = view
   , update = update
-  , subscriptions = Layout.subs Mdl model
+  , subscriptions = Material.subscriptions Mdl
   }
 
 -- initialisation
 
 init : (Model, Cmd Msg)
-init = (Model patientList [] [] 0 "", Layout.sub0 Mdl)
+init = (Model patientList [] [] 0 "" Material.model, Material.init Mdl)
 
 
 -- Msg and Update
@@ -83,6 +89,9 @@ update msg model =
       ({model | jobs =
           (List.map (updateJob jobID) model.jobs)}, Cmd.none)
 
+    Mdl msg_ ->
+      Material.update Mdl msg_ model
+
 
 updateJob : Int -> Job -> Job
 updateJob id job =
@@ -95,13 +104,25 @@ updateJob id job =
 
 view : Model -> Html Msg
 view model =
+  Layout.render Mdl
+    model.mdl
+      [ Layout.fixedHeader
+      ]
+      { header = [h1 [ Html.Attributes.style [ ( "padding", "2rem" ) ] ] [ text "CommUnity"] ]
+      , drawer = []
+      , tabs = ([], [])
+      , main = [ viewBody model ]
+    }
+
+viewBody : Model -> Html Msg
+viewBody model =
   let patientsView = List.map viewPatient (D.toList model.patients)
-  in div [] [div [] [ Html.h1 [] [text "CommUnity"]], div [] patientsView]
+  in Lists.ul [] patientsView
 
 
 viewPatient : (Int, Patient) -> Html Msg
 viewPatient (id, patient) =
-  div [] [text patient.name, text patient.age, text patient.dob]
+  Lists.li [] [Lists.content [] [text patient.name, text patient.age, text patient.dob]]
 
 
 
