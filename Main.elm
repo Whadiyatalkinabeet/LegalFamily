@@ -4,8 +4,8 @@
 
 import Html exposing (Html, text, h1, div)
 import Html.Events exposing (onClick)
-
-
+import Http exposing (..)
+import Json.Decode as JD
 
 -- Model && Types
 
@@ -30,6 +30,11 @@ type alias Job =
   , completed: Bool
   }
 
+-- Firebase Location
+
+firebaseDB : String
+firebaseDB = "https://legalfamily-95414.firebaseio.com/"
+
 -- Main function
 
 main = Html.program
@@ -42,7 +47,7 @@ main = Html.program
 -- initialisation
 
 init : (Model, Cmd Msg)
-init = (Model [Patient 0 "John" "12/03/92" "25"] [] [] 0, Cmd.none)
+init = (Model [] [] [] 0, getPatients)
 
 
 -- Msg and Update
@@ -51,6 +56,7 @@ type Msg
   = CreateJob Job
   | ClickPatient Patient
   | CompleteJob Int
+  | FetchPatients (Result Http.Error (List Patient))
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
@@ -66,6 +72,12 @@ update msg model =
       ({model | jobs =
           (List.map (updateJob jobID) model.jobs)}, Cmd.none)
 
+    FetchPatients (Ok patients) ->
+      ({model | patients = patients}, Cmd.none)
+
+    FetchPatients (Err _) ->
+      (model, Cmd.none)
+
 
 updateJob : Int -> Job -> Job
 updateJob id job =
@@ -79,9 +91,26 @@ updateJob id job =
 view : Model -> Html Msg
 view model =
   let patientsView = List.map viewPatient model.patients
-  in div [] [div [] [ Html.h1 [] [text "HealthMatch"]], div [] patientsView]
+  in div [] [div [] [ Html.h1 [] [text "CommUnity"]], div [] patientsView]
 
 
 viewPatient : Patient -> Html Msg
 viewPatient patient =
   div [] [text patient.name, text patient.age, text patient.dob]
+
+
+
+-- Firebase interaction
+
+getPatients : Cmd Msg
+getPatients =
+  Http.send FetchPatients <| Http.get (firebaseDB ++ "patients.json") (JD.keyValuePairs patientDecoder)
+
+
+patientDecoder : JD.Decoder Patient
+patientDecoder =
+  JD.map4 Patient
+    (JD.at ["id"] JD.int)
+    (JD.at ["name"] JD.string)
+    (JD.at ["dob"] JD.string)
+    (JD.at ["age"] JD.string)
