@@ -15747,7 +15747,11 @@ var _user$project$Main$viewBody = function (model) {
 		_elm_lang$core$Dict$toList(model.patients));
 	return A2(
 		_debois$elm_mdl$Material_List$ul,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_Options$cs('my-list-style'),
+			_1: {ctor: '[]'}
+		},
 		patientsView);
 };
 var _user$project$Main$updateJob = F2(
@@ -15840,7 +15844,11 @@ var _user$project$Main$view = function (model) {
 							{
 								ctor: '::',
 								_0: {ctor: '_Tuple2', _0: 'padding', _1: '2rem'},
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
+									_1: {ctor: '[]'}
+								}
 							}),
 						_1: {ctor: '[]'}
 					},
