@@ -15713,26 +15713,76 @@ var _user$project$Main$patientDecoder = _elm_lang$core$Json_Decode$list(
 				_1: {ctor: '[]'}
 			},
 			_elm_lang$core$Json_Decode$string)));
+var _user$project$Main$spanStyle = {
+	ctor: '::',
+	_0: {ctor: '_Tuple2', _0: 'padding', _1: '15px'},
+	_1: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'margin-left', _1: '15px'},
+		_1: {ctor: '[]'}
+	}
+};
 var _user$project$Main$viewPatient = function (_p0) {
 	var _p1 = _p0;
 	var _p2 = _p1._1;
 	return A2(
 		_debois$elm_mdl$Material_List$li,
-		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _debois$elm_mdl$Material_List$withSubtitle,
+			_1: {ctor: '[]'}
+		},
 		{
 			ctor: '::',
 			_0: A2(
 				_debois$elm_mdl$Material_List$content,
-				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html$text(_p2.name),
+					_0: A2(_debois$elm_mdl$Material_Options$css, 'padding', '16px'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$span,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$style(_user$project$Main$spanStyle),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text(_p2.name),
+							_1: {ctor: '[]'}
+						}),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(_p2.age),
+						_0: A2(
+							_elm_lang$html$Html$span,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$style(_user$project$Main$spanStyle),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text(_p2.age),
+								_1: {ctor: '[]'}
+							}),
 						_1: {
 							ctor: '::',
-							_0: _elm_lang$html$Html$text(_p2.dob),
+							_0: A2(
+								_elm_lang$html$Html$span,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$style(_user$project$Main$spanStyle),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(_p2.dob),
+									_1: {ctor: '[]'}
+								}),
 							_1: {ctor: '[]'}
 						}
 					}
@@ -15747,11 +15797,7 @@ var _user$project$Main$viewBody = function (model) {
 		_elm_lang$core$Dict$toList(model.patients));
 	return A2(
 		_debois$elm_mdl$Material_List$ul,
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_Options$cs('my-list-style'),
-			_1: {ctor: '[]'}
-		},
+		{ctor: '[]'},
 		patientsView);
 };
 var _user$project$Main$updateJob = F2(

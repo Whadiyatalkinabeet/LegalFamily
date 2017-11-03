@@ -13,6 +13,7 @@ import Material.Scheme as Scheme
 import Material.Button as Button
 import Material.Options exposing (css)
 import Material.List as Lists
+import Material.Table as Table
 
 
 -- Model && Types
@@ -28,8 +29,6 @@ type alias Model =
   , error : String
   , mdl : Material.Model
 }
-
-type alias Mdl = Material.Model
 
 type alias Job =
   { id: Int
@@ -99,7 +98,7 @@ view model =
     model.mdl
       [ Layout.fixedHeader
       ]
-      { header = [h1 [ Html.Attributes.style [ ( "padding", "2rem" ) ] ] [ text "CommUnity"] ]
+      { header = [h1 [ Html.Attributes.style [ ( "padding", "2rem" ), ("text-align", "center") ] ] [ text "CommUnity"] ]
       , drawer = []
       , tabs = ([], [])
       , main = [ viewBody model ]
@@ -113,15 +112,23 @@ viewBody model =
 
 viewPatient : (Int, Patient) -> Html Msg
 viewPatient (id, patient) =
-  Lists.li [] [Lists.content [] [text patient.name, text patient.age, text patient.dob]]
+  Lists.li []
+    [Lists.content [Material.Options.css "padding" "16px"]
+      [Html.span [Html.Attributes.style spanStyle] [text patient.name], Html.span [Html.Attributes.style spanStyle] [text patient.age], Html.span [Html.Attributes.style spanStyle] [text patient.dob]]
+    ]
 
 
+spanStyle : List (String, String)
+spanStyle =
+  [("padding", "15px"),
+   ("margin-left", "15px")]
 
 -- Firebase interaction
 
 --getPatients : Cmd Msg
 --getPatients =
 --  Http.send FetchPatients (Http.get (firebaseDB ++"patients.json") patientDecoder)
+
 
 
 patientDecoder : JD.Decoder (List Patient)
