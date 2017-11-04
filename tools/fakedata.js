@@ -20,35 +20,48 @@ function mkname() {
     return captext(randomtext())+' '+captext(randomtext());
 }
 
-function mkpatient() {
+function randompick(s) {
+    return s[Math.random()*s.length]
+}
+
+/*
+function mkdrug() {
+    var name=randomtxt()
+    var units=randompick(['mg','g','ml'])
+    var frequency=randompick(['daily','twice-daily','with meals','hourly'])
+    var dose=Math.round(100*Math.random())
+}
+*/
+
+function mkpatient(n) {
     
     var year=Math.floor(1918+100*Math.random())
     var month=Math.floor(1+12*Math.random())
     var day=Math.floor(1+31*Math.random())
     
-    patient={
+    return {
+        'id': n,
         'name': mkname(),
         'dob': year+'-'+month+'-'+day,
         'age': 2017-year
     };
-    return patient;
 }
 
 var jobdesc=['Blood test','Ultrasound','CT scan','MRI scan','Biopsy']
-function mkjob() {
-    job={
+function mkjob(n) {
+    return {
+        'id':n,
         'patientID':Math.floor(numPatients*Math.random()),
         'job':jobdesc[Math.floor(Math.random()*jobdesc.length)],
         'completed':(Math.random()<0.25)
     }
-    return job
 }
 
 var patients=[]
-for (var i=0;i<numPatients;++i) patients.push(mkpatient());
+for (var i=0;i<numPatients;++i) patients.push(mkpatient(i));
 
 var jobs=[]
-for (var i=0;i<numJobs;++i) jobs.push(mkjob());
+for (var i=0;i<numJobs;++i) jobs.push(mkjob(i));
 
 function oops(err) {if (err) throw err;}
 
@@ -70,14 +83,14 @@ appendPatientListFile('')
 appendPatientListFile('module PatientList exposing (..)')
 appendPatientListFile('')
 appendPatientListFile('import Dict as D exposing (..)')
-appendPatientListFile('import Patient exposing (..)')
+appendPatientListFile('import PatientPageTypes exposing (Patient,Entries,Drug)')
 appendPatientListFile('')
 appendPatientListFile('patientList : Dict Int Patient')
 appendPatientListFile('patientList = D.fromList [')
 
 for (var i=0;i<patients.length;i++) {
     if (i!=0) appendPatientListFile('  ,')
-    appendPatientListFile('  ('+i+' , Patient '+'"'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" )')
+    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" [] [])')
 }
 appendPatientListFile('  ]')
 
@@ -96,7 +109,7 @@ appendJobListFile('jobList = D.fromList [')
 
 for (var i=0;i<jobs.length;i++) {
     if (i!=0) appendJobListFile('  ,')
-    appendJobListFile('  ('+i+' , Job '+jobs[i]['patientID']+' "'+jobs[i]['job']+'" '+(jobs[i]['completed'] ? 'True' : 'False')+' )')
+    appendJobListFile('  ('+i+' , Job '+jobs[i]['id']+' '+jobs[i]['patientID']+' "'+jobs[i]['job']+'" '+(jobs[i]['completed'] ? 'True' : 'False')+' )')
 }
 appendJobListFile('  ]')
 
