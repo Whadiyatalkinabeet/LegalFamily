@@ -8,63 +8,63 @@ import Patient exposing (..)
 
 patientList : Dict Int Patient
 patientList = D.fromList [
-  (0 , Patient "Eftmftmw Ipmy" "1921-4-21" "96" )
+  (0 , Patient "Ntrabo Rnoewaa" "1970-4-22" "47" )
   ,
-  (1 , Patient "Jjthm Ctdz" "1964-5-18" "53" )
+  (1 , Patient "Dediebsu Leiteuge" "1953-2-5" "64" )
   ,
-  (2 , Patient "Puguxddj Kealnmo" "1979-8-9" "38" )
+  (2 , Patient "Uawluv Mnre" "1950-10-4" "67" )
   ,
-  (3 , Patient "Qswem Qtekpzpa" "1937-2-19" "80" )
+  (3 , Patient "Rndexgd Favnuo" "2008-4-23" "9" )
   ,
-  (4 , Patient "Eptgzrjw Ofhbsrt" "1935-3-17" "82" )
+  (4 , Patient "Oncldah Cgorti" "1951-11-26" "66" )
   ,
-  (5 , Patient "Vkbljx Zfgvjgnq" "1957-11-14" "60" )
+  (5 , Patient "Hteced Reieacsd" "1984-6-17" "33" )
   ,
-  (6 , Patient "Foxihg Tiky" "1980-5-30" "37" )
+  (6 , Patient "Siop Doafa" "1948-6-29" "69" )
   ,
-  (7 , Patient "Invwor Nwlkoka" "1922-12-26" "95" )
+  (7 , Patient "Ecdrycot Ttaihlyc" "1986-3-24" "31" )
   ,
-  (8 , Patient "Ffszrra Scrbky" "2017-10-13" "0" )
+  (8 , Patient "Taii Snoodeas" "1933-12-16" "84" )
   ,
-  (9 , Patient "Lqdrt Tekmfkd" "1924-7-1" "93" )
+  (9 , Patient "Euykshy Orensuf" "1951-6-10" "66" )
   ,
-  (10 , Patient "Zoheq Ciiyauw" "1981-9-14" "36" )
+  (10 , Patient "Inofte Qeos" "1991-4-27" "26" )
   ,
-  (11 , Patient "Dgto Yyfzuhyb" "1974-10-11" "43" )
+  (11 , Patient "Etdl Ibeeflex" "2002-12-28" "15" )
   ,
-  (12 , Patient "Zrzcwcn Jmvquy" "1993-5-20" "24" )
+  (12 , Patient "Urpetl Grnhye" "1927-7-13" "90" )
   ,
-  (13 , Patient "Bnfflem Dftc" "1985-9-10" "32" )
+  (13 , Patient "Osceicr Ufmtrg" "1982-3-14" "35" )
   ,
-  (14 , Patient "Nlzofxz Kfpspzps" "1932-11-9" "85" )
+  (14 , Patient "Doci Naendie" "1980-5-17" "37" )
   ,
-  (15 , Patient "Zszjdta Snghbukk" "2007-4-4" "10" )
+  (15 , Patient "Ndneoio Nuaalrx" "1951-8-28" "66" )
   ,
-  (16 , Patient "Hitumsj Qkrhc" "1929-6-20" "88" )
+  (16 , Patient "Ubkr Trfgsd" "2014-8-9" "3" )
   ,
-  (17 , Patient "Gvsolboz Vgvqhc" "1978-12-8" "39" )
+  (17 , Patient "Tiroebt Etras" "1946-5-30" "71" )
   ,
-  (18 , Patient "Xzoc Aiecv" "1962-1-6" "55" )
+  (18 , Patient "Desarq Iaikttty" "1987-5-5" "30" )
   ,
-  (19 , Patient "Hrcmmgrn Vhvll" "1937-7-15" "80" )
+  (19 , Patient "Seti Hoeedhi" "1923-8-31" "94" )
   ,
-  (20 , Patient "Lnqe Dyvgf" "1973-7-4" "44" )
+  (20 , Patient "Sddog Rllnjimg" "1977-4-18" "40" )
   ,
-  (21 , Patient "Nvpz Fgek" "1968-11-11" "49" )
+  (21 , Patient "Gapg Adoeuhuu" "1976-9-17" "41" )
   ,
-  (22 , Patient "Kmhejqs Ipwaoenx" "1963-1-18" "54" )
+  (22 , Patient "Iemes Osasspis" "1930-12-28" "87" )
   ,
-  (23 , Patient "Hgfm Xxnaig" "1997-7-26" "20" )
+  (23 , Patient "Ayoodaea Aeiuw" "1944-2-21" "73" )
   ,
-  (24 , Patient "Efbkco Vkjxb" "2012-4-12" "5" )
+  (24 , Patient "Eolbuh Wias" "1987-5-2" "30" )
   ,
-  (25 , Patient "Kgjjbm Pvgujmc" "1978-3-21" "39" )
+  (25 , Patient "Tfii Unect" "1942-8-1" "75" )
   ,
-  (26 , Patient "Ifumgh Xorlmey" "1963-7-13" "54" )
+  (26 , Patient "Dewini Igtgba" "1978-8-22" "39" )
   ,
-  (27 , Patient "Xercwgr Adxcd" "1983-4-23" "34" )
+  (27 , Patient "Otae Oeao" "1984-8-29" "33" )
   ,
-  (28 , Patient "Bceiyshz Ynqpqxp" "1955-3-31" "62" )
+  (28 , Patient "Netve Pjle" "1929-9-19" "88" )
   ,
-  (29 , Patient "Qcem Cdzfkrwk" "1964-12-3" "53" )
+  (29 , Patient "Siqfas Lvptouti" "2006-4-1" "11" )
   ]

@@ -6,7 +6,8 @@ function captext(s) {
 }
 
 function randomtext() {
-    var letters='abcdefghijklmnopqrstuvwxyz'
+    // Use Scrabble letter frequency
+    var letters='eeeeeeeeeeeeaaaaaaaaaiiiiiiiiioooooooonnnnnnrrrrrrttttttllllssssuuuuddddgggbbccmmppffhhvvwwyykjxqz'
     var n=3+5*Math.random()
     text=''
     for (var i=0;i<n;i++) {
