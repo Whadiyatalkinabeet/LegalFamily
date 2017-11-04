@@ -10,14 +10,14 @@ import Material.Options exposing (css, cs, onClick, attribute)  -- NB Avoiding i
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (grid, size, cell, Device (..) )
-import Dict as D exposing (..)
+import Dict as D exposing (toList)
 import Msgs exposing (Msg(..))
 import Routing exposing (patientPath)
 
 wardView : Model -> Html Msg
 wardView model =
   div [] [ subHeader,
-              grid [] [ cell [Material.Grid.size All 9 ]
+              grid [] [ cell [size All 9 ]
                         [ Table.table [cs "fullwidth"]
                           [ Table.thead []
                               [ Table.tr []
@@ -59,7 +59,7 @@ wardView model =
 
                             ]
                           ]
-                        , cell [Material.Grid.size All 3]
+                        , cell [size All 3]
                           [ Table.table [cs "fullwidth"]
                             [ Table.thead []
                               [ Table.tr []
@@ -85,9 +85,9 @@ wardView model =
 subHeader : Html Msg
 subHeader =
  grid [cs "centertext", css "background-color" "aliceblue"] [
-      cell [Material.Grid.size All 9]
+      cell [size All 9]
         [ Html.h4 [] [text "Ward 6B"] ]
-    , cell [Material.Grid.size All 3]
+    , cell [size All 3]
         [ Html.h4 [] [text "Jobs"] ]
     ]
 
