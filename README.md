@@ -49,6 +49,8 @@ You'll need node (nodejs) via brew or apgt-get or whatever.
 * `elm-package install elm-lang/navigation`
 * `elm-package install evancz/url-parser`
 
+`fakedata.js` needs: `npm install probability-distributions`
+
 ## Run me
 
 * Run `elm-reactor` in this directory.  It'll serve some webbystuff on `localhost:8000`.  On that page, navigate to `index.html`

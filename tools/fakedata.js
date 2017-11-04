@@ -1,14 +1,16 @@
 var numPatients=30;
 var numJobs=25;
 
+var PD = require("probability-distributions");
+
 function captext(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-function randomtext() {
+function randomtext(isName) {
     // Use Scrabble letter frequency
     var letters='eeeeeeeeeeeeaaaaaaaaaiiiiiiiiioooooooonnnnnnrrrrrrttttttllllssssuuuuddddgggbbccmmppffhhvvwwyykjxqz'
-    var n=3+5*Math.random()
+    var n=(isName ? Math.max(3,Math.round(PD.rnorm(1,5,2)[0])) : Math.max(1,Math.round(PD.rnorm(1,4,1)[0])))
     text=''
     for (var i=0;i<n;i++) {
         text+=letters[Math.floor(Math.random()*letters.length)]
@@ -17,9 +19,9 @@ function randomtext() {
 }
 
 function randomsentence() {
-    var s=captext(randomtext())+' '+randomtext()+' '+randomtext()
+    var s=captext(randomtext(false))+' '+randomtext(false)+' '+randomtext(false)
     while (Math.random()<0.75) {
-        s+=(' '+randomtext())
+        s+=(' '+randomtext(false))
     }
     s+='.'
     return s
@@ -34,7 +36,7 @@ function randomparagraph() {
 }
 
 function mkname() {
-    return captext(randomtext())+' '+captext(randomtext());
+    return captext(randomtext(true))+' '+captext(randomtext(true));
 }
 
 function randompick(s) {
@@ -42,7 +44,7 @@ function randompick(s) {
 }
 
 function mkdrug(n) {
-    var name=randomtext()
+    var name=randomtext(true)
     var dose=Math.round(100*Math.random()).toString()
     var units=randompick(['mg','g','ml'])
     var frequency=randompick(['daily','twice-daily','with meals','per hour','hourly'])
