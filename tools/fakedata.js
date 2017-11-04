@@ -16,6 +16,23 @@ function randomtext() {
     return text;
 }
 
+function randomsentence() {
+    var s=captext(randomtext())+' '+randomtext()+' '+randomtext()
+    while (Math.random()<0.75) {
+        s+=(' '+randomtext())
+    }
+    s+='.'
+    return s
+}
+
+function randomparagraph() {
+    var s=randomsentence()
+    while (Math.random()<0.75) {
+        s+=('  '+randomsentence())
+    }
+    return s
+}
+
 function mkname() {
     return captext(randomtext())+' '+captext(randomtext());
 }
@@ -38,11 +55,30 @@ function mkdrug(n) {
     }
 }
 
-function mkpatient(n) {
-    
+function mkentry(n) {
+    var title=randomsentence()
+    var text=randomparagraph()
+    var doctype=randompick(['GP','Inpatient','Letter','Vitals','Results'])
+    var importance=randompick(['High','Intermediate','Low'])
+    var acute=(Math.random()<0.75)
+    return {
+        'id': n,
+        'title': title,
+        'text': text,
+        'docType': doctype,
+        'importance': importance,
+        'acute': acute
+    }
+}
+
+function mkpatient(n) {    
     var year=Math.floor(1918+100*Math.random())
     var month=Math.floor(1+12*Math.random())
     var day=Math.floor(1+31*Math.random())
+    var age=2017-year
+    var entries=[]
+    var nentries=Math.floor(age*Math.random())
+    for (var i=0;i<nentries;i++) entries.push(mkentry(i))
     var meds=[]
     var nmeds=Math.floor(4*Math.random())
     for (var i=0;i<nmeds;i++) meds.push(mkdrug(i))
@@ -50,12 +86,13 @@ function mkpatient(n) {
         'id': n,
         'name': mkname(),
         'dob': year+'-'+month+'-'+day,
-        'age': 2017-year,
+        'age': age,
+        'entries': entries,
         'medications': meds
     };
 }
 
-var jobdesc=['Blood test','Ultrasound','CT scan','MRI scan','Biopsy']
+var jobdesc=['Blood test','Cannula','Ultrasound','CT scan','MRI scan','Biopsy','Referral']
 function mkjob(n) {
     return {
         'id':n,
@@ -91,10 +128,20 @@ appendPatientListFile('')
 appendPatientListFile('module PatientList exposing (..)')
 appendPatientListFile('')
 appendPatientListFile('import Dict as D exposing (..)')
-appendPatientListFile('import PatientPageTypes exposing (Patient,Entries,Drug)')
+appendPatientListFile('import PatientPageTypes exposing (Patient,Entry,Drug,Doctype(..),Importance(..))')
 appendPatientListFile('')
 appendPatientListFile('patientList : Dict Int Patient')
 appendPatientListFile('patientList = D.fromList [')
+
+function entriesToString(entries) {
+    var s='['
+    for (var i=0;i<entries.length;i++) {
+        if (i!=0) s+=' , '
+        s+=('Entry '+entries[i]['id']+' "'+entries[i]['title']+'" '+' "'+entries[i]['text']+'" '+entries[i]['docType']+' '+entries[i]['importance']+' '+(entries[i]['acute'] ? 'True' : 'False'))
+    }
+    s+=']'
+    return s
+}
 
 function medicationsToString(meds) {
     var s='['
@@ -108,7 +155,7 @@ function medicationsToString(meds) {
 
 for (var i=0;i<patients.length;i++) {
     if (i!=0) appendPatientListFile('  ,')
-    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" [] '+medicationsToString(patients[i]['medications'])+' )')
+    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" '+entriesToString(patients[i]['entries'])+' '+medicationsToString(patients[i]['medications'])+' )')
 }
 appendPatientListFile('  ]')
 
