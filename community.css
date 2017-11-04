@@ -6,10 +6,19 @@
     text-align: center;
 }
 
+.title {
+    font-size: 36px;
+}
+
 .centertext {
     text-align: center;
 }
 
+.righttext {
+    text-align: right;
+    padding: 10px;
+}
+
 .fullwidth {
-    width: 100%
+    width: 100%;
 }

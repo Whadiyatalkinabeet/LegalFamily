@@ -4,9 +4,9 @@
 
 import Html exposing (Html, text, h1, div, span, a)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (href, style)
+import Html.Attributes exposing (href, style, class)
 import Json.Decode as JD
-import Dict as D exposing (..)
+import Dict as D exposing (Dict, empty)
 import Material.Layout as Layout
 import Material
 import Material.Scheme as Scheme
@@ -14,7 +14,7 @@ import Material.Button as Button
 import Material.Options exposing (cs)  -- NB Avoiding inline css; use cs to select community.css classes 
 import Material.List as Lists
 import Material.Table as Table
-import Material.Grid exposing (..)
+import Material.Grid exposing (grid, size, cell, Device (..) )
 import PatientPageTypes exposing (Doctype, Importance, Patient, Entry, Drug)
 import Routing exposing (Route(..), parseLocation, patientPath, patientsPath)
 import Navigation exposing (Location)
@@ -33,7 +33,7 @@ type alias Model =
   , user : User
   , jobs : Dict Int Job
   , beds : List Int
-  , currentPatient : Int
+  , currentPatient : Maybe Int
   , error : String
   , mdl : Material.Model
   , order : Maybe Table.Order
@@ -66,7 +66,7 @@ main =
 init : Location -> (Model, Cmd Msg)
 init location =
   let currentRoute = parseLocation location
-  in (Model patientList testUser JobList.jobList bedList 0 "" Material.model Nothing currentRoute, Material.init Mdl)
+  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model Nothing currentRoute, Material.init Mdl)
 
 
 -- Msg and Update
@@ -98,7 +98,7 @@ update msg model =
       in ({model | jobs = newJobDict }, Cmd.none)
 
     ClickPatient patient ->
-      ({model | currentPatient = patient.id }, Cmd.none)
+      ({model | currentPatient = Just patient.id }, Cmd.none)
 
     CompleteJob jobID ->
       ({model | jobs =
@@ -120,9 +120,7 @@ updateJob id (jobID, job) =
   if id == jobID then (jobID, {job | completed = True})
   else (jobID, job)
 
-
 -- View
-
 
 view : Model -> Html Msg
 view model =
@@ -136,15 +134,19 @@ view model =
       , main = [ page model ]
     }
 
+getPatientName: Patient->String
+getPatientName patient = patient.name
+
 header : Model -> Html Msg
 header model =
-  div []
-    [ span [] [ Html.h2
-      [ Html.Attributes.style [ ( "padding", "7px" ), ("text-align", "left"),
-          ("margin-left", "24px"), ("margin", "12px"), ("display", "inline") ] ] [ text "CommUnity"] ]
-    , span [] [ text model.user.name ]
-    , span [] [ text model.user.speciality ]
-    , span [] [ text model.user.grade ]
+  let title=case model.currentPatient of
+     Just x -> getPatientName ((Maybe.withDefault emptyPatient) (D.get x model.patients))
+     Maybe.Nothing -> "CommUnity"
+  in
+    grid [cs "fullwidth"] [
+      cell [cs "title", size All 4] [ text title],
+      cell [size All 4] [],
+      cell [cs "righttext", size All 4] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
 
 page : Model -> Html Msg
