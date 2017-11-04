@@ -16,7 +16,7 @@ import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (..)
 import PatientPageTypes exposing (Doctype, Importance, Patient, Entries, Drug)
-import Routing exposing (Route, parseLocation)
+import Routing exposing (Route(..), parseLocation)
 import Navigation exposing (Location)
 
 -- Model && Types
