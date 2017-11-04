@@ -29,10 +29,10 @@ wardView model =
                                     [ text "Name"]
                                 , Table.th
                                     [cs "centertext"]
-                                    [ text "DOB" ]
+                                    [ text "Age" ]
                                 , Table.th
                                     [cs "centertext"]
-                                    [ text "Age" ]
+                                    [ text "DOB" ]
                                 , Table.th
                                     []
                                     []
