@@ -38,6 +38,7 @@ entryIterator entries =
     case entries of
       [] -> div [] []
       (x::xs) -> let entry = x
-                 in div [] [ Card.view [] [Card.title [] [ Card.head [ white ] [ text entry.title ] ] ]
+                 in div [] [ Card.view [ Options.css "height" "128px", Options.css "width" "128px", Color.background (Color.color Color.Brown Color.S500)] 
+                            [Card.title [] [ Card.head [ white ] [ text entry.title ] ] ]
                             , entryIterator xs]
 
