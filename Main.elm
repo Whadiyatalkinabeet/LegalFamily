@@ -133,7 +133,7 @@ header model =
     grid [cs "fullwidth"] [
       cell gridSizingLeft [],
       cell ((cs "title") :: gridSizingCenter) [ text title],
-      cell ((cs "righttext") :: gridSizingRight) [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
+      cell ((cs "usertext") :: gridSizingRight) [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
 
 page : Model -> Html Msg
