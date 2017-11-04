@@ -12,23 +12,23 @@ type Importance
 
 type alias Patient = {
   id : Int
-, name : String
-, age : String
-, dob : String
-, entries : List Entries
-, medications : List Drug
+  , name : String
+  , age : String
+  , dob : String
+  , entries : List Entries
+  , medications : List Drug
 }
 
 type alias Entries = {
   title: String
-, text: String
-, docType: Doctype
-, importance: Importance
+  , text: String
+  , docType: Doctype
+  , importance: Importance
 }
 
 type alias Drug = {
   name: String
-, dose: String
-, frequency: String
-, repeat: Bool
+  , dose: String
+  , frequency: String
+  , repeat: Bool
 }
