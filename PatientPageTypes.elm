@@ -15,8 +15,8 @@ type Importance
 type alias Patient = {
   id : Int
   , name : String
-  , age : String
   , dob : String
+  , age : String
   , entries : List Entry
   , medications : List Drug
 }
