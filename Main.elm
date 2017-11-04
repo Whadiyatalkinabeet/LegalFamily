@@ -118,6 +118,10 @@ myDrawer : Model -> Html Msg
 myDrawer model =
   span [] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
 
+-- Header layout:
+--   Grid is 12 / 8 / 4 on Desktop/Tablet/Phone.
+--   So use 4,4,4 / 2,4,2 / 1,2,1
+
 header : Model -> Html Msg
 header model =
   let title=case model.currentPatient of
@@ -125,9 +129,9 @@ header model =
      Maybe.Nothing -> "CommUnity"
   in
     grid [cs "fullwidth"] [
-      cell [cs "title", size All 4] [ text title],
-      cell [size All 4] [],
-      cell [cs "righttext", size All 4] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
+      cell [size Desktop 4, size Tablet 2,size Phone 1] [],
+      cell [cs "title", size Desktop 4, size Tablet 4,size Phone 2] [ text title],
+      cell [cs "righttext", size Desktop 4, size Tablet 2,size Phone 1] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
 
 page : Model -> Html Msg
