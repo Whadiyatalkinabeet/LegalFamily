@@ -15263,6 +15263,162 @@ var _debois$elm_mdl$Material_Color$primaryContrast = _debois$elm_mdl$Material_Co
 var _debois$elm_mdl$Material_Color$accent = _debois$elm_mdl$Material_Color$C('accent');
 var _debois$elm_mdl$Material_Color$accentContrast = _debois$elm_mdl$Material_Color$C('accent-contrast');
 
+var _debois$elm_mdl$Material_Grid$clip = F3(
+	function (lower, upper, k) {
+		return A2(
+			_elm_lang$core$Basics$max,
+			lower,
+			A2(_elm_lang$core$Basics$min, k, upper));
+	});
+var _debois$elm_mdl$Material_Grid$stretch = _debois$elm_mdl$Material_Options$cs('mdl-cell--stretch');
+var _debois$elm_mdl$Material_Grid$align = function (a) {
+	var _p0 = a;
+	switch (_p0.ctor) {
+		case 'Top':
+			return _debois$elm_mdl$Material_Options$cs('mdl-cell--top');
+		case 'Middle':
+			return _debois$elm_mdl$Material_Options$cs('mdl-cell--middle');
+		default:
+			return _debois$elm_mdl$Material_Options$cs('mdl-cell--bottom');
+	}
+};
+var _debois$elm_mdl$Material_Grid$suffix = function (device) {
+	var _p1 = device;
+	switch (_p1.ctor) {
+		case 'All':
+			return '';
+		case 'Desktop':
+			return '-desktop';
+		case 'Tablet':
+			return '-tablet';
+		default:
+			return '-phone';
+	}
+};
+var _debois$elm_mdl$Material_Grid$size = F2(
+	function (device, k) {
+		var c = function () {
+			var _p2 = device;
+			switch (_p2.ctor) {
+				case 'All':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 12, k);
+				case 'Desktop':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 12, k);
+				case 'Tablet':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 8, k);
+				default:
+					return A3(_debois$elm_mdl$Material_Grid$clip, 1, 4, k);
+			}
+		}();
+		return _debois$elm_mdl$Material_Options$cs(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'mdl-cell--',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(c),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'-col',
+						_debois$elm_mdl$Material_Grid$suffix(device)))));
+	});
+var _debois$elm_mdl$Material_Grid$offset = F2(
+	function (device, k) {
+		var c = function () {
+			var _p3 = device;
+			switch (_p3.ctor) {
+				case 'All':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 0, 11, k);
+				case 'Desktop':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 0, 11, k);
+				case 'Tablet':
+					return A3(_debois$elm_mdl$Material_Grid$clip, 0, 7, k);
+				default:
+					return A3(_debois$elm_mdl$Material_Grid$clip, 0, 3, k);
+			}
+		}();
+		return _debois$elm_mdl$Material_Options$cs(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'mdl-cell--',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(c),
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'-offset',
+						_debois$elm_mdl$Material_Grid$suffix(device)))));
+	});
+var _debois$elm_mdl$Material_Grid$hide = function (device) {
+	return _debois$elm_mdl$Material_Options$cs(
+		function () {
+			var _p4 = device;
+			if (_p4.ctor === 'All') {
+				return '';
+			} else {
+				return A2(
+					_elm_lang$core$Basics_ops['++'],
+					'mdl-cell--hide-',
+					_debois$elm_mdl$Material_Grid$suffix(device));
+			}
+		}());
+};
+var _debois$elm_mdl$Material_Grid$order = F2(
+	function (device, n) {
+		return _debois$elm_mdl$Material_Options$cs(
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				'mdl-cell--order-',
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					_elm_lang$core$Basics$toString(
+						A3(_debois$elm_mdl$Material_Grid$clip, 1, 12, n)),
+					_debois$elm_mdl$Material_Grid$suffix(device))));
+	});
+var _debois$elm_mdl$Material_Grid$grid = F2(
+	function (styling, cells) {
+		return A2(
+			_debois$elm_mdl$Material_Options$div,
+			{
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Options$cs('mdl-grid'),
+				_1: styling
+			},
+			A2(
+				_elm_lang$core$List$map,
+				function (_p5) {
+					var _p6 = _p5;
+					return _p6._0;
+				},
+				cells));
+	});
+var _debois$elm_mdl$Material_Grid$maxWidth = function (w) {
+	return A2(_debois$elm_mdl$Material_Options$css, 'max-width', w);
+};
+var _debois$elm_mdl$Material_Grid$noSpacing = _debois$elm_mdl$Material_Options$cs('mdl-grid--no-spacing');
+var _debois$elm_mdl$Material_Grid$Phone = {ctor: 'Phone'};
+var _debois$elm_mdl$Material_Grid$Tablet = {ctor: 'Tablet'};
+var _debois$elm_mdl$Material_Grid$Desktop = {ctor: 'Desktop'};
+var _debois$elm_mdl$Material_Grid$All = {ctor: 'All'};
+var _debois$elm_mdl$Material_Grid$Cell = function (a) {
+	return {ctor: 'Cell', _0: a};
+};
+var _debois$elm_mdl$Material_Grid$cell = F2(
+	function (styling, elms) {
+		return _debois$elm_mdl$Material_Grid$Cell(
+			A2(
+				_debois$elm_mdl$Material_Options$div,
+				{
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-cell'),
+					_1: styling
+				},
+				elms));
+	});
+var _debois$elm_mdl$Material_Grid$Bottom = {ctor: 'Bottom'};
+var _debois$elm_mdl$Material_Grid$Middle = {ctor: 'Middle'};
+var _debois$elm_mdl$Material_Grid$Top = {ctor: 'Top'};
+
 var _debois$elm_mdl$Material_List$action2 = _debois$elm_mdl$Material_Options$cs('mdl-list__item-secondary-action');
 var _debois$elm_mdl$Material_List$info2 = function (options) {
 	return _debois$elm_mdl$Material_Options$span(
@@ -15437,6 +15593,391 @@ var _debois$elm_mdl$Material_Scheme$top = function (content) {
 	return A3(_debois$elm_mdl$Material_Scheme$topWithScheme, _debois$elm_mdl$Material_Color$Grey, _debois$elm_mdl$Material_Color$Grey, content);
 };
 
+var _debois$elm_mdl$Material_Table$defaultCell = {numeric: false};
+var _debois$elm_mdl$Material_Table$td = F2(
+	function (options, html) {
+		var _p0 = A2(_debois$elm_mdl$Material_Options_Internal$collect, _debois$elm_mdl$Material_Table$defaultCell, options);
+		var summary = _p0;
+		var config = _p0.config;
+		return A5(
+			_debois$elm_mdl$Material_Options_Internal$apply,
+			summary,
+			_elm_lang$html$Html$td,
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Options$when,
+					config.numeric,
+					_debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric')),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'},
+			html);
+	});
+var _debois$elm_mdl$Material_Table$sorted = function (order) {
+	return _debois$elm_mdl$Material_Options_Internal$option(
+		function (self) {
+			return _elm_lang$core$Native_Utils.update(
+				self,
+				{
+					sorted: _elm_lang$core$Maybe$Just(order)
+				});
+		});
+};
+var _debois$elm_mdl$Material_Table$numeric = _debois$elm_mdl$Material_Options_Internal$option(
+	function (self) {
+		return _elm_lang$core$Native_Utils.update(
+			self,
+			{numeric: true});
+	});
+var _debois$elm_mdl$Material_Table$defaultHeader = {numeric: false, sorted: _elm_lang$core$Maybe$Nothing};
+var _debois$elm_mdl$Material_Table$th = F2(
+	function (options, html) {
+		var _p1 = A2(_debois$elm_mdl$Material_Options_Internal$collect, _debois$elm_mdl$Material_Table$defaultHeader, options);
+		var summary = _p1;
+		var config = _p1.config;
+		return A5(
+			_debois$elm_mdl$Material_Options_Internal$apply,
+			summary,
+			_elm_lang$html$Html$th,
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Options$when,
+					config.numeric,
+					_debois$elm_mdl$Material_Options$cs('mdl-data-table__cell--non-numeric')),
+				_1: {
+					ctor: '::',
+					_0: function () {
+						var _p2 = config.sorted;
+						if (_p2.ctor === 'Just') {
+							if (_p2._0.ctor === 'Ascending') {
+								return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-ascending');
+							} else {
+								return _debois$elm_mdl$Material_Options$cs('mdl-data-table__header--sorted-descending');
+							}
+						} else {
+							return _debois$elm_mdl$Material_Options$nop;
+						}
+					}(),
+					_1: {ctor: '[]'}
+				}
+			},
+			{ctor: '[]'},
+			html);
+	});
+var _debois$elm_mdl$Material_Table$selected = _debois$elm_mdl$Material_Options_Internal$option(
+	function (self) {
+		return _elm_lang$core$Native_Utils.update(
+			self,
+			{selected: true});
+	});
+var _debois$elm_mdl$Material_Table$defaultRow = {selected: false};
+var _debois$elm_mdl$Material_Table$tr = F2(
+	function (options, html) {
+		var _p3 = A2(_debois$elm_mdl$Material_Options_Internal$collect, _debois$elm_mdl$Material_Table$defaultRow, options);
+		var summary = _p3;
+		var config = _p3.config;
+		return A5(
+			_debois$elm_mdl$Material_Options_Internal$apply,
+			summary,
+			_elm_lang$html$Html$tr,
+			{
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Options$when,
+					config.selected,
+					_debois$elm_mdl$Material_Options$cs('is-selected')),
+				_1: {ctor: '[]'}
+			},
+			{ctor: '[]'},
+			html);
+	});
+var _debois$elm_mdl$Material_Table$tfoot = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options_Internal$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options_Internal$apply,
+			summary,
+			_elm_lang$html$Html$tfoot,
+			{ctor: '[]'},
+			{ctor: '[]'},
+			html);
+	});
+var _debois$elm_mdl$Material_Table$tbody = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options_Internal$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options_Internal$apply,
+			summary,
+			_elm_lang$html$Html$tbody,
+			{ctor: '[]'},
+			{ctor: '[]'},
+			html);
+	});
+var _debois$elm_mdl$Material_Table$thead = F2(
+	function (options, html) {
+		var summary = A2(
+			_debois$elm_mdl$Material_Options_Internal$collect,
+			{},
+			options);
+		return A5(
+			_debois$elm_mdl$Material_Options_Internal$apply,
+			summary,
+			_elm_lang$html$Html$thead,
+			{ctor: '[]'},
+			{ctor: '[]'},
+			html);
+	});
+var _debois$elm_mdl$Material_Table$table = F2(
+	function (options, nodes) {
+		return A3(
+			_debois$elm_mdl$Material_Options$styled,
+			_elm_lang$html$Html$table,
+			{
+				ctor: '::',
+				_0: _debois$elm_mdl$Material_Options$cs('mdl-data-table'),
+				_1: {
+					ctor: '::',
+					_0: _debois$elm_mdl$Material_Options$cs('mdl-js-data-table'),
+					_1: {
+						ctor: '::',
+						_0: _debois$elm_mdl$Material_Options$cs('is-upgraded'),
+						_1: options
+					}
+				}
+			},
+			nodes);
+	});
+var _debois$elm_mdl$Material_Table$Row = function (a) {
+	return {selected: a};
+};
+var _debois$elm_mdl$Material_Table$Header = F2(
+	function (a, b) {
+		return {numeric: a, sorted: b};
+	});
+var _debois$elm_mdl$Material_Table$Cell = function (a) {
+	return {numeric: a};
+};
+var _debois$elm_mdl$Material_Table$Descending = {ctor: 'Descending'};
+var _debois$elm_mdl$Material_Table$descending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Descending);
+var _debois$elm_mdl$Material_Table$Ascending = {ctor: 'Ascending'};
+var _debois$elm_mdl$Material_Table$ascending = _debois$elm_mdl$Material_Table$sorted(_debois$elm_mdl$Material_Table$Ascending);
+
+var _user$project$Job$Job = F3(
+	function (a, b, c) {
+		return {patientID: a, job: b, completed: c};
+	});
+
+var _user$project$JobList$jobList = _elm_lang$core$Dict$fromList(
+	{
+		ctor: '::',
+		_0: {
+			ctor: '_Tuple2',
+			_0: 0,
+			_1: A3(_user$project$Job$Job, 12, 'Blood test', false)
+		},
+		_1: {
+			ctor: '::',
+			_0: {
+				ctor: '_Tuple2',
+				_0: 1,
+				_1: A3(_user$project$Job$Job, 24, 'Ultrasound', false)
+			},
+			_1: {
+				ctor: '::',
+				_0: {
+					ctor: '_Tuple2',
+					_0: 2,
+					_1: A3(_user$project$Job$Job, 25, 'Ultrasound', true)
+				},
+				_1: {
+					ctor: '::',
+					_0: {
+						ctor: '_Tuple2',
+						_0: 3,
+						_1: A3(_user$project$Job$Job, 3, 'CT scan', false)
+					},
+					_1: {
+						ctor: '::',
+						_0: {
+							ctor: '_Tuple2',
+							_0: 4,
+							_1: A3(_user$project$Job$Job, 7, 'Biopsy', false)
+						},
+						_1: {
+							ctor: '::',
+							_0: {
+								ctor: '_Tuple2',
+								_0: 5,
+								_1: A3(_user$project$Job$Job, 16, 'CT scan', true)
+							},
+							_1: {
+								ctor: '::',
+								_0: {
+									ctor: '_Tuple2',
+									_0: 6,
+									_1: A3(_user$project$Job$Job, 15, 'MRI scan', false)
+								},
+								_1: {
+									ctor: '::',
+									_0: {
+										ctor: '_Tuple2',
+										_0: 7,
+										_1: A3(_user$project$Job$Job, 25, 'Blood test', false)
+									},
+									_1: {
+										ctor: '::',
+										_0: {
+											ctor: '_Tuple2',
+											_0: 8,
+											_1: A3(_user$project$Job$Job, 4, 'CT scan', true)
+										},
+										_1: {
+											ctor: '::',
+											_0: {
+												ctor: '_Tuple2',
+												_0: 9,
+												_1: A3(_user$project$Job$Job, 19, 'MRI scan', false)
+											},
+											_1: {
+												ctor: '::',
+												_0: {
+													ctor: '_Tuple2',
+													_0: 10,
+													_1: A3(_user$project$Job$Job, 20, 'CT scan', false)
+												},
+												_1: {
+													ctor: '::',
+													_0: {
+														ctor: '_Tuple2',
+														_0: 11,
+														_1: A3(_user$project$Job$Job, 16, 'MRI scan', false)
+													},
+													_1: {
+														ctor: '::',
+														_0: {
+															ctor: '_Tuple2',
+															_0: 12,
+															_1: A3(_user$project$Job$Job, 26, 'Blood test', false)
+														},
+														_1: {
+															ctor: '::',
+															_0: {
+																ctor: '_Tuple2',
+																_0: 13,
+																_1: A3(_user$project$Job$Job, 9, 'CT scan', false)
+															},
+															_1: {
+																ctor: '::',
+																_0: {
+																	ctor: '_Tuple2',
+																	_0: 14,
+																	_1: A3(_user$project$Job$Job, 14, 'MRI scan', false)
+																},
+																_1: {
+																	ctor: '::',
+																	_0: {
+																		ctor: '_Tuple2',
+																		_0: 15,
+																		_1: A3(_user$project$Job$Job, 7, 'Blood test', false)
+																	},
+																	_1: {
+																		ctor: '::',
+																		_0: {
+																			ctor: '_Tuple2',
+																			_0: 16,
+																			_1: A3(_user$project$Job$Job, 4, 'Ultrasound', false)
+																		},
+																		_1: {
+																			ctor: '::',
+																			_0: {
+																				ctor: '_Tuple2',
+																				_0: 17,
+																				_1: A3(_user$project$Job$Job, 3, 'MRI scan', false)
+																			},
+																			_1: {
+																				ctor: '::',
+																				_0: {
+																					ctor: '_Tuple2',
+																					_0: 18,
+																					_1: A3(_user$project$Job$Job, 13, 'Blood test', false)
+																				},
+																				_1: {
+																					ctor: '::',
+																					_0: {
+																						ctor: '_Tuple2',
+																						_0: 19,
+																						_1: A3(_user$project$Job$Job, 25, 'MRI scan', true)
+																					},
+																					_1: {
+																						ctor: '::',
+																						_0: {
+																							ctor: '_Tuple2',
+																							_0: 20,
+																							_1: A3(_user$project$Job$Job, 17, 'Blood test', true)
+																						},
+																						_1: {
+																							ctor: '::',
+																							_0: {
+																								ctor: '_Tuple2',
+																								_0: 21,
+																								_1: A3(_user$project$Job$Job, 5, 'MRI scan', true)
+																							},
+																							_1: {
+																								ctor: '::',
+																								_0: {
+																									ctor: '_Tuple2',
+																									_0: 22,
+																									_1: A3(_user$project$Job$Job, 22, 'Ultrasound', false)
+																								},
+																								_1: {
+																									ctor: '::',
+																									_0: {
+																										ctor: '_Tuple2',
+																										_0: 23,
+																										_1: A3(_user$project$Job$Job, 13, 'Biopsy', false)
+																									},
+																									_1: {
+																										ctor: '::',
+																										_0: {
+																											ctor: '_Tuple2',
+																											_0: 24,
+																											_1: A3(_user$project$Job$Job, 10, 'Ultrasound', false)
+																										},
+																										_1: {ctor: '[]'}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	});
+
 var _user$project$Patient$Patient = F3(
 	function (a, b, c) {
 		return {name: a, dob: b, age: c};
@@ -15448,210 +15989,210 @@ var _user$project$PatientList$patientList = _elm_lang$core$Dict$fromList(
 		_0: {
 			ctor: '_Tuple2',
 			_0: 0,
-			_1: A3(_user$project$Patient$Patient, 'Vabdyxxn Ulfrvd', '1947-1-3', '70')
+			_1: A3(_user$project$Patient$Patient, 'Jyot Uvdt', '1964-12-19', '53')
 		},
 		_1: {
 			ctor: '::',
 			_0: {
 				ctor: '_Tuple2',
 				_0: 1,
-				_1: A3(_user$project$Patient$Patient, 'Gsgqdv Zlios', '1997-11-28', '20')
+				_1: A3(_user$project$Patient$Patient, 'Nlap Gekbvs', '1974-2-14', '43')
 			},
 			_1: {
 				ctor: '::',
 				_0: {
 					ctor: '_Tuple2',
 					_0: 2,
-					_1: A3(_user$project$Patient$Patient, 'Bcnh Lsugv', '1935-12-13', '82')
+					_1: A3(_user$project$Patient$Patient, 'Bwmamnt Drxfz', '2017-12-13', '0')
 				},
 				_1: {
 					ctor: '::',
 					_0: {
 						ctor: '_Tuple2',
 						_0: 3,
-						_1: A3(_user$project$Patient$Patient, 'Ckljkj Xoeivum', '1972-6-15', '45')
+						_1: A3(_user$project$Patient$Patient, 'Hyxkgs Yyjx', '1980-1-6', '37')
 					},
 					_1: {
 						ctor: '::',
 						_0: {
 							ctor: '_Tuple2',
 							_0: 4,
-							_1: A3(_user$project$Patient$Patient, 'Uppoelt Ghwhlfq', '1939-11-27', '78')
+							_1: A3(_user$project$Patient$Patient, 'Egmczdr Wxqbwb', '1945-2-28', '72')
 						},
 						_1: {
 							ctor: '::',
 							_0: {
 								ctor: '_Tuple2',
 								_0: 5,
-								_1: A3(_user$project$Patient$Patient, 'Wyrsoj Rrqk', '1944-2-3', '73')
+								_1: A3(_user$project$Patient$Patient, 'Kijs Uhch', '1992-1-15', '25')
 							},
 							_1: {
 								ctor: '::',
 								_0: {
 									ctor: '_Tuple2',
 									_0: 6,
-									_1: A3(_user$project$Patient$Patient, 'Bcbesn Mgdq', '1987-1-2', '30')
+									_1: A3(_user$project$Patient$Patient, 'Lcnlmru Rjapjrhc', '2012-5-7', '5')
 								},
 								_1: {
 									ctor: '::',
 									_0: {
 										ctor: '_Tuple2',
 										_0: 7,
-										_1: A3(_user$project$Patient$Patient, 'Dzxapmui Grcilb', '1983-6-16', '34')
+										_1: A3(_user$project$Patient$Patient, 'Foaq Ugpgfv', '1958-1-19', '59')
 									},
 									_1: {
 										ctor: '::',
 										_0: {
 											ctor: '_Tuple2',
 											_0: 8,
-											_1: A3(_user$project$Patient$Patient, 'Gecn Wmczlzj', '1977-10-31', '40')
+											_1: A3(_user$project$Patient$Patient, 'Mzfgg Aiac', '2013-7-28', '4')
 										},
 										_1: {
 											ctor: '::',
 											_0: {
 												ctor: '_Tuple2',
 												_0: 9,
-												_1: A3(_user$project$Patient$Patient, 'Qukchov Dqzrm', '2010-9-18', '7')
+												_1: A3(_user$project$Patient$Patient, 'Hxoa Ueewparp', '1918-9-19', '99')
 											},
 											_1: {
 												ctor: '::',
 												_0: {
 													ctor: '_Tuple2',
 													_0: 10,
-													_1: A3(_user$project$Patient$Patient, 'Jeuqb Jiegl', '1977-6-30', '40')
+													_1: A3(_user$project$Patient$Patient, 'Homrbvco Wbkp', '1979-3-26', '38')
 												},
 												_1: {
 													ctor: '::',
 													_0: {
 														ctor: '_Tuple2',
 														_0: 11,
-														_1: A3(_user$project$Patient$Patient, 'Sfrru Kkgljfu', '1999-2-16', '18')
+														_1: A3(_user$project$Patient$Patient, 'Ckheghg Nujtxwwt', '1961-1-12', '56')
 													},
 													_1: {
 														ctor: '::',
 														_0: {
 															ctor: '_Tuple2',
 															_0: 12,
-															_1: A3(_user$project$Patient$Patient, 'Ioaszn Cqjz', '1963-5-14', '54')
+															_1: A3(_user$project$Patient$Patient, 'Tvmf Xpvo', '1947-4-31', '70')
 														},
 														_1: {
 															ctor: '::',
 															_0: {
 																ctor: '_Tuple2',
 																_0: 13,
-																_1: A3(_user$project$Patient$Patient, 'Nbsqrx Tsfsw', '1975-10-8', '42')
+																_1: A3(_user$project$Patient$Patient, 'Ayxdan Izbrcjn', '1922-12-4', '95')
 															},
 															_1: {
 																ctor: '::',
 																_0: {
 																	ctor: '_Tuple2',
 																	_0: 14,
-																	_1: A3(_user$project$Patient$Patient, 'Ygclen Knblvpr', '1932-1-27', '85')
+																	_1: A3(_user$project$Patient$Patient, 'Vwpgwq Ohgmzy', '1983-1-20', '34')
 																},
 																_1: {
 																	ctor: '::',
 																	_0: {
 																		ctor: '_Tuple2',
 																		_0: 15,
-																		_1: A3(_user$project$Patient$Patient, 'Onirkpiw Hugpsnj', '1959-2-13', '58')
+																		_1: A3(_user$project$Patient$Patient, 'Alxcxiv Hgfif', '1937-12-31', '80')
 																	},
 																	_1: {
 																		ctor: '::',
 																		_0: {
 																			ctor: '_Tuple2',
 																			_0: 16,
-																			_1: A3(_user$project$Patient$Patient, 'Wvlmqcjb Vijxer', '1918-12-8', '99')
+																			_1: A3(_user$project$Patient$Patient, 'Kpdo Yjazr', '1972-6-27', '45')
 																		},
 																		_1: {
 																			ctor: '::',
 																			_0: {
 																				ctor: '_Tuple2',
 																				_0: 17,
-																				_1: A3(_user$project$Patient$Patient, 'Sdzbxyel Xwyyekff', '1991-9-30', '26')
+																				_1: A3(_user$project$Patient$Patient, 'Dydb Fvxl', '1940-7-21', '77')
 																			},
 																			_1: {
 																				ctor: '::',
 																				_0: {
 																					ctor: '_Tuple2',
 																					_0: 18,
-																					_1: A3(_user$project$Patient$Patient, 'Ggazinhj Zjzgy', '1971-3-6', '46')
+																					_1: A3(_user$project$Patient$Patient, 'Hpbxl Gxwo', '1962-10-11', '55')
 																				},
 																				_1: {
 																					ctor: '::',
 																					_0: {
 																						ctor: '_Tuple2',
 																						_0: 19,
-																						_1: A3(_user$project$Patient$Patient, 'Rximkd Dvneh', '1984-8-12', '33')
+																						_1: A3(_user$project$Patient$Patient, 'Xssd Mqnlcx', '1984-7-29', '33')
 																					},
 																					_1: {
 																						ctor: '::',
 																						_0: {
 																							ctor: '_Tuple2',
 																							_0: 20,
-																							_1: A3(_user$project$Patient$Patient, 'Hotypc Rfterl', '1983-3-1', '34')
+																							_1: A3(_user$project$Patient$Patient, 'Mvnls Dbfcsh', '1962-8-23', '55')
 																						},
 																						_1: {
 																							ctor: '::',
 																							_0: {
 																								ctor: '_Tuple2',
 																								_0: 21,
-																								_1: A3(_user$project$Patient$Patient, 'Bxogl Rufcmfn', '1963-6-22', '54')
+																								_1: A3(_user$project$Patient$Patient, 'Ibhfq Hzidug', '1993-9-22', '24')
 																							},
 																							_1: {
 																								ctor: '::',
 																								_0: {
 																									ctor: '_Tuple2',
 																									_0: 22,
-																									_1: A3(_user$project$Patient$Patient, 'Mxnwdqdy Dyjaf', '1980-1-8', '37')
+																									_1: A3(_user$project$Patient$Patient, 'Hxohxaxg Fizjg', '1918-8-20', '99')
 																								},
 																								_1: {
 																									ctor: '::',
 																									_0: {
 																										ctor: '_Tuple2',
 																										_0: 23,
-																										_1: A3(_user$project$Patient$Patient, 'Fqar Dqilitvd', '1950-2-29', '67')
+																										_1: A3(_user$project$Patient$Patient, 'Xgejgyvf Danrzqif', '1936-4-26', '81')
 																									},
 																									_1: {
 																										ctor: '::',
 																										_0: {
 																											ctor: '_Tuple2',
 																											_0: 24,
-																											_1: A3(_user$project$Patient$Patient, 'Lcntwinz Jgqqehgm', '2005-8-8', '12')
+																											_1: A3(_user$project$Patient$Patient, 'Xrwh Szlczfrh', '1928-12-4', '89')
 																										},
 																										_1: {
 																											ctor: '::',
 																											_0: {
 																												ctor: '_Tuple2',
 																												_0: 25,
-																												_1: A3(_user$project$Patient$Patient, 'Nljhyo Vmnf', '1960-9-8', '57')
+																												_1: A3(_user$project$Patient$Patient, 'Tpukqmzu Etolbve', '1996-6-27', '21')
 																											},
 																											_1: {
 																												ctor: '::',
 																												_0: {
 																													ctor: '_Tuple2',
 																													_0: 26,
-																													_1: A3(_user$project$Patient$Patient, 'Vjyu Urll', '1968-6-22', '49')
+																													_1: A3(_user$project$Patient$Patient, 'Razjjtf Cbpksu', '2004-6-16', '13')
 																												},
 																												_1: {
 																													ctor: '::',
 																													_0: {
 																														ctor: '_Tuple2',
 																														_0: 27,
-																														_1: A3(_user$project$Patient$Patient, 'Bbosiacq Axwpens', '1979-4-28', '38')
+																														_1: A3(_user$project$Patient$Patient, 'Znhgruvf Uxpui', '1966-12-27', '51')
 																													},
 																													_1: {
 																														ctor: '::',
 																														_0: {
 																															ctor: '_Tuple2',
 																															_0: 28,
-																															_1: A3(_user$project$Patient$Patient, 'Ajdogvxp Lxcbl', '1977-7-23', '40')
+																															_1: A3(_user$project$Patient$Patient, 'Ylmo Ttqytmfs', '1935-8-28', '82')
 																														},
 																														_1: {
 																															ctor: '::',
 																															_0: {
 																																ctor: '_Tuple2',
 																																_0: 29,
-																																_1: A3(_user$project$Patient$Patient, 'Rdmuv Ofyjfe', '1967-7-13', '50')
+																																_1: A3(_user$project$Patient$Patient, 'Jybmcahs Rwugg', '1984-8-10', '33')
 																															},
 																															_1: {ctor: '[]'}
 																														}
@@ -15713,6 +16254,19 @@ var _user$project$Main$patientDecoder = _elm_lang$core$Json_Decode$list(
 				_1: {ctor: '[]'}
 			},
 			_elm_lang$core$Json_Decode$string)));
+var _user$project$Main$zip = F2(
+	function (xs, ys) {
+		var _p0 = {ctor: '_Tuple2', _0: xs, _1: ys};
+		if ((_p0._0.ctor === '::') && (_p0._1.ctor === '::')) {
+			return {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: _p0._0._0, _1: _p0._1._0},
+				_1: A2(_user$project$Main$zip, _p0._0._1, _p0._1._1)
+			};
+		} else {
+			return {ctor: '[]'};
+		}
+	});
 var _user$project$Main$spanStyle = {
 	ctor: '::',
 	_0: {ctor: '_Tuple2', _0: 'padding', _1: '15px'},
@@ -15722,126 +16276,430 @@ var _user$project$Main$spanStyle = {
 		_1: {ctor: '[]'}
 	}
 };
-var _user$project$Main$viewPatient = function (_p0) {
-	var _p1 = _p0;
-	var _p2 = _p1._1;
-	return A2(
-		_debois$elm_mdl$Material_List$li,
-		{
-			ctor: '::',
-			_0: _debois$elm_mdl$Material_List$withSubtitle,
-			_1: {ctor: '[]'}
-		},
-		{
+var _user$project$Main$subHeader = A2(
+	_debois$elm_mdl$Material_Grid$grid,
+	{
+		ctor: '::',
+		_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_debois$elm_mdl$Material_Grid$cell,
+			{
+				ctor: '::',
+				_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 9),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h4,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Ward 6B'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
 			ctor: '::',
 			_0: A2(
-				_debois$elm_mdl$Material_List$content,
+				_debois$elm_mdl$Material_Grid$cell,
 				{
 					ctor: '::',
-					_0: A2(_debois$elm_mdl$Material_Options$css, 'padding', '16px'),
+					_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 3),
 					_1: {ctor: '[]'}
 				},
 				{
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$span,
+						_elm_lang$html$Html$h4,
+						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$style(_user$project$Main$spanStyle),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html$text(_p2.name),
+							_0: _elm_lang$html$Html$text('Jobs'),
 							_1: {ctor: '[]'}
 						}),
-					_1: {
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$Main$updateJob = F2(
+	function (id, _p1) {
+		var _p2 = _p1;
+		var _p4 = _p2._0;
+		var _p3 = _p2._1;
+		return _elm_lang$core$Native_Utils.eq(id, _p4) ? {
+			ctor: '_Tuple2',
+			_0: _p4,
+			_1: _elm_lang$core$Native_Utils.update(
+				_p3,
+				{completed: true})
+		} : {ctor: '_Tuple2', _0: _p4, _1: _p3};
+	});
+var _user$project$Main$rotate = function (order) {
+	var _p5 = order;
+	if (_p5.ctor === 'Just') {
+		if (_p5._0.ctor === 'Ascending') {
+			return _elm_lang$core$Maybe$Just(_debois$elm_mdl$Material_Table$Descending);
+		} else {
+			return _elm_lang$core$Maybe$Nothing;
+		}
+	} else {
+		return _elm_lang$core$Maybe$Just(_debois$elm_mdl$Material_Table$Ascending);
+	}
+};
+var _user$project$Main$firebaseDB = 'https://legalfamily-95414.firebaseio.com/';
+var _user$project$Main$bedList = A2(_elm_lang$core$List$range, 1, 24);
+var _user$project$Main$viewBody = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{ctor: '[]'},
+		{
+			ctor: '::',
+			_0: _user$project$Main$subHeader,
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_debois$elm_mdl$Material_Grid$grid,
+					{ctor: '[]'},
+					{
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$span,
+							_debois$elm_mdl$Material_Grid$cell,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$style(_user$project$Main$spanStyle),
+								_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 9),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text(_p2.age),
+								_0: A2(
+									_debois$elm_mdl$Material_Table$table,
+									{
+										ctor: '::',
+										_0: A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_debois$elm_mdl$Material_Table$thead,
+											{ctor: '[]'},
+											{
+												ctor: '::',
+												_0: A2(
+													_debois$elm_mdl$Material_Table$tr,
+													{ctor: '[]'},
+													{
+														ctor: '::',
+														_0: A2(
+															_debois$elm_mdl$Material_Table$th,
+															{
+																ctor: '::',
+																_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Bed Number'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_debois$elm_mdl$Material_Table$th,
+																{
+																	ctor: '::',
+																	_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																	_1: {ctor: '[]'}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Name'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_debois$elm_mdl$Material_Table$th,
+																	{
+																		ctor: '::',
+																		_0: _debois$elm_mdl$Material_Table$numeric,
+																		_1: {
+																			ctor: '::',
+																			_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																			_1: {ctor: '[]'}
+																		}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('Age'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_debois$elm_mdl$Material_Table$th,
+																		{
+																			ctor: '::',
+																			_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text('DOB'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {ctor: '[]'}
+																}
+															}
+														}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_debois$elm_mdl$Material_Table$tbody,
+												{ctor: '[]'},
+												A2(
+													_elm_lang$core$List$map,
+													function (_p6) {
+														var _p7 = _p6;
+														var _p8 = _p7._1;
+														return A2(
+															_debois$elm_mdl$Material_Table$tr,
+															{ctor: '[]'},
+															{
+																ctor: '::',
+																_0: A2(
+																	_debois$elm_mdl$Material_Table$td,
+																	{
+																		ctor: '::',
+																		_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text(
+																			_elm_lang$core$Basics$toString(_p7._0)),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_debois$elm_mdl$Material_Table$td,
+																		{
+																			ctor: '::',
+																			_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text(_p8.name),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_debois$elm_mdl$Material_Table$td,
+																			{
+																				ctor: '::',
+																				_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html$text(_p8.age),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_debois$elm_mdl$Material_Table$td,
+																				{
+																					ctor: '::',
+																					_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html$text(_p8.dob),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																}
+															});
+													},
+													A2(
+														_user$project$Main$zip,
+														_user$project$Main$bedList,
+														A2(
+															_elm_lang$core$List$map,
+															_elm_lang$core$Tuple$second,
+															_elm_lang$core$Dict$toList(model.patients))))),
+											_1: {ctor: '[]'}
+										}
+									}),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
 							ctor: '::',
 							_0: A2(
-								_elm_lang$html$Html$span,
+								_debois$elm_mdl$Material_Grid$cell,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$style(_user$project$Main$spanStyle),
+									_0: A2(_debois$elm_mdl$Material_Grid$size, _debois$elm_mdl$Material_Grid$All, 3),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html$text(_p2.dob),
+									_0: A2(
+										_debois$elm_mdl$Material_Table$table,
+										{
+											ctor: '::',
+											_0: A2(_debois$elm_mdl$Material_Options$css, 'width', '100%'),
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_debois$elm_mdl$Material_Table$thead,
+												{ctor: '[]'},
+												{
+													ctor: '::',
+													_0: A2(
+														_debois$elm_mdl$Material_Table$tr,
+														{ctor: '[]'},
+														{
+															ctor: '::',
+															_0: A2(
+																_debois$elm_mdl$Material_Table$th,
+																{
+																	ctor: '::',
+																	_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																	_1: {ctor: '[]'}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Bed Number'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_debois$elm_mdl$Material_Table$th,
+																	{
+																		ctor: '::',
+																		_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('Job'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_debois$elm_mdl$Material_Table$tbody,
+													{ctor: '[]'},
+													A2(
+														_elm_lang$core$List$map,
+														function (_p9) {
+															var _p10 = _p9;
+															var _p11 = _p10._1;
+															return A2(
+																_debois$elm_mdl$Material_Table$tr,
+																{ctor: '[]'},
+																{
+																	ctor: '::',
+																	_0: A2(
+																		_debois$elm_mdl$Material_Table$td,
+																		{
+																			ctor: '::',
+																			_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text(
+																				_elm_lang$core$Basics$toString(_p11.patientID)),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_debois$elm_mdl$Material_Table$td,
+																			{
+																				ctor: '::',
+																				_0: A2(_debois$elm_mdl$Material_Options$css, 'text-align', 'center'),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html$text(_p11.job),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {ctor: '[]'}
+																	}
+																});
+														},
+														_elm_lang$core$Dict$toList(model.jobs))),
+												_1: {ctor: '[]'}
+											}
+										}),
 									_1: {ctor: '[]'}
 								}),
 							_1: {ctor: '[]'}
 						}
-					}
-				}),
-			_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			}
 		});
 };
-var _user$project$Main$viewBody = function (model) {
-	var patientsView = A2(
-		_elm_lang$core$List$map,
-		_user$project$Main$viewPatient,
-		_elm_lang$core$Dict$toList(model.patients));
-	return A2(
-		_debois$elm_mdl$Material_List$ul,
-		{ctor: '[]'},
-		patientsView);
-};
-var _user$project$Main$updateJob = F2(
-	function (id, job) {
-		return _elm_lang$core$Native_Utils.eq(id, job.id) ? _elm_lang$core$Native_Utils.update(
-			job,
-			{completed: true}) : job;
-	});
-var _user$project$Main$firebaseDB = 'https://legalfamily-95414.firebaseio.com/';
-var _user$project$Main$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {patients: a, jobs: b, beds: c, currentPatient: d, error: e, mdl: f};
-	});
-var _user$project$Main$Job = F4(
-	function (a, b, c, d) {
-		return {id: a, patientID: b, job: c, completed: d};
+var _user$project$Main$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {patients: a, jobs: b, beds: c, currentPatient: d, error: e, mdl: f, order: g};
 	});
 var _user$project$Main$Mdl = function (a) {
 	return {ctor: 'Mdl', _0: a};
 };
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
-	_0: A6(
-		_user$project$Main$Model,
-		_user$project$PatientList$patientList,
-		{ctor: '[]'},
-		{ctor: '[]'},
-		0,
-		'',
-		_debois$elm_mdl$Material$model),
+	_0: A7(_user$project$Main$Model, _user$project$PatientList$patientList, _user$project$JobList$jobList, _user$project$Main$bedList, 0, '', _debois$elm_mdl$Material$model, _elm_lang$core$Maybe$Nothing),
 	_1: _debois$elm_mdl$Material$init(_user$project$Main$Mdl)
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p3 = msg;
-		switch (_p3.ctor) {
+		var _p12 = msg;
+		switch (_p12.ctor) {
 			case 'CreateJob':
+				var jobList = _elm_lang$core$Dict$toList(model.jobs);
+				var lengthList = _elm_lang$core$List$length(jobList);
+				var newJobDict = _elm_lang$core$Dict$fromList(
+					{
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: lengthList + 1, _1: _p12._0},
+						_1: jobList
+					});
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{
-							jobs: {ctor: '::', _0: _p3._0, _1: model.jobs}
-						}),
+						{jobs: newJobDict}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ClickPatient':
@@ -15858,15 +16716,25 @@ var _user$project$Main$update = F2(
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{
-							jobs: A2(
-								_elm_lang$core$List$map,
-								_user$project$Main$updateJob(_p3._0),
-								model.jobs)
+							jobs: _elm_lang$core$Dict$fromList(
+								A2(
+									_elm_lang$core$List$map,
+									_user$project$Main$updateJob(_p12._0),
+									_elm_lang$core$Dict$toList(model.jobs)))
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
+			case 'Reorder':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{
+							order: _user$project$Main$rotate(model.order)
+						}),
+					{ctor: '[]'});
 			default:
-				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p3._0, model);
+				return A3(_debois$elm_mdl$Material$update, _user$project$Main$Mdl, _p12._0, model);
 		}
 	});
 var _user$project$Main$view = function (model) {
@@ -15883,17 +16751,21 @@ var _user$project$Main$view = function (model) {
 			header: {
 				ctor: '::',
 				_0: A2(
-					_elm_lang$html$Html$h1,
+					_elm_lang$html$Html$h2,
 					{
 						ctor: '::',
 						_0: _elm_lang$html$Html_Attributes$style(
 							{
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'padding', _1: '2rem'},
+								_0: {ctor: '_Tuple2', _0: 'padding', _1: '7px'},
 								_1: {
 									ctor: '::',
 									_0: {ctor: '_Tuple2', _0: 'text-align', _1: 'center'},
-									_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'margin', _1: '12px'},
+										_1: {ctor: '[]'}
+									}
 								}
 							}),
 						_1: {ctor: '[]'}
@@ -15925,6 +16797,7 @@ var _user$project$Main$main = _elm_lang$html$Html$program(
 		update: _user$project$Main$update,
 		subscriptions: _debois$elm_mdl$Material$subscriptions(_user$project$Main$Mdl)
 	})();
+var _user$project$Main$Reorder = {ctor: 'Reorder'};
 var _user$project$Main$CompleteJob = function (a) {
 	return {ctor: 'CompleteJob', _0: a};
 };

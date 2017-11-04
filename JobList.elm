@@ -6,55 +6,55 @@ module JobList exposing (..)
 import Dict as D exposing (..)
 import Job exposing (..)
 
-jobList : Dict Int Patient
+jobList : Dict Int Job
 jobList = D.fromList [
-  (0 ,  "12" "Blood test" "False" )
+  (0 ,  Job 12 "Blood test" False )
   ,
-  (1 ,  "24" "Ultrasound" "False" )
+  (1 ,  Job 24 "Ultrasound" False )
   ,
-  (2 ,  "25" "Ultrasound" "True" )
+  (2 ,  Job 25 "Ultrasound" True )
   ,
-  (3 ,  "3" "CT scan" "False" )
+  (3 ,  Job 3 "CT scan" False )
   ,
-  (4 ,  "7" "Biopsy" "False" )
+  (4 ,  Job 7 "Biopsy" False )
   ,
-  (5 ,  "16" "CT scan" "True" )
+  (5 ,  Job 16 "CT scan" True )
   ,
-  (6 ,  "15" "MRI scan" "False" )
+  (6 ,  Job 15 "MRI scan" False )
   ,
-  (7 ,  "25" "Blood test" "False" )
+  (7 ,  Job 25 "Blood test" False )
   ,
-  (8 ,  "4" "CT scan" "True" )
+  (8 ,  Job 4 "CT scan" True )
   ,
-  (9 ,  "19" "MRI scan" "False" )
+  (9 ,  Job 19 "MRI scan" False )
   ,
-  (10 ,  "20" "CT scan" "False" )
+  (10 ,  Job 20 "CT scan" False )
   ,
-  (11 ,  "16" "MRI scan" "False" )
+  (11 ,  Job 16 "MRI scan" False )
   ,
-  (12 ,  "26" "Blood test" "False" )
+  (12 ,  Job 26 "Blood test" False )
   ,
-  (13 ,  "9" "CT scan" "False" )
+  (13 ,  Job 9 "CT scan" False )
   ,
-  (14 ,  "14" "MRI scan" "False" )
+  (14 ,  Job 14 "MRI scan" False )
   ,
-  (15 ,  "7" "Blood test" "False" )
+  (15 ,  Job 7 "Blood test" False )
   ,
-  (16 ,  "4" "Ultrasound" "False" )
+  (16 , Job  4 "Ultrasound" False )
   ,
-  (17 ,  "3" "MRI scan" "False" )
+  (17 , Job 3 "MRI scan" False )
   ,
-  (18 ,  "13" "Blood test" "False" )
+  (18 , Job 13 "Blood test" False )
   ,
-  (19 ,  "25" "MRI scan" "True" )
+  (19 , Job 25 "MRI scan" True )
   ,
-  (20 ,  "17" "Blood test" "True" )
+  (20 , Job 17 "Blood test" True )
   ,
-  (21 ,  "5" "MRI scan" "True" )
+  (21 , Job 5 "MRI scan" True )
   ,
-  (22 ,  "22" "Ultrasound" "False" )
+  (22 , Job 22 "Ultrasound" False )
   ,
-  (23 ,  "13" "Biopsy" "False" )
+  (23 , Job 13 "Biopsy" False )
   ,
-  (24 ,  "10" "Ultrasound" "False" )
+  (24 , Job 10 "Ultrasound" False )
   ]

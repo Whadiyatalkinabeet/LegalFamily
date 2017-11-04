@@ -14,29 +14,27 @@ import Material.Button as Button
 import Material.Options exposing (css)
 import Material.List as Lists
 import Material.Table as Table
-
+import Material.Grid exposing (..)
 
 -- Model && Types
 
 import Patient exposing (..)
 import PatientList exposing (..)
+import Job exposing (..)
+import JobList exposing (..)
+
+bedList : List Int
+bedList = List.range 1 24
 
 type alias Model =
   { patients : Dict Int Patient
-  , jobs : List Job
+  , jobs : Dict Int Job
   , beds : List Int
   , currentPatient : Int
   , error : String
   , mdl : Material.Model
+  , order : Maybe Table.Order
 }
-
-type alias Job =
-  { id: Int
-  , patientID: Int
-  , job: String
-  , completed: Bool
-  }
-
 -- Firebase Location
 
 firebaseDB : String
@@ -54,7 +52,7 @@ main = Html.program
 -- initialisation
 
 init : (Model, Cmd Msg)
-init = (Model patientList [] [] 0 "" Material.model, Material.init Mdl)
+init = (Model patientList JobList.jobList bedList 0 "" Material.model Nothing, Material.init Mdl)
 
 
 -- Msg and Update
@@ -63,30 +61,45 @@ type Msg
   = CreateJob Job
   | ClickPatient Patient
   | CompleteJob Int
+  | Reorder
   | Mdl (Material.Msg Msg)
+
+
+rotate : Maybe Table.Order -> Maybe Table.Order
+rotate order =
+  case order of
+    Just Table.Ascending -> Just Table.Descending
+    Just Table.Descending -> Nothing
+    Nothing -> Just Table.Ascending
 
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
     CreateJob job ->
-      ({model | jobs = job :: model.jobs }, Cmd.none)
+      let jobList = D.toList model.jobs
+          lengthList = List.length jobList
+          newJobDict = D.fromList (((lengthList + 1), job) :: jobList)
+      in ({model | jobs = newJobDict }, Cmd.none)
 
     ClickPatient patient ->
       ({model | currentPatient = 0 }, Cmd.none)
 
     CompleteJob jobID ->
       ({model | jobs =
-          (List.map (updateJob jobID) model.jobs)}, Cmd.none)
+          D.fromList (List.map (updateJob jobID) (D.toList model.jobs))}, Cmd.none)
+
+    Reorder ->
+      { model | order = rotate model.order } ! []
 
     Mdl msg_ ->
       Material.update Mdl msg_ model
 
 
-updateJob : Int -> Job -> Job
-updateJob id job =
-  if id == job.id then {job | completed = True}
-  else job
+updateJob : Int -> (Int, Job) -> (Int, Job)
+updateJob id (jobID, job) =
+  if id == jobID then (jobID, {job | completed = True})
+  else (jobID, job)
 
 
 -- View
@@ -98,24 +111,76 @@ view model =
     model.mdl
       [ Layout.fixedHeader
       ]
-      { header = [h1 [ Html.Attributes.style [ ( "padding", "2rem" ), ("text-align", "center") ] ] [ text "CommUnity"] ]
+      { header = [Html.h2 [ Html.Attributes.style [ ( "padding", "7px" ), ("text-align", "center"), ("margin", "12px") ] ] [ text "CommUnity"] ]
       , drawer = []
       , tabs = ([], [])
       , main = [ viewBody model ]
     }
 
+subHeader : Html Msg
+subHeader =
+ grid [css "text-align" "center"] [
+      cell [Material.Grid.size All 9]
+        [ Html.h4 [] [text "Ward 6B"] ]
+    , cell [Material.Grid.size All 3]
+        [ Html.h4 [] [text "Jobs"] ]
+    ]
+
 viewBody : Model -> Html Msg
 viewBody model =
-  let patientsView = List.map viewPatient (D.toList model.patients)
-  in Lists.ul [] patientsView
+  div [] [ subHeader,
+              grid [] [ cell [Material.Grid.size All 9 ]
+                        [ Table.table [css "width" "100%"]
+                          [ Table.thead []
+                              [ Table.tr []
+                                [  Table.th
+                                    [css "text-align" "center"]
+                                    [ text "Bed Number"]
+                                ,  Table.th
+                                    [css "text-align" "center"]
+                                    [ text "Name"]
+                                , Table.th
+                                    [Table.numeric, css "text-align" "center"]
+                                    [ text "Age" ]
+                                , Table.th
+                                    [css "text-align" "center"]
+                                    [ text "DOB" ]
+                                ]
+                              ]
+                            , Table.tbody []
+                              ((zip bedList (List.map Tuple.second (D.toList model.patients)))
+                                  |> List.map (\(bedNumber, patient) ->
+                                    Table.tr []
+                                      [ Table.td [css "text-align" "center" ] [ text (toString bedNumber) ]
+                                      , Table.td [css "text-align" "center"] [ text patient.name ]
+                                      , Table.td [css "text-align" "center"] [ text patient.age ]
+                                      , Table.td [css "text-align" "center"] [ text patient.dob ]]))
 
+                            ]
+                          ]
+                        , cell [Material.Grid.size All 3]
+                          [ Table.table [css "width" "100%"]
+                            [ Table.thead []
+                              [ Table.tr []
+                                [ Table.th
+                                  [ css "text-align" "center" ]
+                                  [ text "Bed Number" ]
+                                , Table.th
+                                  [ css "text-align" "center" ]
+                                  [ text "Job"]
+                                ]
+                              ]
+                            , Table.tbody []
+                              ((D.toList model.jobs) |>
+                                List.map (\(_, job) ->
+                                  Table.tr []
+                                    [ Table.td [css "text-align" "center"] [text (toString job.patientID)]
+                                    , Table.td [css "text-align" "center"] [text job.job]]))
+                            ]
+                          ]
+                        ]
+          ]
 
-viewPatient : (Int, Patient) -> Html Msg
-viewPatient (id, patient) =
-  Lists.li []
-    [Lists.content [Material.Options.css "padding" "16px"]
-      [Html.span [Html.Attributes.style spanStyle] [text patient.name], Html.span [Html.Attributes.style spanStyle] [text patient.age], Html.span [Html.Attributes.style spanStyle] [text patient.dob]]
-    ]
 
 
 spanStyle : List (String, String)
@@ -129,6 +194,13 @@ spanStyle =
 --getPatients =
 --  Http.send FetchPatients (Http.get (firebaseDB ++"patients.json") patientDecoder)
 
+zip : List a -> List b -> List (a, b)
+zip xs ys =
+  case (xs, ys) of
+    ( x :: xBack, y :: yBack ) ->
+      (x,y) :: zip xBack yBack
+    (_, _) ->
+      []
 
 
 patientDecoder : JD.Decoder (List Patient)
