@@ -9,6 +9,10 @@ Built on technology so bleeding edge we've got the scars to prove it.
 * Location-restricted security.
 * Live database backend (Google Firebase looks promising; problem with Elm integration?)
 * Extensible plugin architecture for importing/syncing data with diverse systems.
+* User-persona appropriate views
+    * e.g Patient view help avoid missed appointments.  Pill taking compliance.
+        * Time to take your pill!  
+    * e.g Doctor view all the info in one place.  Visibility of the trail of evidence and decisoions leading to the current diagnosis.
 
 ## Adoption
 
@@ -18,13 +22,16 @@ Built on technology so bleeding edge we've got the scars to prove it.
     * Pressures/trends to open data silos (c.f OpenBanking).
     * Hook power-user early adopters via customisable, extensible.
     * Regional fragmentation allows a foot in the door on a smaller scale than huge national roll-out?
+    * Demographic pressures.  Elderly with complex interacting co-morbidities; need to get a holistic view.
+    * Time spent searching for notes by nurses!
+    * Trend to "Realistic medicine" (not clear how we actually help with this?)
 * Threats/obstacles:
     * "Dogma" re existing systems.
     * Siloed data.
     * 28-year long PPI contracts with EMR providers.
 * Strengths:
     * Mobile-first.  EMR on the move.  No more COWs (computers on wheels).
-    * Uses robust and efficient functional programming.
+    * Uses robust and efficient advanced functional programming web-tech.
 * Weaknesses:
     * No good story on unified back end.
 
