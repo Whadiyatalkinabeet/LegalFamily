@@ -14,8 +14,8 @@ import Dict as D exposing (toList)
 import Msgs exposing (Msg(..))
 import Routing exposing (patientPath)
 
--- Layout strategy for Desktop/Tablet/Phone: have 12/8/4 cells available
--- Use a quarter for jobs so 9,3 / 6,2 / 3,1
+-- Layout strategy for Desktop/Tablet/Phone: grid has 12/8/4 cells available
+-- Use one quarter for jobs so 9,3 / 6,2 / 3,1
 gridSizingLeft = [size Desktop 9, size Tablet 6, size Phone 3]
 gridSizingRight = [size Desktop 3, size Tablet 2, size Phone 1]
 
