@@ -14,10 +14,13 @@ import Dict as D exposing (toList)
 import Msgs exposing (Msg(..))
 import Routing exposing (patientPath)
 
+-- Layout strategy for Desktop/Tablet/Phone: have 12/8/4 cells available
+-- Use a quarter for jobs so 9,3 / 6,2 / 3,1
+
 wardView : Model -> Html Msg
 wardView model =
   div [] [ subHeader,
-              grid [] [ cell [size All 9 ]
+              grid [] [ cell [size Desktop 9, size Tablet 6, size Phone 3]
                         [ Table.table [cs "fullwidth"]
                           [ Table.thead []
                               [ Table.tr []
@@ -59,7 +62,7 @@ wardView model =
 
                             ]
                           ]
-                        , cell [size All 3]
+                        , cell [size Desktop 3, size Tablet 2, size Phone 1]
                           [ Table.table [cs "fullwidth"]
                             [ Table.thead []
                               [ Table.tr []
@@ -85,9 +88,9 @@ wardView model =
 subHeader : Html Msg
 subHeader =
  grid [cs "centertext", css "background-color" "aliceblue"] [
-      cell [size All 9]
+      cell [size Desktop 9, size Tablet 6, size Phone 3]
         [ Html.h4 [] [text "Ward 6B"] ]
-    , cell [size All 3]
+    , cell [size Desktop 3, size Tablet 2, size Phone 1]
         [ Html.h4 [] [text "Jobs"] ]
     ]
 
