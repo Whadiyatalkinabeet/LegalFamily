@@ -16,7 +16,7 @@ import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (..)
 import PatientPageTypes exposing (Doctype, Importance, Patient, Entries, Drug)
-import Routing exposing (parseLocation, Route(..))
+import Routing exposing (Route(..), parseLocation)
 import Navigation exposing (Location)
 
 -- Model && Types
@@ -38,24 +38,24 @@ type alias Model =
   , order : Maybe Table.Order
   , route : Route
 }
--- Firebase Location
-
-firebaseDB : String
-firebaseDB = "https://legalfamily-95414.firebaseio.com/"
 
 -- Main function
 
-main = Html.program
-  { init = init
-  , view = view
-  , update = update
-  , subscriptions = Material.subscriptions Mdl
-  }
+main : Program Never Model Msg
+main =
+  Navigation.program OnLocationChange
+    { init = init
+    , view = view
+    , update = update
+    , subscriptions = Material.subscriptions Mdl
+    }
 
 -- initialisation
 
-init : Route -> (Model, Cmd Msg)
-init route = (Model patientList JobList.jobList bedList 0 "" Material.model Nothing route, Material.init Mdl)
+init : Location -> (Model, Cmd Msg)
+init location =
+  let currentRoute = parseLocation location
+  in (Model patientList JobList.jobList bedList 0 "" Material.model Nothing currentRoute, Material.init Mdl)
 
 
 -- Msg and Update
@@ -144,9 +144,12 @@ subHeader =
         [ Html.h4 [] [text "Jobs"] ]
     ]
 
+emptyPatient : Patient
+emptyPatient = Patient 4000 "" "" "" [] []
+
 patientView : Model -> Int -> Html Msg
 patientView model id =
-  let patient = D.get id model.patients
+  let patient = (Maybe.withDefault emptyPatient) (D.get id model.patients)
   in div [] [ text patient.name ]
 
 wardView : Model -> Html Msg
@@ -204,6 +207,8 @@ wardView model =
                         ]
           ]
 
+notFoundView : Html Msg
+notFoundView = div [] []
 
 
 spanStyle : List (String, String)
@@ -224,12 +229,3 @@ zip xs ys =
       (x,y) :: zip xBack yBack
     (_, _) ->
       []
-
-
-patientDecoder : JD.Decoder (List Patient)
-patientDecoder =
-  JD.list (JD.map3 Patient
-            (JD.at ["name"] JD.string)
-            (JD.at ["dob"] JD.string)
-            (JD.at ["age"] JD.string)
-          )

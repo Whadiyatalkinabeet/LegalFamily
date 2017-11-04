@@ -1,19 +1,19 @@
-module Routing exposing (parseLocation, Route(..))
+module Routing exposing (..)
 
 import Navigation exposing (Location)
 import UrlParser exposing (..)
 
 type Route
-    = WardView
-    | PatientView Int
+    = WardRoute
+    | PatientRoute Int
     | NotFoundRoute
 
 matchers : Parser (Route -> a) a
 matchers =
   oneOf
-    [ map WardView top
-    , map PatientView (s "patients" </> int)
-    , map WardView (s "ward")
+    [ map WardRoute top
+    , map PatientRoute (s "patients" </> int)
+    , map WardRoute (s "ward")
     ]
 
 parseLocation : Location -> Route
