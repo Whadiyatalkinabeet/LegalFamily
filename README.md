@@ -16,6 +16,7 @@ A Big Hairy Audacious Goal meets Unfair Competitive Advantage (timing, technolog
         * Time to take your pill!  
     * e.g Doctor view all the info in one place.  Visibility of the trail of evidence and decisoions leading to the current diagnosis.
 * Drug view: all the drugs "in play" on a ward.  Highlight controlled drugs in nurse view (special rules apply).
+* Jobs list: needs more state than just 'completed' to match refer/review pattern ordering scans: e.g add 'waiting' or 'in progress' states?
 
 ## Adoption
 
