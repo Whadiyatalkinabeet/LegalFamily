@@ -147,7 +147,7 @@ subHeader =
 patientView : Model -> Int -> Html Msg
 patientView model id =
   let patient = D.get id model.patients
-  div [] [ text patient.name ]
+  in div [] [ text patient.name ]
 
 wardView : Model -> Html Msg
 wardView model =
