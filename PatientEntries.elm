@@ -19,12 +19,12 @@ import Material.Grid exposing (..)
 -- Model && Types
 
 import PatientList exposing (..)
-import PatientPageTypes exposing (Doctype, Importance, Patient, Entries, Drug)
+import PatientPageTypes exposing (Doctype, Importance, Patient, Entry, Drug)
 
 
 
 type alias Model =
-  { 
+  {
       patient : Patient,
       mdl : Material.Model
   }
@@ -51,13 +51,13 @@ init = (Model (Patient 0 "PAtientZero" "21" "20/10/1950" [] []) Material.model, 
 
 -- update
 
-type Msg 
+type Msg
     = ChangePatient Patient
       | Mdl (Material.Msg Msg)
 
-update : Msg -> Model -> (Model, Cmd Msg) 
-update msg model = 
-    case msg of 
+update : Msg -> Model -> (Model, Cmd Msg)
+update msg model =
+    case msg of
       ChangePatient patient ->
         ({ model | patient = patient }, Cmd.none)
 
@@ -84,6 +84,3 @@ basic model =
         , Lists.li [] [ Lists.content [] [ text model.patient.age ] ]
         , Lists.li [] [ Lists.content [] [ text model.patient.dob] ]
         ]
-        
-
-

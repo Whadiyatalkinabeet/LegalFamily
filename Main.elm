@@ -141,7 +141,7 @@ header model =
   div []
     [ span [] [ Html.h2
       [ Html.Attributes.style [ ( "padding", "7px" ), ("text-align", "left"),
-          ("margin-left", "24px"), ("margin", "12px"), ("") ] ] [ text "CommUnity"] ]
+          ("margin-left", "24px"), ("margin", "12px"), ("display", "inline") ] ] [ text "CommUnity"] ]
     , span [] [ text model.user.name ]
     , span [] [ text model.user.speciality ]
     , span [] [ text model.user.grade ]
