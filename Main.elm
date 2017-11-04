@@ -2,6 +2,7 @@
 
 -- Imports
 
+import Debug exposing (log)
 import Html exposing (Html, text, h1, div, span, a)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (href, style, class)
@@ -140,7 +141,7 @@ getPatientName patient = patient.name
 header : Model -> Html Msg
 header model =
   let title=case model.currentPatient of
-     Just x -> getPatientName ((Maybe.withDefault emptyPatient) (D.get x model.patients))
+     Just x -> log "patientname" ( getPatientName ((Maybe.withDefault emptyPatient) (D.get x model.patients)))
      Maybe.Nothing -> "CommUnity"
   in
     grid [cs "fullwidth"] [
