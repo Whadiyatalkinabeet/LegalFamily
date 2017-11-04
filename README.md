@@ -68,6 +68,9 @@ Data "schema" can be inspected in `PatientPageTypes.elm`
 
 See `community.css` for some classes used int Main.elm and MDL overrides.
 
+Misc annoyances:
+* The "drawer" icon would probably be better vertical aligned with the text in the header if it had the same 10px padding.
+
 ## Meta
 
 * Is using a bleeding-edge technology noone has heard of crazy?

@@ -116,7 +116,7 @@ getPatientName patient = patient.name
 
 myDrawer : Model -> Html Msg
 myDrawer model =
-  span [] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
+  span [ ] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
 
 -- Header layout:
 --   Grid is 12 / 8 / 4 on Desktop/Tablet/Phone.
@@ -131,7 +131,7 @@ header model =
      Maybe.Nothing -> "CommUnity"
   in
     grid [cs "fullwidth"] [
-      cell gridSizingLeft [],
+      cell ((cs "headerleft") :: gridSizingLeft) [],
       cell ((cs "title") :: gridSizingCenter) [ text title],
       cell ((cs "usertext") :: gridSizingRight) [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
