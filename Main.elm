@@ -105,13 +105,18 @@ view model =
       [ Layout.fixedHeader
       ]
       { header = [header model]
-      , drawer = []
+      , drawer = [myDrawer model]
       , tabs = ([], [])
       , main = [ page model ]
     }
 
 getPatientName: Patient->String
 getPatientName patient = patient.name
+
+
+myDrawer : Model -> Html Msg
+myDrawer model =
+  span [] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
 
 header : Model -> Html Msg
 header model =

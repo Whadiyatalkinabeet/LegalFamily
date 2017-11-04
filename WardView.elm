@@ -6,7 +6,7 @@ import Html.Attributes exposing (href, style, class)
 import Material
 import Material.Scheme as Scheme
 import Material.Button as Button
-import Material.Options exposing (cs, onClick, attribute)  -- NB Avoiding inline css; use cs to select community.css classes
+import Material.Options exposing (css, cs, onClick, attribute)  -- NB Avoiding inline css; use cs to select community.css classes
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (grid, size, cell, Device (..) )
@@ -29,10 +29,10 @@ wardView model =
                                     [ text "Name"]
                                 , Table.th
                                     [cs "centertext"]
-                                    [ text "Age" ]
+                                    [ text "DOB" ]
                                 , Table.th
                                     [cs "centertext"]
-                                    [ text "DOB" ]
+                                    [ text "Age" ]
                                 , Table.th
                                     []
                                     []
@@ -84,7 +84,7 @@ wardView model =
 
 subHeader : Html Msg
 subHeader =
- grid [cs "centertext"] [
+ grid [cs "centertext", css "background-color" "aliceblue"] [
       cell [Material.Grid.size All 9]
         [ Html.h4 [] [text "Ward 6B"] ]
     , cell [Material.Grid.size All 3]
