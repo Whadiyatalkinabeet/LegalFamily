@@ -21,29 +21,37 @@ function mkname() {
 }
 
 function randompick(s) {
-    return s[Math.random()*s.length]
+    return s[Math.floor(Math.random()*s.length)]
 }
 
-/*
-function mkdrug() {
-    var name=randomtxt()
+function mkdrug(n) {
+    var name=randomtext()
+    var dose=Math.round(100*Math.random()).toString()
     var units=randompick(['mg','g','ml'])
-    var frequency=randompick(['daily','twice-daily','with meals','hourly'])
-    var dose=Math.round(100*Math.random())
+    var frequency=randompick(['daily','twice-daily','with meals','per hour','hourly'])
+    return {
+        'id':n,
+        'name':name,
+        'dose':dose+units,
+        'frequency':frequency,
+        'repeat':(Math.random()<0.5)
+    }
 }
-*/
 
 function mkpatient(n) {
     
     var year=Math.floor(1918+100*Math.random())
     var month=Math.floor(1+12*Math.random())
     var day=Math.floor(1+31*Math.random())
-    
+    var meds=[]
+    var nmeds=Math.floor(4*Math.random())
+    for (var i=0;i<nmeds;i++) meds.push(mkdrug(i))
     return {
         'id': n,
         'name': mkname(),
         'dob': year+'-'+month+'-'+day,
-        'age': 2017-year
+        'age': 2017-year,
+        'medications': meds
     };
 }
 
@@ -53,7 +61,7 @@ function mkjob(n) {
         'id':n,
         'patientID':Math.floor(numPatients*Math.random()),
         'job':jobdesc[Math.floor(Math.random()*jobdesc.length)],
-        'completed':(Math.random()<0.25)
+        'completed':(Math.random()<0.25),
     }
 }
 
@@ -88,9 +96,19 @@ appendPatientListFile('')
 appendPatientListFile('patientList : Dict Int Patient')
 appendPatientListFile('patientList = D.fromList [')
 
+function medicationsToString(meds) {
+    var s='['
+    for (var i=0;i<meds.length;i++) {
+        if (i!=0) s+=' , '
+        s+=('Drug '+meds[i]['id']+' "'+meds[i]['name']+'" '+' "'+meds[i]['dose']+'" "'+meds[i]['frequency']+'" '+(meds[i]['repeat'] ? 'True' : 'False'))
+    }
+    s+=']'
+    return s
+}
+
 for (var i=0;i<patients.length;i++) {
     if (i!=0) appendPatientListFile('  ,')
-    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" [] [])')
+    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" [] '+medicationsToString(patients[i]['medications'])+' )')
 }
 appendPatientListFile('  ]')
 
