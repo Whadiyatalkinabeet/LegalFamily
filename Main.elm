@@ -11,7 +11,7 @@ import Material.Layout as Layout
 import Material
 import Material.Scheme as Scheme
 import Material.Button as Button
-import Material.Options exposing (css)
+import Material.Options exposing (cs)  -- NB Avoiding inline css; use cs to select community.css classes 
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (..)
@@ -161,7 +161,7 @@ page model =
 
 subHeader : Html Msg
 subHeader =
- grid [css "text-align" "center"] [
+ grid [cs "centertext"] [
       cell [Material.Grid.size All 9]
         [ Html.h4 [] [text "Ward 6B"] ]
     , cell [Material.Grid.size All 3]
@@ -180,20 +180,20 @@ wardView : Model -> Html Msg
 wardView model =
   div [] [ subHeader,
               grid [] [ cell [Material.Grid.size All 9 ]
-                        [ Table.table [css "width" "100%"]
+                        [ Table.table [cs "fullwidth"]
                           [ Table.thead []
                               [ Table.tr []
                                 [  Table.th
-                                    [css "text-align" "center"]
+                                    [cs "centertext"]
                                     [ text "Bed Number"]
                                 ,  Table.th
-                                    [css "text-align" "center"]
+                                    [cs "centertext"]
                                     [ text "Name"]
                                 , Table.th
-                                    [Table.numeric, css "text-align" "center"]
+                                    [Table.numeric, cs "centertext"]
                                     [ text "Age" ]
                                 , Table.th
-                                    [css "text-align" "center"]
+                                    [cs "centertext"]
                                     [ text "DOB" ]
                                 ]
                               ]
@@ -202,23 +202,23 @@ wardView model =
                                   |> List.map (\(bedNumber, patient) ->
                                     let path = patientPath patient.id
                                     in Table.tr []
-                                        [ a [href path, style [("text-decoration", "none")]] [ Table.td [css "text-align" "center" ] [ text (toString bedNumber) ]
-                                        , Table.td [css "text-align" "center"] [ text patient.name ]
-                                        , Table.td [css "text-align" "center"] [ text patient.age ]
-                                        , Table.td [css "text-align" "center"] [ text patient.dob ]]
+                                        [ a [href path, style [("text-decoration", "none")]] [ Table.td [cs "centertext" ] [ text (toString bedNumber) ]
+                                        , Table.td [cs "centertext"] [ text patient.name ]
+                                        , Table.td [cs "centertext"] [ text patient.age ]
+                                        , Table.td [cs "centertext"] [ text patient.dob ]]
                                         ]))
 
                             ]
                           ]
                         , cell [Material.Grid.size All 3]
-                          [ Table.table [css "width" "100%"]
+                          [ Table.table [cs "fullwidth"]
                             [ Table.thead []
                               [ Table.tr []
                                 [ Table.th
-                                  [ css "text-align" "center" ]
+                                  [ cs "centertext" ]
                                   [ text "Bed Number" ]
                                 , Table.th
-                                  [ css "text-align" "center" ]
+                                  [ cs "centertext" ]
                                   [ text "Job"]
                                 ]
                               ]
@@ -226,8 +226,8 @@ wardView model =
                               ((D.toList model.jobs) |>
                                 List.map (\(_, job) ->
                                   Table.tr []
-                                    [ Table.td [css "text-align" "center"] [text (toString job.patientID)]
-                                    , Table.td [css "text-align" "center"] [text job.job]]))
+                                    [ Table.td [cs "centertext"] [text (toString job.patientID)]
+                                    , Table.td [cs "centertext"] [text job.job]]))
                             ]
                           ]
                         ]
