@@ -22,3 +22,8 @@
 .fullwidth {
     width: 100%;
 }
+
+.mdl-card__supporting-text {
+  background-color: aliceblue;
+  width: 100%;
+}
