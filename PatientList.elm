@@ -8,63 +8,63 @@ import PatientPageTypes exposing (Patient,Entries,Drug)
 
 patientList : Dict Int Patient
 patientList = D.fromList [
-  (0 , Patient 0 "Jumeoae Agomaevn" "1967-7-13" "50" [] [])
+  (0 , Patient 0 "Ozwrgea Rutedl" "1966-5-16" "51" [] [Drug 0 "audnw"  "3ml" "per hour" False , Drug 1 "elnsanai"  "44ml" "hourly" True , Drug 2 "trdon"  "47g" "hourly" True] )
   ,
-  (1 , Patient 1 "Veuvg Nendp" "1990-2-25" "27" [] [])
+  (1 , Patient 1 "Eooduu Fboitsts" "1969-11-30" "48" [] [Drug 0 "ikqg"  "24mg" "twice-daily" True , Drug 1 "eeetl"  "0g" "twice-daily" True , Drug 2 "aaena"  "8g" "with meals" True] )
   ,
-  (2 , Patient 2 "Eioerwzi Eecsf" "1965-4-3" "52" [] [])
+  (2 , Patient 2 "Eahd Eaiobae" "1988-7-3" "29" [] [] )
   ,
-  (3 , Patient 3 "Aianwan Aaeesu" "1922-10-20" "95" [] [])
+  (3 , Patient 3 "Rdtpes Ahaactad" "1988-12-21" "29" [] [] )
   ,
-  (4 , Patient 4 "Utelnax Ahraia" "1983-11-19" "34" [] [])
+  (4 , Patient 4 "Ntca Zgtj" "1981-3-6" "36" [] [] )
   ,
-  (5 , Patient 5 "Jsphmei Eded" "1979-8-15" "38" [] [])
+  (5 , Patient 5 "Gtaea Lqiw" "1932-12-3" "85" [] [Drug 0 "ezwih"  "19mg" "hourly" True] )
   ,
-  (6 , Patient 6 "Aeisah Zhssl" "2015-10-25" "2" [] [])
+  (6 , Patient 6 "Aumtr Aodrdlo" "1976-2-27" "41" [] [Drug 0 "ijcutod"  "97g" "twice-daily" True , Drug 1 "egee"  "42g" "daily" True] )
   ,
-  (7 , Patient 7 "Cyensks Cuoogt" "1929-11-14" "88" [] [])
+  (7 , Patient 7 "Riqsiryn Ndvaeitz" "1934-2-17" "83" [] [Drug 0 "tnrroo"  "44ml" "hourly" True , Drug 1 "euho"  "2ml" "per hour" False] )
   ,
-  (8 , Patient 8 "Asoehrn Ekmlys" "1964-7-28" "53" [] [])
+  (8 , Patient 8 "Tlaenis Ooieoi" "1960-3-28" "57" [] [Drug 0 "veterb"  "55mg" "daily" True , Drug 1 "zile"  "23mg" "hourly" True , Drug 2 "kuohliwq"  "75mg" "per hour" False] )
   ,
-  (9 , Patient 9 "Erwsorge Hifrwutg" "1995-10-31" "22" [] [])
+  (9 , Patient 9 "Doroeoee Neti" "2007-7-15" "10" [] [Drug 0 "atee"  "89g" "with meals" True , Drug 1 "gtse"  "58mg" "daily" True , Drug 2 "aabdl"  "39ml" "twice-daily" True] )
   ,
-  (10 , Patient 10 "Rxarmo Wafooca" "2008-11-18" "9" [] [])
+  (10 , Patient 10 "Forldt Esnusa" "1918-2-2" "99" [] [] )
   ,
-  (11 , Patient 11 "Aelteity Inssii" "1943-12-19" "74" [] [])
+  (11 , Patient 11 "Eioh Lraaato" "1997-8-3" "20" [] [Drug 0 "psakaso"  "52ml" "daily" False] )
   ,
-  (12 , Patient 12 "Mnjetii Xease" "1924-9-6" "93" [] [])
+  (12 , Patient 12 "Uitna Syaii" "1929-12-30" "88" [] [Drug 0 "kedxr"  "54mg" "with meals" False , Drug 1 "emtregte"  "62mg" "per hour" True , Drug 2 "amiie"  "60g" "twice-daily" False] )
   ,
-  (13 , Patient 13 "Fgloatnu Rdetr" "1995-12-17" "22" [] [])
+  (13 , Patient 13 "Motioe Usttr" "1959-4-17" "58" [] [Drug 0 "miiel"  "78mg" "daily" True , Drug 1 "ppdcereq"  "6ml" "with meals" True , Drug 2 "znroa"  "44ml" "twice-daily" False] )
   ,
-  (14 , Patient 14 "Ietaenmi Runet" "1998-4-9" "19" [] [])
+  (14 , Patient 14 "Ueneoia Otupa" "1979-1-4" "38" [] [Drug 0 "cebneae"  "45ml" "hourly" False , Drug 1 "feehdr"  "62ml" "hourly" False] )
   ,
-  (15 , Patient 15 "Drfefqur Dapittec" "1947-2-18" "70" [] [])
+  (15 , Patient 15 "Cdgashg Litt" "1951-3-28" "66" [] [Drug 0 "aewret"  "74mg" "twice-daily" False , Drug 1 "hevgian"  "75g" "daily" True] )
   ,
-  (16 , Patient 16 "Ottb Tuaatnne" "1956-3-13" "61" [] [])
+  (16 , Patient 16 "Oietr Bytdsao" "1967-2-5" "50" [] [Drug 0 "criprb"  "29mg" "with meals" True , Drug 1 "nfiaow"  "83mg" "daily" True] )
   ,
-  (17 , Patient 17 "Olnt Aamr" "1977-4-29" "40" [] [])
+  (17 , Patient 17 "Dguonqo Lalfb" "1927-10-6" "90" [] [Drug 0 "ittgtl"  "9g" "per hour" False] )
   ,
-  (18 , Patient 18 "Grny Tfsoelnv" "1980-10-26" "37" [] [])
+  (18 , Patient 18 "Csaeuapi Cofnhil" "1945-2-30" "72" [] [Drug 0 "elkebe"  "56ml" "twice-daily" True , Drug 1 "xoxavc"  "91g" "twice-daily" True] )
   ,
-  (19 , Patient 19 "Iosn Rsrmjh" "1966-4-20" "51" [] [])
+  (19 , Patient 19 "Haevu Irimidan" "1918-3-12" "99" [] [Drug 0 "eeio"  "30mg" "per hour" True] )
   ,
-  (20 , Patient 20 "Rlcdasee Fleohqo" "1919-11-4" "98" [] [])
+  (20 , Patient 20 "Lprnidlt Iiire" "1948-4-12" "69" [] [Drug 0 "bditeh"  "47mg" "hourly" True] )
   ,
-  (21 , Patient 21 "Asrp Aavte" "1982-6-5" "35" [] [])
+  (21 , Patient 21 "Orxalvg Geerjvio" "1934-1-29" "83" [] [Drug 0 "efrge"  "96mg" "hourly" False , Drug 1 "itrt"  "89ml" "per hour" True] )
   ,
-  (22 , Patient 22 "Deacs Rtevnpeo" "1937-6-10" "80" [] [])
+  (22 , Patient 22 "Irldaa Unntr" "1996-5-15" "21" [] [Drug 0 "ibodre"  "81mg" "twice-daily" True , Drug 1 "eesdeor"  "73g" "per hour" True] )
   ,
-  (23 , Patient 23 "Aadwwei Gptb" "1937-5-24" "80" [] [])
+  (23 , Patient 23 "Enqianw Nenoan" "1962-10-11" "55" [] [] )
   ,
-  (24 , Patient 24 "Xgsm Yitrnteo" "1986-4-24" "31" [] [])
+  (24 , Patient 24 "Usolajb Endh" "1966-6-15" "51" [] [Drug 0 "erioek"  "20g" "hourly" False , Drug 1 "miter"  "54ml" "hourly" False] )
   ,
-  (25 , Patient 25 "Tafl Sswhbfy" "2015-8-4" "2" [] [])
+  (25 , Patient 25 "Xuceeiu Ehntrynl" "2011-11-14" "6" [] [Drug 0 "tdwr"  "63mg" "with meals" False , Drug 1 "angndq"  "29g" "per hour" True , Drug 2 "gismtd"  "22mg" "daily" False] )
   ,
-  (26 , Patient 26 "Teyyet Mkub" "2009-2-29" "8" [] [])
+  (26 , Patient 26 "Aatei Notwotjo" "2007-5-1" "10" [] [Drug 0 "lctfa"  "64ml" "per hour" True] )
   ,
-  (27 , Patient 27 "Sfdr Twaiiiln" "1950-5-7" "67" [] [])
+  (27 , Patient 27 "Ysbdebx Oropl" "1988-10-19" "29" [] [Drug 0 "ccqde"  "37g" "hourly" False , Drug 1 "vfiuo"  "65g" "with meals" False] )
   ,
-  (28 , Patient 28 "Wviko Giae" "1932-1-24" "85" [] [])
+  (28 , Patient 28 "Snll Ndltaest" "2001-3-27" "16" [] [Drug 0 "riytyp"  "88ml" "daily" True] )
   ,
-  (29 , Patient 29 "Argnsfuh Ahevebe" "2017-6-17" "0" [] [])
+  (29 , Patient 29 "Inanlan Reitne" "1996-11-16" "21" [] [] )
   ]
