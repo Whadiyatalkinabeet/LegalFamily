@@ -1,4 +1,4 @@
-module PatientPageTypes exposing (Doctype, Importance, Patient, Entries, Drug)
+module PatientPageTypes exposing (Doctype, Importance, Patient, Entry, Drug)
 
 type Doctype
     = GP

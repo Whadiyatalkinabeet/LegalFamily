@@ -15,7 +15,7 @@ import Material.Options exposing (css)
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (..)
-import PatientPageTypes exposing (Doctype, Importance, Patient, Entries, Drug)
+import PatientPageTypes exposing (Doctype, Importance, Patient, Entry, Drug)
 import Routing exposing (Route(..), parseLocation)
 import Navigation exposing (Location)
 
