@@ -2,9 +2,9 @@
 
 -- Imports
 
-import Html exposing (Html, text, h1, div, span)
+import Html exposing (Html, text, h1, div, span, a)
 import Html.Events exposing (onClick)
-import Html.Attributes
+import Html.Attributes exposing (href, style)
 import Json.Decode as JD
 import Dict as D exposing (..)
 import Material.Layout as Layout
@@ -16,7 +16,7 @@ import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (..)
 import PatientPageTypes exposing (Doctype, Importance, Patient, Entry, Drug)
-import Routing exposing (Route(..), parseLocation)
+import Routing exposing (Route(..), parseLocation, patientPath, patientsPath)
 import Navigation exposing (Location)
 
 -- Model && Types
@@ -157,6 +157,8 @@ page model =
     NotFoundRoute ->
       notFoundView
 
+
+
 subHeader : Html Msg
 subHeader =
  grid [css "text-align" "center"] [
@@ -198,11 +200,13 @@ wardView model =
                             , Table.tbody []
                               ((zip bedList (List.map Tuple.second (D.toList model.patients)))
                                   |> List.map (\(bedNumber, patient) ->
-                                    Table.tr []
-                                      [ Table.td [css "text-align" "center" ] [ text (toString bedNumber) ]
-                                      , Table.td [css "text-align" "center"] [ text patient.name ]
-                                      , Table.td [css "text-align" "center"] [ text patient.age ]
-                                      , Table.td [css "text-align" "center"] [ text patient.dob ]]))
+                                    let path = patientPath patient.id
+                                    in Table.tr []
+                                        [ a [href path, style [("text-decoration", "none")]] [ Table.td [css "text-align" "center" ] [ text (toString bedNumber) ]
+                                        , Table.td [css "text-align" "center"] [ text patient.name ]
+                                        , Table.td [css "text-align" "center"] [ text patient.age ]
+                                        , Table.td [css "text-align" "center"] [ text patient.dob ]]
+                                        ]))
 
                             ]
                           ]
@@ -230,7 +234,7 @@ wardView model =
           ]
 
 notFoundView : Html Msg
-notFoundView = div [] []
+notFoundView = div [] [text "404"]
 
 
 spanStyle : List (String, String)

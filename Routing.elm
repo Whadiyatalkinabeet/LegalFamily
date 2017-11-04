@@ -16,6 +16,12 @@ matchers =
     , map WardRoute (s "ward")
     ]
 
+patientsPath : String
+patientsPath = "#patients"
+
+patientPath : Int -> String
+patientPath id = "#patients/" ++ (toString id)
+
 parseLocation : Location -> Route
 parseLocation location =
   case (parseHash matchers location) of
