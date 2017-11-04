@@ -12,7 +12,7 @@ matchers : Parser (Route -> a) a
 matchers =
   oneOf
     [ map WardView top
-    , map PatientView (s "patients" </> string)
+    , map PatientView (s "patients" </> int)
     , map WardView (s "ward")
     ]
 
