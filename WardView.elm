@@ -6,7 +6,7 @@ import Html.Attributes exposing (href, style, class)
 import Material
 import Material.Scheme as Scheme
 import Material.Button as Button
-import Material.Options exposing (cs)  -- NB Avoiding inline css; use cs to select community.css classes
+import Material.Options exposing (cs, onClick)  -- NB Avoiding inline css; use cs to select community.css classes
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (grid, size, cell, Device (..) )
@@ -39,7 +39,7 @@ wardView model =
                               ((zip model.beds (List.map Tuple.second (D.toList model.patients)))
                                   |> List.map (\(bedNumber, patient) ->
                                     let path = patientPath patient.id
-                                    in Table.tr []
+                                    in Table.tr [onClick (ClickPatient patient)]
                                         [ a [href path, style [("text-decoration", "none")]] [ Table.td [cs "centertext" ] [ text (toString bedNumber) ]
                                         , Table.td [cs "centertext"] [ text patient.name ]
                                         , Table.td [cs "centertext"] [ text patient.age ]
