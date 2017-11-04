@@ -4,6 +4,8 @@ type Doctype
     = GP
     | Inpatient
     | Letter
+    | Vitals
+    | Results
 
 type Importance
     = High
@@ -20,14 +22,17 @@ type alias Patient = {
 }
 
 type alias Entries = {
-  title: String
+  id : Int
+  , title: String
   , text: String
   , docType: Doctype
   , importance: Importance
+  , acute: Bool
 }
 
 type alias Drug = {
-  name: String
+  id: Int
+  , name: String
   , dose: String
   , frequency: String
   , repeat: Bool

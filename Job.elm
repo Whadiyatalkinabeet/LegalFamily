@@ -1,8 +1,9 @@
 module Job exposing (..)
 
 type alias Job =
-  { 
-    patientID: Int
+  {
+  id : Int
+  ,  patientID: Int
   , job: String
   , completed: Bool
   }
