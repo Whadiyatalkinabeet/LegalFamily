@@ -120,7 +120,9 @@ myDrawer model =
 
 -- Header layout:
 --   Grid is 12 / 8 / 4 on Desktop/Tablet/Phone.
---   So use 4,4,4 / 2,4,2 / 1,2,1
+gridSizingLeft   = [size Desktop 4, size Tablet 2, size Phone 1]
+gridSizingCenter = [size Desktop 4, size Tablet 4, size Phone 2]
+gridSizingRight  = [size Desktop 4, size Tablet 2, size Phone 1]
 
 header : Model -> Html Msg
 header model =
@@ -129,9 +131,9 @@ header model =
      Maybe.Nothing -> "CommUnity"
   in
     grid [cs "fullwidth"] [
-      cell [size Desktop 4, size Tablet 2,size Phone 1] [],
-      cell [cs "title", size Desktop 4, size Tablet 4,size Phone 2] [ text title],
-      cell [cs "righttext", size Desktop 4, size Tablet 2,size Phone 1] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
+      cell gridSizingLeft [],
+      cell ((cs "title") :: gridSizingCenter) [ text title],
+      cell ((cs "righttext") :: gridSizingRight) [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
 
 page : Model -> Html Msg
