@@ -11,12 +11,25 @@ import Material.Table as Table
 import Material.Grid exposing (grid, size, cell, Device (..) )
 import Dict as D exposing (..)
 import Msgs exposing (Msg(..))
-import PatientPageTypes exposing (Patient)
+import PatientPageTypes exposing (Patient, Entry)
 
 emptyPatient : Patient
 emptyPatient = Patient 4000 "" "" "" [] []
 
+emptyEntry : Entry
+emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False
+
 patientView : Model -> Int -> Html Msg
 patientView model id =
   let patient = (Maybe.withDefault emptyPatient) (D.get id model.patients)
-  in div [] [ text patient.name ]
+      entries = patient.entries
+  in div [] [ text patient.name, text "\n", entryIterator entries ]
+
+
+entryIterator : List Entry -> Html Msg
+entryIterator entries = 
+    case entries of
+      [] -> div [] []
+      (x::xs) -> let entry = x
+                 in div [] [ text entry.title, entryIterator xs]
+
