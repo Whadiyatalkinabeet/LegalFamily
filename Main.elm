@@ -2,7 +2,7 @@
 
 -- Imports
 
-import Html exposing (Html, text, h1, div)
+import Html exposing (Html, text, h1, div, span)
 import Html.Events exposing (onClick)
 import Html.Attributes
 import Json.Decode as JD
@@ -30,6 +30,7 @@ bedList = List.range 1 24
 
 type alias Model =
   { patients : Dict Int Patient
+  , user : User
   , jobs : Dict Int Job
   , beds : List Int
   , currentPatient : Int
@@ -38,6 +39,16 @@ type alias Model =
   , order : Maybe Table.Order
   , route : Route
 }
+
+type alias User =
+  { id: Int
+  , name: String
+  , speciality: String
+  , grade: String
+  }
+
+testUser : User
+testUser = User 1 "Sean Harbison" "General Surgery" "FY2"
 
 -- Main function
 
@@ -55,7 +66,7 @@ main =
 init : Location -> (Model, Cmd Msg)
 init location =
   let currentRoute = parseLocation location
-  in (Model patientList JobList.jobList bedList 0 "" Material.model Nothing currentRoute, Material.init Mdl)
+  in (Model patientList testUser JobList.jobList bedList 0 "" Material.model Nothing currentRoute, Material.init Mdl)
 
 
 -- Msg and Update
@@ -119,11 +130,22 @@ view model =
     model.mdl
       [ Layout.fixedHeader
       ]
-      { header = [Html.h2 [ Html.Attributes.style [ ( "padding", "7px" ), ("text-align", "center"), ("margin", "12px") ] ] [ text "CommUnity"] ]
+      { header = [header model]
       , drawer = []
       , tabs = ([], [])
       , main = [ page model ]
     }
+
+header : Model -> Html Msg
+header model =
+  div []
+    [ span [] [ Html.h2
+      [ Html.Attributes.style [ ( "padding", "7px" ), ("text-align", "left"),
+          ("margin-left", "24px"), ("margin", "12px"), ("") ] ] [ text "CommUnity"] ]
+    , span [] [ text model.user.name ]
+    , span [] [ text model.user.speciality ]
+    , span [] [ text model.user.grade ]
+    ]
 
 page : Model -> Html Msg
 page model =

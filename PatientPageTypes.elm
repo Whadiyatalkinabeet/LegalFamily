@@ -17,11 +17,11 @@ type alias Patient = {
   , name : String
   , age : String
   , dob : String
-  , entries : List Entries
+  , entries : List Entry
   , medications : List Drug
 }
 
-type alias Entries = {
+type alias Entry = {
   id : Int
   , title: String
   , text: String
