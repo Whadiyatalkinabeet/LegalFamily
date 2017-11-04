@@ -6,7 +6,7 @@ import Html.Attributes exposing (href, style, class)
 import Material
 import Material.Scheme as Scheme
 import Material.Button as Button
-import Material.Options exposing (cs, onClick)  -- NB Avoiding inline css; use cs to select community.css classes
+import Material.Options exposing (cs, onClick, attribute)  -- NB Avoiding inline css; use cs to select community.css classes
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (grid, size, cell, Device (..) )
@@ -28,11 +28,14 @@ wardView model =
                                     [cs "centertext"]
                                     [ text "Name"]
                                 , Table.th
-                                    [Table.numeric, cs "centertext"]
+                                    [cs "centertext"]
                                     [ text "Age" ]
                                 , Table.th
                                     [cs "centertext"]
                                     [ text "DOB" ]
+                                , Table.th
+                                    []
+                                    []
                                 ]
                               ]
                             , Table.tbody []
@@ -40,10 +43,18 @@ wardView model =
                                   |> List.map (\(bedNumber, patient) ->
                                     let path = patientPath patient.id
                                     in Table.tr [onClick (ClickPatient patient)]
-                                        [ a [href path, style [("text-decoration", "none")]] [ Table.td [cs "centertext" ] [ text (toString bedNumber) ]
+                                        [ Table.td [cs "centertext" ] [ text (toString bedNumber) ]
                                         , Table.td [cs "centertext"] [ text patient.name ]
                                         , Table.td [cs "centertext"] [ text patient.age ]
-                                        , Table.td [cs "centertext"] [ text patient.dob ]]
+                                        , Table.td [cs "centertext"] [ text patient.dob ]
+                                        , Table.td [] [
+                                          Button.render Mdl [0] model.mdl
+                                            [ Button.raised
+                                            , Button.ripple
+                                            , Button.link path
+                                            ]
+                                            [ text "View Patient"]
+                                            ]
                                         ]))
 
                             ]
