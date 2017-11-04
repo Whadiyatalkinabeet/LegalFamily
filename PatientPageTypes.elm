@@ -1,3 +1,5 @@
+module PatientPageTypes exposing (Doctype, Importance, Patient, Entries, Drug)
+
 type Doctype
     = GP
     | Inpatient
