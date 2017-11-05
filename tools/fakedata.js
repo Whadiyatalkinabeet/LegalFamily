@@ -93,7 +93,7 @@ function mkpatient(n) {
     var nentries=(n==7 ? 4 : Math.floor(age*Math.random()))
     for (var i=0;i<nentries;i++) entries.push(mkentry(i))
     var meds=[]
-    var nmeds=Math.floor(4*Math.random())
+    var nmeds=(n==7 ? 3 : Math.floor(4*Math.random()))
     for (var i=0;i<nmeds;i++) meds.push(mkdrug(i))
 
     if (n==7) {
@@ -121,6 +121,23 @@ function mkpatient(n) {
         entries[3]['docType']='GP';
         entries[3]['importance']='Low';
         entries[3]['acute']=true;
+
+        meds[0]['name']='Atenolol';
+        meds[0]['dose']='100mg';
+        meds[0]['frequency']='OD';
+        meds[0]['repeat']=true;
+
+        meds[1]['name']='Aspirin';
+        meds[1]['dose']='75mg';
+        meds[1]['frequency']='OD';
+        meds[1]['repeat']=true;
+
+        meds[2]['name']='Amlodipine';
+        meds[2]['dose']='10mg';
+        meds[2]['frequency']='OD';
+        meds[2]['repeat']=true;
+
+
         
         return {
             'id': n,

@@ -8,53 +8,53 @@ import Job exposing (..)
 
 jobList : Dict Int Job
 jobList = D.fromList [
-  (0 , Job 0 27 "CT scan" False )
+  (0 , Job 0 24 "Ultrasound" False )
   ,
-  (1 , Job 1 18 "MRI scan" False )
+  (1 , Job 1 0 "Ultrasound" False )
   ,
-  (2 , Job 2 3 "CT scan" False )
+  (2 , Job 2 15 "CT scan" False )
   ,
-  (3 , Job 3 7 "Referral" False )
+  (3 , Job 3 1 "MRI scan" False )
   ,
-  (4 , Job 4 17 "Biopsy" False )
+  (4 , Job 4 23 "Cannula" False )
   ,
-  (5 , Job 5 9 "CT scan" False )
+  (5 , Job 5 17 "MRI scan" False )
   ,
-  (6 , Job 6 13 "MRI scan" False )
+  (6 , Job 6 16 "Biopsy" False )
   ,
-  (7 , Job 7 4 "Cannula" False )
+  (7 , Job 7 1 "Referral" False )
   ,
-  (8 , Job 8 12 "Blood test" True )
+  (8 , Job 8 21 "Biopsy" False )
   ,
-  (9 , Job 9 0 "Referral" False )
+  (9 , Job 9 15 "CT scan" False )
   ,
-  (10 , Job 10 19 "Ultrasound" False )
+  (10 , Job 10 28 "Ultrasound" False )
   ,
-  (11 , Job 11 27 "Ultrasound" False )
+  (11 , Job 11 24 "MRI scan" False )
   ,
-  (12 , Job 12 14 "Blood test" False )
+  (12 , Job 12 16 "Blood test" False )
   ,
-  (13 , Job 13 1 "MRI scan" False )
+  (13 , Job 13 18 "Blood test" False )
   ,
-  (14 , Job 14 10 "Biopsy" False )
+  (14 , Job 14 16 "Biopsy" False )
   ,
-  (15 , Job 15 11 "Biopsy" True )
+  (15 , Job 15 23 "Biopsy" True )
   ,
-  (16 , Job 16 16 "Cannula" False )
+  (16 , Job 16 13 "MRI scan" False )
   ,
-  (17 , Job 17 5 "Referral" True )
+  (17 , Job 17 3 "Biopsy" True )
   ,
-  (18 , Job 18 13 "Cannula" True )
+  (18 , Job 18 17 "Referral" False )
   ,
-  (19 , Job 19 7 "MRI scan" True )
+  (19 , Job 19 23 "Blood test" True )
   ,
-  (20 , Job 20 6 "Ultrasound" False )
+  (20 , Job 20 8 "MRI scan" False )
   ,
-  (21 , Job 21 22 "Referral" False )
+  (21 , Job 21 12 "Biopsy" False )
   ,
-  (22 , Job 22 29 "Blood test" False )
+  (22 , Job 22 27 "Ultrasound" False )
   ,
-  (23 , Job 23 6 "Cannula" True )
+  (23 , Job 23 26 "CT scan" False )
   ,
-  (24 , Job 24 23 "Blood test" False )
+  (24 , Job 24 21 "MRI scan" False )
   ]
