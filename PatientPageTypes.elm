@@ -1,4 +1,4 @@
-module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, Entry, Drug, Doctype)
+module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, Entry, Drug, Doctype, Appointment)
 
 import Dict exposing (Dict)
 

@@ -6,7 +6,7 @@ import UrlParser exposing (..)
 type Route
     = WardRoute
     | DoctorRoute Int
-    | LetterRoute Int
+    | PatientViewRoute
     | DrugRoute Int
     | NotFoundRoute
 
@@ -17,7 +17,7 @@ matchers =
     , map DoctorRoute (s "patients" </> int)
     , map WardRoute (s "ward")
     , map DrugRoute (s "drugs" </> int)
-    , map LetterRoute (s "letters" </> int)
+    , map PatientViewRoute (s "patient")
     ]
 
 patientsPath : String
@@ -25,6 +25,9 @@ patientsPath = "#patients"
 
 patientPath : Int -> String
 patientPath id = "#patients/" ++ (toString id)
+
+patientViewPath : String
+patientViewPath = "#patient/7"
 
 drugPath : Int -> String
 drugPath id = "#drugs/" ++ (toString id)

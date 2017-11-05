@@ -10,7 +10,6 @@ import Material.Scheme as Scheme
 import Material.Button as Button
 import Material.Card as Card
 import Material.Color as Color
-import Material.Icons as Icons
 import Material.Options as Options
 import Material.Options exposing (css, cs, onClick, attribute)  -- NB Avoiding inline css; use cs to select community.css classes
 import Material.List as Lists
@@ -22,66 +21,47 @@ import Routing exposing (drugPath)
 import Msgs exposing (Msg(..))
 
 
+white : Options.Property c m
+white =
+  Color.text Color.white
+
+emptyPatient : Patient
+emptyPatient = Patient 4000 "" "" "" [] [] []
 -- whole view
 
 patientViewOfPatient : Model -> Html Msg
 patientViewOfPatient model =
-  div []
-    (patient.appointments |>
-      List.map viewAppointments)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  let patient = (Maybe.withDefault emptyPatient) (D.get 7 model.patients)
+      appointmentView = List.map viewAppointment patient.appointments
+      drugView = List.map viewDrug patient.medications
+      letterView = List.map viewLetter patient.entries
+  in div [] [ div [] appointmentView, div [] drugView, div [] letterView ]
 
 
 
 -- Appointments View
 
 
-viewAppointments : Appointment -> Html Msg
-viewAppointments appointment =
+viewAppointment : Appointment -> Html Msg
+viewAppointment appointment =
   grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
           [Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
             [ Card.title [] [ Card.head [ white ] [span [] [text appointment.speciality], span [] [text appointment.date], span [] [text appointment.time]]]
             ]
           ]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        ]
 
 
 
 -- Letter View
 
-
-
-
-
-
+viewLetter : Entry -> Html Msg
+viewLetter entry =
+  case entry.docType of
+    PatientPageTypes.Letter -> grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
+               [Card.view [Card.expand, Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
+               [Card.title [] [ Card.head [ white ] [ text entry.title ] ] , Card.text [] [ text entry.text ]]]]
+    _ -> div [] []
 
 
 
@@ -96,11 +76,10 @@ viewAppointments appointment =
 
 
 -- Drugs View
-
 viewDrug : Drug -> Html Msg
-viewDrug drug ->
+viewDrug drug =
   Table.table []
-    [ Table.head []
+    [ Table.thead []
       [ Table.tr []
         [ Table.th [] [ text "Drug" ]
         , Table.th [] [ text "Morning" ]
@@ -110,7 +89,7 @@ viewDrug drug ->
         ]
       , Table.tr []
         [ Table.th [] [ text drug.name]
-        , Table.th [] [ Icons.i "done"]
+        , Table.th [] []
         , Table.th [] []
         , Table.th [] []
         , Table.th [] []

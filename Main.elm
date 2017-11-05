@@ -21,9 +21,9 @@ import Routing exposing (Route(..), parseLocation, patientPath, patientsPath)
 import Navigation exposing (Location)
 import Models exposing (Model, User)
 import DoctorViewOfPatient exposing (doctorViewOfPatient)
+import PatientViewOfPatient exposing (patientViewOfPatient)
 import WardView exposing (wardView)
 import DrugView exposing (drugView)
-import LetterView exposing (letterView)
 import Msgs exposing (Msg(..))
 
 -- Model && Types
@@ -175,7 +175,7 @@ view model =
           , tabs = ((tabTitles model), [])
           , main = [ page model ]
         }
-    LetterRoute _ ->
+    PatientViewRoute ->
       Layout.render Mdl
         model.mdl
           [ Layout.fixedHeader
@@ -209,7 +209,8 @@ myDrawer model =
   span [] [ Layout.title [] [text ("Dev Mode")]
           , Layout.navigation [] [
               Layout.link [href ""] [text "Ward View"]
-            , Layout.link [href (patientPath 7)] [text "Patient View"]
+            , Layout.link [href (patientPath 7)] [text "Doctor View"]
+            , Layout.link [href ("#patient")] [text "Patient View"]
           ]]
 
 -- Header layout:
@@ -237,8 +238,8 @@ page model =
       doctorViewOfPatient model id
     DrugRoute id ->
       drugView model id
-    LetterRoute id ->
-      letterView model id
+    PatientViewRoute ->
+      patientViewOfPatient model
     NotFoundRoute ->
       notFoundView
 
