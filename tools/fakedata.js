@@ -66,19 +66,38 @@ var titles = ["Hypertension", "Coeliac's Disesase", "Multiple Sclerosis",
   "Psoriasis", "Abscess", "Gastroentiritis", "Phaeochromocytoma", "Pneumothorax",
   "GORD", "Aortic Stenosis", "Ventricular Tachycardia", "Optic Neuritis", "Migraine"]
 
-function mkentry(n) {
+function mkentry(n,isResult) {
     var title=randompick(titles)
     var text=randomparagraph()
-    var doctype=randompick(['GP','Inpatient','Letter','Results'])
+    var doctype=(isResult ? 'Results' : randompick(['GP','Inpatient','Letter','Results']))
     var importance=randompick(['High','Intermediate','Low'])
     var acute=(Math.random()<0.75)
+
+    var results={}
+    if (doctype=='Results') {
+        title='Results: U&Es'
+        results['Na+']=140.0;
+        results['K+']=4.0;
+        results['Cl-']=100.0;
+        results['Urea']=5.0;
+        results['Creat']=70.0;
+    }
+
+    if (isResult) {
+        text='Test results: ';
+        for (var key in results) {
+            text+=key+': '+(results[key].toString())+' '
+        }
+    }
+    
     return {
         'id': n,
         'title': title,
         'text': text,
         'docType': doctype,
         'importance': importance,
-        'acute': acute
+        'acute': acute,
+        'results':results
     }
 }
 
@@ -90,8 +109,8 @@ function mkpatient(n) {
     var day=Math.floor(1+31*Math.random())
     var age=2017-year
     var entries=[]
-    var nentries=(n==7 ? 4 : Math.floor(age*Math.random()))
-    for (var i=0;i<nentries;i++) entries.push(mkentry(i))
+    var nentries=(n==7 ? 5 : Math.floor(age*Math.random()))
+    for (var i=0;i<nentries;i++) entries.push(mkentry(i,false))
     var meds=[]
     var nmeds=(n==7 ? 3 : Math.floor(4*Math.random()))
     for (var i=0;i<nmeds;i++) meds.push(mkdrug(i))
@@ -110,17 +129,21 @@ function mkpatient(n) {
         entries[1]['importance']='Low';
         entries[1]['acute']=false;
 
-        entries[2]['title']='Hypertension';
-        entries[2]['text']='Monitoring BP = 150/90, increase Amlodipine.  10mg OD, take bloods';
-        entries[2]['docType']='GP';
-        entries[2]['importance']='Low';
-        entries[2]['acute']=true;
+        entries[2]=mkentry(2,true)
 
         entries[3]['title']='Hypertension';
-        entries[3]['text']='Monitoring BP = 170/100, start Amlodipine.  5mg OD';
+        entries[3]['text']='Monitoring BP = 150/90, increase Amlodipine.  10mg OD, take bloods';
         entries[3]['docType']='GP';
         entries[3]['importance']='Low';
         entries[3]['acute']=true;
+
+        entries[4]['title']='Hypertension';
+        entries[4]['text']='Monitoring BP = 170/100, start Amlodipine.  5mg OD';
+        entries[4]['docType']='GP';
+        entries[4]['importance']='Low';
+        entries[4]['acute']=true;
+
+        
 
         meds[0]['name']='Atenolol';
         meds[0]['dose']='100mg';
@@ -201,11 +224,27 @@ appendPatientListFile('')
 appendPatientListFile('patientList : Dict Int Patient')
 appendPatientListFile('patientList = D.fromList [')
 
+function resultsToString(results) {
+    var s=' ( D.fromList ['
+    var first=true;
+    for (var key in results) {
+        if (!first) {s+=' , ';}
+        s+=' ( '
+        s+='"'+key+'"'
+        s+=', '
+        s+=results[key]
+        s+=' ) '
+        first=false;
+    }
+    s+='] )'
+    return s
+}
+
 function entriesToString(entries) {
     var s='['
     for (var i=0;i<entries.length;i++) {
         if (i!=0) s+=' , '
-        s+=('Entry '+entries[i]['id']+' "'+entries[i]['title']+'" '+' "'+entries[i]['text']+'" '+entries[i]['docType']+' '+entries[i]['importance']+' '+(entries[i]['acute'] ? 'True' : 'False') + ' D.empty')
+        s+=('Entry '+entries[i]['id']+' "'+entries[i]['title']+'" '+' "'+entries[i]['text']+'" '+entries[i]['docType']+' '+entries[i]['importance']+' '+(entries[i]['acute'] ? 'True' : 'False') + ' '+resultsToString(entries[i].results))
     }
     s+=']'
     return s
@@ -223,7 +262,7 @@ function medicationsToString(meds) {
 
 for (var i=0;i<patients.length;i++) {
     if (i!=0) appendPatientListFile('  ,')
-    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" '+entriesToString(patients[i]['entries'])+' '+medicationsToString(patients[i]['medications'])+' )')
+    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" '+entriesToString(patients[i]['entries'])+' '+medicationsToString(patients[i]['medications'])+' [] )')
 }
 appendPatientListFile('  ]')
 

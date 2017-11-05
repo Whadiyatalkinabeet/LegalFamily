@@ -23,7 +23,7 @@ import Routing exposing (letterPath)
 import Msgs exposing (Msg(..))
 
 emptyPatient : Patient
-emptyPatient = Patient 4000 "" "" "" [] []
+emptyPatient = Patient 4000 "" "" "" [] [] []
 
 emptyEntry : Entry
 emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False D.empty
