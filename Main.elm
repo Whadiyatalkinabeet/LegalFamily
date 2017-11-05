@@ -7,7 +7,7 @@ import Html exposing (Html, text, h1, div, span, a)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (href, style, class)
 import Json.Decode as JD
-import Dict as D exposing (Dict, empty)
+import Dict as D exposing (Dict, empty, update)
 import Material.Layout as Layout
 import Material
 import Material.Scheme as Scheme
@@ -47,12 +47,16 @@ main =
     , subscriptions = Material.subscriptions Mdl
     }
 
+emptyEntry : Entry
+emptyEntry =
+  Entry -1 "" "" PatientPageTypes.Inpatient PatientPageTypes.High True
+
 -- initialisation
 
 init : Location -> (Model, Cmd Msg)
 init location =
   let currentRoute = parseLocation location
-  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model currentRoute, Material.init Mdl)
+  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model currentRoute emptyEntry, Material.init Mdl)
 
 
 -- Msg and Update
@@ -84,6 +88,18 @@ update msg model =
       ({model | jobs =
           D.fromList (List.map (updateJob jobID) (D.toList model.jobs))}, Cmd.none)
 
+    Text text ->
+      ({model | newEntry = text |> asTextInEntry model.newEntry }, Cmd.none)
+
+    Title title ->
+      ({model | newEntry = title |> asTitleInEntry model.newEntry}, Cmd.none)
+
+    SubmitEntry id ->
+        let entries = Maybe.map (\patient -> patient.entries) (D.get id model.patients)
+            entryID = (List.length ((Maybe.withDefault []) entries )) + 1
+            newEntry = updateEntryList model.newEntry (Maybe.withDefault [] entries)
+        in { model | patients = model.patients |> D.update id (updatePatientEntry newEntry)} ! []
+
     Mdl msg_ ->
       Material.update Mdl msg_ model
 
@@ -91,6 +107,29 @@ update msg model =
       let newRoute = parseLocation location
       in ({ model | route = newRoute}, Cmd.none)
 
+updatePatientEntry : List Entry -> Maybe Patient -> Maybe Patient
+updatePatientEntry entries patient =
+  case patient of
+    Just patient -> Just { patient | entries = entries }
+    Nothing -> Nothing
+
+updateEntryText : String -> Entry -> Entry
+updateEntryText str entry =
+  { entry | text = str }
+
+updateEntryTitle : String -> Entry -> Entry
+updateEntryTitle title entry =
+  { entry | title = title }
+
+asTextInEntry : Entry -> String -> Entry
+asTextInEntry = flip updateEntryText
+
+asTitleInEntry : Entry -> String -> Entry
+asTitleInEntry = flip updateEntryTitle
+
+updateEntryList : Entry -> List Entry -> List Entry
+updateEntryList entry entryList =
+  entry :: entryList
 
 updateJob : Int -> (Int, Job) -> (Int, Job)
 updateJob id (jobID, job) =
@@ -119,6 +158,10 @@ myDrawer : Model -> Html Msg
 myDrawer model =
   span [] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
 
+-- Header layout:
+--   Grid is 12 / 8 / 4 on Desktop/Tablet/Phone.
+--   So use 4,4,4 / 2,4,2 / 1,2,1
+
 header : Model -> Html Msg
 header model =
   let title=case model.currentPatient of
@@ -126,9 +169,9 @@ header model =
      Maybe.Nothing -> "CommUnity"
   in
     grid [cs "fullwidth"] [
-      cell [cs "title", size All 4] [ text title],
-      cell [size All 4] [],
-      cell [cs "righttext", size All 4] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
+      cell [size Desktop 4, size Tablet 2,size Phone 1] [],
+      cell [cs "title", size Desktop 4, size Tablet 4,size Phone 2] [ text title],
+      cell [cs "righttext", size Desktop 4, size Tablet 2,size Phone 1] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
 
 page : Model -> Html Msg
