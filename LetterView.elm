@@ -16,10 +16,7 @@ import Material.Table as Table
 import Material.Grid exposing (offset, grid, size, cell, Device (..) )
 import Dict as D exposing (get)
 import Msgs exposing (Msg(..))
-import PatientPageTypes exposing (Patient, Entry, Doctype)
-
-emptyPatient : Patient
-emptyPatient = Patient 4000 "" "" "" [] [] []
+import PatientPageTypes exposing (Patient, emptyPatient, Entry, Doctype)
 
 emptyEntry : Entry
 emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False D.empty

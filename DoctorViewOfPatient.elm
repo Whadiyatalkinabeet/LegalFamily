@@ -17,13 +17,10 @@ import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (offset, grid, size, cell, Device (..) )
 import Dict as D exposing (get, empty)
-import PatientPageTypes exposing (Patient, Entry, Drug)
+import PatientPageTypes exposing (Patient, emptyPatient, Entry, Drug)
 import Routing exposing (drugPath)
 import Routing exposing (letterPath)
 import Msgs exposing (Msg(..))
-
-emptyPatient : Patient
-emptyPatient = Patient 4000 "" "" "" [] [] []
 
 emptyEntry : Entry
 emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False D.empty
