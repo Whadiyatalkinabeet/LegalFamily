@@ -161,6 +161,16 @@ view model =
           , tabs = (tabTitles, [])
           , main = [ page model ]
         }
+    DrugRoute _ ->
+      Layout.render Mdl
+        model.mdl
+          [ Layout.fixedHeader
+          ]
+          { header = [header model]
+          , drawer = [myDrawer model]
+          , tabs = (tabTitles, [])
+          , main = [ page model ]
+        }
     NotFoundRoute ->
       Layout.render Mdl
         model.mdl
