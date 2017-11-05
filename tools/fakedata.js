@@ -74,11 +74,11 @@ function mkentry(n,isResult) {
     var results={}
     if (doctype=='Results') {
         title='Results: U&Es'
-        results['Na+']=140.0;
-        results['K+']=4.0;
-        results['Cl-']=100.0;
-        results['Urea']=5.0;
-        results['Creat']=70.0;
+        results['Na+']=Math.round(PD.rnorm(1,140,2)[0]);
+        results['K+']=Math.round(PD.rnorm(1,4.0,0.25)[0]);
+        results['Cl-']=Math.round(PD.rnorm(1,100.0,2.5)[0]);
+        results['Urea']=Math.round(PD.rnorm(1,5.0,0.25)[0]);
+        results['Creat']=Math.round(10.0*PD.rnorm(1,75.0,7.5)[0])/10.0;
     }
 
     if (isResult) {
