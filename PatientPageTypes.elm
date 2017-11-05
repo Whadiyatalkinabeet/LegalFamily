@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, emptyPatient, Entry, Drug, Doctype)
+=======
+module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, emptyPatient, Entry, Drug, Doctype, Appointment)
+>>>>>>> dd4b42ce6d2017ffe47967fb2b2d3d034b13a8df
 
 import Dict exposing (Dict)
 
