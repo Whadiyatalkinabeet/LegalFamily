@@ -3,8 +3,6 @@ var numJobs=25;
 
 var PD = require("probability-distributions");
 
-
-
 function captext(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -103,7 +101,6 @@ function mkentry(n,isResult) {
 
 function mkpatient(n) {
 
-    
     var year=Math.floor(1918+100*Math.random())
     var month=Math.floor(1+12*Math.random())
     var day=Math.floor(1+31*Math.random())
@@ -143,8 +140,6 @@ function mkpatient(n) {
         entries[4]['importance']='Low';
         entries[4]['acute']=true;
 
-        
-
         meds[0]['name']='Atenolol';
         meds[0]['dose']='100mg';
         meds[0]['frequency']='OD';
@@ -159,8 +154,6 @@ function mkpatient(n) {
         meds[2]['dose']='10mg';
         meds[2]['frequency']='OD';
         meds[2]['repeat']=true;
-
-
         
         return {
             'id': n,
@@ -171,7 +164,6 @@ function mkpatient(n) {
             'medications': meds
         }
     }
-
 
     return {
         'id': n,

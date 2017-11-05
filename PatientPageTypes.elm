@@ -1,4 +1,4 @@
-module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, Entry, Drug, Doctype)
+module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, emptyPatient, Entry, Drug, Doctype)
 
 import Dict exposing (Dict)
 
@@ -22,6 +22,9 @@ type alias Patient = {
   , medications : List Drug
   , appointments : List Appointment
 }
+
+emptyPatient : Patient
+emptyPatient = Patient 4000 "" "" "" [] [] []
 
 type alias Appointment =
   { id: Int
