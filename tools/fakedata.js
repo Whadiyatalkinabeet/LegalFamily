@@ -106,7 +106,7 @@ function mkpatient(n) {
     var day=Math.floor(1+31*Math.random())
     var age=2017-year
     var entries=[]
-    var nentries=(n==7 ? 8 : Math.floor(age*Math.random()))
+    var nentries=(n==7 ? 7 : Math.floor(age*Math.random()))
     for (var i=0;i<nentries;i++) entries.push(mkentry(i,false))
     var meds=[]
     var nmeds=(n==7 ? 3 : Math.floor(4*Math.random()))
@@ -184,7 +184,8 @@ function mkpatient(n) {
             'dob': "1960-07-01",
             'age': "57",
             'entries': entries,
-            'medications': meds
+            'medications': meds,
+            'appointments': appointments
         }
     }
 
@@ -194,7 +195,8 @@ function mkpatient(n) {
         'dob': year+'-'+month+'-'+day,
         'age': age,
         'entries': entries,
-        'medications': meds
+        'medications': meds,
+        'appointments': []
     };
 }
 
@@ -234,7 +236,7 @@ appendPatientListFile('')
 appendPatientListFile('module PatientList exposing (..)')
 appendPatientListFile('')
 appendPatientListFile('import Dict as D exposing (..)')
-appendPatientListFile('import PatientPageTypes exposing (Patient,Entry,Drug,Doctype(..),Importance(..))')
+appendPatientListFile('import PatientPageTypes exposing (Patient,Entry,Drug,Doctype(..),Importance(..),Appointment)')
 appendPatientListFile('')
 appendPatientListFile('patientList : Dict Int Patient')
 appendPatientListFile('patientList = D.fromList [')
@@ -279,7 +281,7 @@ function appointmentToString(appointments) {
   var s='['
   for (var i=0;i<appointments.length;i++) {
       if (i!=0) s+=' , '
-      s+=('Drug '+appointments[i]['id']+' "'+appointments[i]['date']+'" '+' "'+appointments[i]['time']+'" "'+appointments[i]['speciality'])
+      s+=('Appointment '+appointments[i]['id']+' "'+appointments[i]['date']+'" '+' "'+appointments[i]['time']+'" "'+appointments[i]['speciality']+'"')
   }
   s+=']'
   return s
@@ -287,7 +289,7 @@ function appointmentToString(appointments) {
 
 for (var i=0;i<patients.length;i++) {
     if (i!=0) appendPatientListFile('  ,')
-    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" '+entriesToString(patients[i]['entries'])+' '+medicationsToString(patients[i]['medications'])+' [] )')
+    appendPatientListFile('  ('+i+' , Patient '+patients[i]['id']+' "'+patients[i]['name']+'" "'+patients[i]['dob']+'" "'+patients[i]['age']+'" '+entriesToString(patients[i]['entries'])+' '+medicationsToString(patients[i]['medications'])+' '+appointmentToString(patients[i]['appointments'])+' )')
 }
 appendPatientListFile('  ]')
 
