@@ -16,7 +16,7 @@ import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (offset, grid, size, cell, Device (..) )
 import Dict as D exposing (get)
-import PatientPageTypes exposing (Patient, Entry, Drug, Appointment, emptyPatient)
+import PatientPageTypes exposing (Patient, Entry, Drug, Appointment, emptyPatient, Doctype(..))
 import Routing exposing (drugPath)
 import Msgs exposing (Msg(..))
 
@@ -49,28 +49,16 @@ viewAppointment appointment =
           ]
         ]
 
-
-
 -- Letter View
 
 viewLetter : Entry -> Html Msg
 viewLetter entry =
   case entry.docType of
-    PatientPageTypes.Letter -> grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
-               [Card.view [Card.expand, Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
-               [Card.title [] [ Card.head [ white ] [ text entry.title ] ] , Card.text [] [ text entry.text ]]]]
+    Letter ->
+      grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
+           [Card.view [Card.expand, Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
+           [Card.title [] [ Card.head [ white ] [ text entry.title ] ] , Card.text [] [ text entry.text ]]]]
     _ -> div [] []
-
-
-
-
-
-
-
-
-
-
-
 
 
 -- Drugs View

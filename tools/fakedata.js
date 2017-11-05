@@ -87,7 +87,7 @@ function mkentry(n,isResult) {
             text+=key+': '+(results[key].toString())+' '
         }
     }
-    
+
     return {
         'id': n,
         'title': title,
@@ -106,39 +106,53 @@ function mkpatient(n) {
     var day=Math.floor(1+31*Math.random())
     var age=2017-year
     var entries=[]
-    var nentries=(n==7 ? 5 : Math.floor(age*Math.random()))
+    var nentries=(n==7 ? 8 : Math.floor(age*Math.random()))
     for (var i=0;i<nentries;i++) entries.push(mkentry(i,false))
     var meds=[]
     var nmeds=(n==7 ? 3 : Math.floor(4*Math.random()))
     for (var i=0;i<nmeds;i++) meds.push(mkdrug(i))
+    var appointments=[]
+    var nappointments=(n==7 ? 1 : Math.floor(2*Math.random()))
 
     if (n==7) {
 
-        entries[0]['title']='Angina';
-        entries[0]['text']='Chest pain on exertion.  Settles with rest.  Lasts 5-10 minutes.  Take bloods.  Start Aspirin and Atenolol.';
-        entries[0]['docType']='GP';
+        entries[0]['title']='Cardiology';
+        entries[0]['text']='Dear Mr Carter, You were recently referred on to our services. We have made you an appointment on 21/11/17 at 11:00. We look forward to seeing you then. Kind Regards, Dr Bloom';
+        entries[0]['docType']='Letter';
         entries[0]['importance']='High';
         entries[0]['acute']=true;
 
-        entries[1]['title']='Hypertension';
-        entries[1]['text']='Monitoring BP = 130/80, continue Amlodipine.  Blood results OK.';
+        entries[1]['title']='Angina';
+        entries[1]['text']='Chest pain on exertion.  Settles with rest.  Lasts 5-10 minutes.  Take bloods.  Start Aspirin and Atenolol.';
         entries[1]['docType']='GP';
-        entries[1]['importance']='Low';
-        entries[1]['acute']=false;
+        entries[1]['importance']='High';
+        entries[1]['acute']=true;
 
-        entries[2]=mkentry(2,true)
+        entries[2]['title']='Hypertension';
+        entries[2]['text']='Monitoring BP = 130/80, continue Amlodipine.  Blood results OK.';
+        entries[2]['docType']='GP';
+        entries[2]['importance']='Low';
+        entries[2]['acute']=false;
 
-        entries[3]['title']='Hypertension';
-        entries[3]['text']='Monitoring BP = 150/90, increase Amlodipine.  10mg OD, take bloods';
-        entries[3]['docType']='GP';
-        entries[3]['importance']='Low';
-        entries[3]['acute']=true;
+        entries[3]=mkentry(2,true)
 
         entries[4]['title']='Hypertension';
-        entries[4]['text']='Monitoring BP = 170/100, start Amlodipine.  5mg OD';
+        entries[4]['text']='Monitoring BP = 150/90, increase Amlodipine.  10mg OD, take bloods';
         entries[4]['docType']='GP';
         entries[4]['importance']='Low';
         entries[4]['acute']=true;
+
+        entries[5]['title']='Hypertension';
+        entries[5]['text']='Monitoring BP = 170/100, start Amlodipine.  5mg OD';
+        entries[5]['docType']='GP';
+        entries[5]['importance']='Low';
+        entries[5]['acute']=true;
+
+        entries[6]['title']='Welcome';
+        entries[6]['text']='Dear James, Thank you for registering at our practice. We recommend that you make an appointment to come see us. Kind Regards, Dr Miller';
+        entries[6]['docType']='Letter';
+        entries[6]['importance']='Low';
+        entries[6]['acute']=true;
 
         meds[0]['name']='Atenolol';
         meds[0]['dose']='100mg';
@@ -154,7 +168,16 @@ function mkpatient(n) {
         meds[2]['dose']='10mg';
         meds[2]['frequency']='OD';
         meds[2]['repeat']=true;
-        
+
+        appointments.push(
+          {
+            'id': 0
+          , 'time': "11:00"
+          , 'date': "21/11/17"
+          , 'speciality': "Cardiology"
+          }
+        )
+
         return {
             'id': n,
             'name': "James Carter",
@@ -250,6 +273,16 @@ function medicationsToString(meds) {
     }
     s+=']'
     return s
+}
+
+function appointmentToString(appointments) {
+  var s='['
+  for (var i=0;i<appointments.length;i++) {
+      if (i!=0) s+=' , '
+      s+=('Drug '+appointments[i]['id']+' "'+appointments[i]['date']+'" '+' "'+appointments[i]['time']+'" "'+appointments[i]['speciality'])
+  }
+  s+=']'
+  return s
 }
 
 for (var i=0;i<patients.length;i++) {
