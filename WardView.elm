@@ -58,7 +58,7 @@ wardView model =
                                             , Button.ripple
                                             , Button.link path
                                             ]
-                                            [ text "View Patient"]
+                                            [ text "View"]
                                             ]
                                         ]))
 
