@@ -56,7 +56,7 @@ emptyEntry =
 init : Location -> (Model, Cmd Msg)
 init location =
   let currentRoute = parseLocation location
-  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model currentRoute emptyEntry, Material.init Mdl)
+  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model currentRoute emptyEntry 0, Material.init Mdl)
 
 
 -- Msg and Update
@@ -99,6 +99,9 @@ update msg model =
             entryID = (List.length ((Maybe.withDefault []) entries )) + 1
             newEntry = updateEntryList model.newEntry (Maybe.withDefault [] entries)
         in { model | patients = model.patients |> D.update id (updatePatientEntry newEntry)} ! []
+
+    SelectTab num ->
+      {model | selectedTab = num} ! []
 
     Mdl msg_ ->
       Material.update Mdl msg_ model
@@ -158,7 +161,7 @@ view model =
           ]
           { header = [header model]
           , drawer = [myDrawer model]
-          , tabs = (tabTitles, [])
+          , tabs = ((tabTitles model), [])
           , main = [ page model ]
         }
     DrugRoute _ ->
@@ -168,7 +171,7 @@ view model =
           ]
           { header = [header model]
           , drawer = [myDrawer model]
-          , tabs = (tabTitles, [])
+          , tabs = ((tabTitles model), [])
           , main = [ page model ]
         }
     NotFoundRoute ->
@@ -185,8 +188,8 @@ view model =
 getPatientName: Patient->String
 getPatientName patient = patient.name
 
-tabTitles : List (Html Msg)
-tabTitles =
+tabTitles : Model -> List (Html Msg)
+tabTitles model =
   [text "Warnings", text "Records", text "Medications", text "Results"]
 
 
@@ -225,9 +228,6 @@ page model =
       drugView model id
     NotFoundRoute ->
       notFoundView
-
-
-
 
 
 emptyPatient : Patient

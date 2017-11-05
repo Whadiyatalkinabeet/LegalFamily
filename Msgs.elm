@@ -14,3 +14,4 @@ type Msg
   | Text String
   | Title String
   | SubmitEntry Int
+  | SelectTab Int

@@ -15,6 +15,7 @@ type alias Model =
   , mdl : Material.Model
   , route : Route
   , newEntry : Entry
+  , selectedTab : Int
 }
 
 type alias User =
