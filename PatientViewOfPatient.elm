@@ -2,7 +2,7 @@ module PatientViewOfPatient exposing (patientViewOfPatient)
 
 import Models exposing (Model)
 import Html exposing (Html, text, h1, div, span, a, input)
-import Html.Attributes exposing (style, type_, placeholder)
+import Html.Attributes exposing (style, class)
 import Html.Events exposing (onInput)
 import Routing exposing (patientPath)
 import Material
@@ -33,7 +33,28 @@ patientViewOfPatient model =
       appointmentView = List.map viewAppointment patient.appointments
       drugView = List.map viewDrug patient.medications
       letterView = List.map viewLetter patient.entries
-  in div [] [ div [] appointmentView, div [] drugView, div [] letterView ]
+  in div [] [ div [] appointmentView
+            , div [] [Table.table []
+                      [ Table.thead []
+                        [ Table.tr []
+                          [ Table.th [] [ text "Drug" ]
+                          , Table.th [] [ text "Morning" ]
+                          , Table.th [] [ text "Lunchtime"]
+                          , Table.th [] [ text "Dinner"]
+                          , Table.th [] [ text "Bedtime"]
+                          ]
+                        ]
+                      ]
+                      , Table.tbody []
+                        (patient.medications |>
+                            List.map (\drug ->
+                            Table.tr [onClick (ClickPatient patient)]
+                              [ Table.td [cs "centertext"] [ text drug.name ]
+                              ]))
+                    ]
+              , div [] letterView
+              ]
+
 
 
 
@@ -64,21 +85,10 @@ viewLetter entry =
 -- Drugs View
 viewDrug : Drug -> Html Msg
 viewDrug drug =
-  Table.table []
-    [ Table.thead []
-      [ Table.tr []
-        [ Table.th [] [ text "Drug" ]
-        , Table.th [] [ text "Morning" ]
-        , Table.th [] [ text "Lunchtime"]
-        , Table.th [] [ text "Dinner"]
-        , Table.th [] [ text "Bedtime"]
-        ]
-      , Table.tr []
+  Table.tr []
         [ Table.th [] [ text drug.name]
         , Table.th [] []
         , Table.th [] []
         , Table.th [] []
         , Table.th [] []
         ]
-      ]
-    ]
