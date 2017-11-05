@@ -13,4 +13,4 @@ type Msg
   | OnLocationChange Location
   | Text String
   | Title String
-  | SubmitEntry (Maybe Int)
+  | SubmitEntry Int

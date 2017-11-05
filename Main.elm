@@ -22,7 +22,6 @@ import Navigation exposing (Location)
 import Models exposing (Model, User)
 import PatientView exposing (patientView)
 import WardView exposing (wardView)
-import NewEntryView exposing (newEntryView)
 import Msgs exposing (Msg(..))
 
 -- Model && Types
@@ -95,14 +94,10 @@ update msg model =
       ({model | newEntry = title |> asTitleInEntry model.newEntry}, Cmd.none)
 
     SubmitEntry id ->
-      case id of
-        Just x ->
-          let entries = Maybe.map (\patient -> patient.entries) (D.get x model.patients)
-              entryID = (List.length ((Maybe.withDefault []) entries )) + 1
-              newEntry = Maybe.map (updateEntryList model.newEntry) entries
-              newPatient = newEntry |> Maybe.map asEntryInPatient (D.get x model.patients)
-          in { model | patients = model.patients |> D.update x (Maybe.map (updateEntryList model.newEntry))} ! []
-        Nothing -> model ! []
+        let entries = Maybe.map (\patient -> patient.entries) (D.get id model.patients)
+            entryID = (List.length ((Maybe.withDefault []) entries )) + 1
+            newEntry = updateEntryList model.newEntry (Maybe.withDefault [] entries)
+        in { model | patients = model.patients |> D.update id (updatePatientEntry newEntry)} ! []
 
     Mdl msg_ ->
       Material.update Mdl msg_ model
@@ -111,12 +106,11 @@ update msg model =
       let newRoute = parseLocation location
       in ({ model | route = newRoute}, Cmd.none)
 
-updatePatientEntry : Entry -> Patient -> Patient
-updatePatientEntry entry patient =
-  { patient | entries = entry :: patient.entries }
-
-asEntryInPatient : Patient -> Entry -> Patient
-asEntryInPatient = flip updatePatientEntry
+updatePatientEntry : List Entry -> Maybe Patient -> Maybe Patient
+updatePatientEntry entries patient =
+  case patient of
+    Just patient -> Just { patient | entries = entries }
+    Nothing -> Nothing
 
 updateEntryText : String -> Entry -> Entry
 updateEntryText str entry =
@@ -161,13 +155,11 @@ getPatientName patient = patient.name
 
 myDrawer : Model -> Html Msg
 myDrawer model =
-  span [ ] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
+  span [] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
 
 -- Header layout:
 --   Grid is 12 / 8 / 4 on Desktop/Tablet/Phone.
-gridSizingLeft   = [size Desktop 4, size Tablet 2, size Phone 1]
-gridSizingCenter = [size Desktop 4, size Tablet 4, size Phone 2]
-gridSizingRight  = [size Desktop 4, size Tablet 2, size Phone 1]
+--   So use 4,4,4 / 2,4,2 / 1,2,1
 
 header : Model -> Html Msg
 header model =
@@ -176,9 +168,9 @@ header model =
      Maybe.Nothing -> "CommUnity"
   in
     grid [cs "fullwidth"] [
-      cell ((cs "headerleft") :: gridSizingLeft) [],
-      cell ((cs "title") :: gridSizingCenter) [ text title],
-      cell ((cs "usertext") :: gridSizingRight) [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
+      cell [size Desktop 4, size Tablet 2,size Phone 1] [],
+      cell [cs "title", size Desktop 4, size Tablet 4,size Phone 2] [ text title],
+      cell [cs "righttext", size Desktop 4, size Tablet 2,size Phone 1] [ text (model.user.name++" "++model.user.speciality++" "++model.user.grade) ]
     ]
 
 page : Model -> Html Msg
@@ -188,8 +180,6 @@ page model =
       wardView model
     PatientRoute id ->
       patientView model id
-    NewEntryRoute ->
-      newEntryView model
     NotFoundRoute ->
       notFoundView
 
