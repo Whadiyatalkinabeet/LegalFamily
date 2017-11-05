@@ -8,53 +8,53 @@ import Job exposing (..)
 
 jobList : Dict Int Job
 jobList = D.fromList [
-  (0 , Job 0 25 "Referral" False )
+  (0 , Job 0 27 "CT scan" False )
   ,
-  (1 , Job 1 26 "Cannula" False )
+  (1 , Job 1 18 "MRI scan" False )
   ,
-  (2 , Job 2 21 "CT scan" False )
+  (2 , Job 2 3 "CT scan" False )
   ,
-  (3 , Job 3 3 "Biopsy" False )
+  (3 , Job 3 7 "Referral" False )
   ,
-  (4 , Job 4 7 "CT scan" False )
+  (4 , Job 4 17 "Biopsy" False )
   ,
-  (5 , Job 5 7 "MRI scan" False )
+  (5 , Job 5 9 "CT scan" False )
   ,
-  (6 , Job 6 11 "Cannula" True )
+  (6 , Job 6 13 "MRI scan" False )
   ,
-  (7 , Job 7 4 "Ultrasound" False )
+  (7 , Job 7 4 "Cannula" False )
   ,
-  (8 , Job 8 13 "Cannula" True )
+  (8 , Job 8 12 "Blood test" True )
   ,
-  (9 , Job 9 20 "Cannula" False )
+  (9 , Job 9 0 "Referral" False )
   ,
-  (10 , Job 10 25 "Biopsy" False )
+  (10 , Job 10 19 "Ultrasound" False )
   ,
-  (11 , Job 11 19 "Biopsy" False )
+  (11 , Job 11 27 "Ultrasound" False )
   ,
-  (12 , Job 12 11 "MRI scan" True )
+  (12 , Job 12 14 "Blood test" False )
   ,
-  (13 , Job 13 26 "Biopsy" True )
+  (13 , Job 13 1 "MRI scan" False )
   ,
-  (14 , Job 14 6 "CT scan" False )
+  (14 , Job 14 10 "Biopsy" False )
   ,
-  (15 , Job 15 18 "Biopsy" True )
+  (15 , Job 15 11 "Biopsy" True )
   ,
-  (16 , Job 16 23 "MRI scan" False )
+  (16 , Job 16 16 "Cannula" False )
   ,
-  (17 , Job 17 15 "Biopsy" False )
+  (17 , Job 17 5 "Referral" True )
   ,
-  (18 , Job 18 13 "Referral" False )
+  (18 , Job 18 13 "Cannula" True )
   ,
-  (19 , Job 19 21 "Blood test" False )
+  (19 , Job 19 7 "MRI scan" True )
   ,
-  (20 , Job 20 27 "Blood test" True )
+  (20 , Job 20 6 "Ultrasound" False )
   ,
-  (21 , Job 21 26 "CT scan" False )
+  (21 , Job 21 22 "Referral" False )
   ,
-  (22 , Job 22 8 "Referral" True )
+  (22 , Job 22 29 "Blood test" False )
   ,
-  (23 , Job 23 19 "Ultrasound" False )
+  (23 , Job 23 6 "Cannula" True )
   ,
-  (24 , Job 24 28 "Ultrasound" False )
+  (24 , Job 24 23 "Blood test" False )
   ]

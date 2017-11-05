@@ -83,16 +83,56 @@ function mkentry(n) {
 }
 
 function mkpatient(n) {
+
+    
     var year=Math.floor(1918+100*Math.random())
     var month=Math.floor(1+12*Math.random())
     var day=Math.floor(1+31*Math.random())
     var age=2017-year
     var entries=[]
-    var nentries=Math.floor(age*Math.random())
+    var nentries=(n==7 ? 4 : Math.floor(age*Math.random()))
     for (var i=0;i<nentries;i++) entries.push(mkentry(i))
     var meds=[]
     var nmeds=Math.floor(4*Math.random())
     for (var i=0;i<nmeds;i++) meds.push(mkdrug(i))
+
+    if (n==7) {
+
+        entries[0]['title']='Angina';
+        entries[0]['text']='Chest pain on exertion.  Settles with rest.  Lasts 5-10 minutes.  Take bloods.  Start Aspirin and Atenolol.';
+        entries[0]['docType']='GP';
+        entries[0]['importance']='High';
+        entries[0]['acute']=true;
+
+        entries[1]['title']='Hypertension';
+        entries[1]['text']='Monitoring BP = 130/80, continue Amlodipine.  Blood results OK.';
+        entries[1]['docType']='GP';
+        entries[1]['importance']='Low';
+        entries[1]['acute']=false;
+
+        entries[2]['title']='Hypertension';
+        entries[2]['text']='Monitoring BP = 150/90, increase Amlodipine.  10mg OD, take bloods';
+        entries[2]['docType']='GP';
+        entries[2]['importance']='Low';
+        entries[2]['acute']=true;
+
+        entries[3]['title']='Hypertension';
+        entries[3]['text']='Monitoring BP = 170/100, start Amlodipine.  5mg OD';
+        entries[3]['docType']='GP';
+        entries[3]['importance']='Low';
+        entries[3]['acute']=true;
+        
+        return {
+            'id': n,
+            'name': "James Carter",
+            'dob': "1960-07-01",
+            'age': "57",
+            'entries': entries,
+            'medications': meds
+        }
+    }
+
+
     return {
         'id': n,
         'name': mkname(),
