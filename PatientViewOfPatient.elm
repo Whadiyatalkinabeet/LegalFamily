@@ -33,26 +33,30 @@ patientViewOfPatient model =
       appointmentView = List.map viewAppointment patient.appointments
       drugView = List.map viewDrug patient.medications
       letterView = List.map viewLetter patient.entries
-  in div [] [ div [] appointmentView
-            , div [] [Table.table []
-                      [ Table.thead []
-                        [ Table.tr []
-                          [ Table.th [] [ text "Drug" ]
-                          , Table.th [] [ text "Morning" ]
-                          , Table.th [] [ text "Lunchtime"]
-                          , Table.th [] [ text "Dinner"]
-                          , Table.th [] [ text "Bedtime"]
+  in div [] [ div [] ([div [class "patient-view-titles"] [text "Appointment"]] ++ appointmentView)
+            , div [] [ div [class "patient-view-titles"] [text "Medications"]]
+                     , grid []
+                        [cell [offset All 2, size All 10]
+                          [ Table.table [cs "semi-width"]
+                            [ Table.thead []
+                              [ Table.tr []
+                                [ Table.th [] [ text "Drug" ]
+                                , Table.th [] [ text "Morning" ]
+                                , Table.th [] [ text "Lunchtime"]
+                                , Table.th [] [ text "Dinner"]
+                                , Table.th [] [ text "Bedtime"]
+                                ]
+                              ]
+                            ]
+                          , Table.tbody []
+                              (patient.medications |>
+                                  List.map (\drug ->
+                                  Table.tr [onClick (ClickPatient patient)]
+                                    [ Table.td [cs "centertext"] [ text drug.name ]
+                                    ]))
                           ]
                         ]
-                      ]
-                      , Table.tbody []
-                        (patient.medications |>
-                            List.map (\drug ->
-                            Table.tr [onClick (ClickPatient patient)]
-                              [ Table.td [cs "centertext"] [ text drug.name ]
-                              ]))
-                    ]
-              , div [] letterView
+              , div [] ([div [class "patient-view-titles"] [text "Letters"]] ++ letterView)
               ]
 
 
@@ -65,7 +69,7 @@ viewAppointment : Appointment -> Html Msg
 viewAppointment appointment =
   grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
           [Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
-            [ Card.title [] [ Card.head [ white ] [span [] [text appointment.speciality], span [] [text appointment.date], span [] [text appointment.time]]]
+            [ Card.title [] [ Card.head [ white ] [span [class "appointment-span"] [text appointment.speciality], span [class "appointment-span"] [text appointment.date], span [class "appointment-span"] [text appointment.time]]]
             ]
           ]
         ]
