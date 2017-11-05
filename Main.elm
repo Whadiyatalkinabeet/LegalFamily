@@ -22,6 +22,7 @@ import Navigation exposing (Location)
 import Models exposing (Model, User)
 import PatientView exposing (patientView)
 import WardView exposing (wardView)
+import DrugView exposing (drugView)
 import Msgs exposing (Msg(..))
 
 -- Model && Types
@@ -210,6 +211,8 @@ page model =
       wardView model
     PatientRoute id ->
       patientView model id
+    DrugRoute id ->
+      drugView model id
     NotFoundRoute ->
       notFoundView
 

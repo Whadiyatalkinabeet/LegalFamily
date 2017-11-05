@@ -10,14 +10,16 @@ import Material.Scheme as Scheme
 import Material.Button as Button
 import Material.Card as Card
 import Material.Color as Color
+import Material.Chip as Chip
 import Material.Options as Options
-import Material.Options exposing (css, cs)  -- NB Avoiding inline css; use cs to select community.css classes
+import Material.Options exposing (css, cs, onClick, attribute)  -- NB Avoiding inline css; use cs to select community.css classes
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (offset, grid, size, cell, Device (..) )
 import Dict as D exposing (get)
+import PatientPageTypes exposing (Patient, Entry, Drug)
+import Routing exposing (drugPath)
 import Msgs exposing (Msg(..))
-import PatientPageTypes exposing (Patient, Entry)
 
 emptyPatient : Patient
 emptyPatient = Patient 4000 "" "" "" [] []
@@ -35,17 +37,29 @@ patientView model id =
   let patient = (Maybe.withDefault emptyPatient) (D.get id model.patients)
       entries = patient.entries
       viewEntries = List.map entryView entries
-  in div [] [ div [] [(newEntryInput model id), text "\n"], div [style [("width", "100%")]] viewEntries]
+      path = drugPath id
+  in div [] [ div [] [ (newEntryInput model id), text "\n", div [style [("width", "100%")]] viewEntries,
+    Button.render Mdl [0] model.mdl [Button.link path] [text "Drugs"]]]
 
 entryView : Entry -> Html Msg
 entryView entry =
+<<<<<<< HEAD
   let cardColor =
     case entry.importance of
       PatientPageTypes.High -> Color.Red
       PatientPageTypes.Intermediate -> Color.Amber
       PatientPageTypes.Low -> Color.Blue
   in grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
-          [Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color cardColor Color.S500)]
+          [text "13:34", Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color cardColor Color.S500)]
+=======
+  grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
+<<<<<<< HEAD
+          [text "13:34",Card.view [Card.expand, Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
+            [Card.title [] [ Card.head [ white ] [ text entry.title ] ] , Card.text [] [ text entry.text ]]]]
+
+=======
+          [Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
+>>>>>>> 3663c74a911314a00eb83371d59d474c6dad2f52
             [Card.title [] [ Card.head [ white ] [ text entry.title ] ] , Card.text [] [ text entry.text ]]]]
 
 newEntryInput : Model -> Int -> Html Msg
@@ -67,3 +81,4 @@ newEntryInput model id =
               ]
             ]
           ]
+>>>>>>> c7e13bd91487793ce03444a21e355f75a2c71fb2
