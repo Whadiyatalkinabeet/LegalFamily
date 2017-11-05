@@ -20,7 +20,15 @@ type alias Patient = {
   , age : String
   , entries : List Entry
   , medications : List Drug
+  , appointments : List Appointment
 }
+
+type alias Appointment =
+  { id: Int
+  , time: String
+  , date: String
+  , speciality: String
+  }
 
 type alias Entry = {
   id : Int

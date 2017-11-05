@@ -22,7 +22,7 @@ emptyPatient : Patient
 emptyPatient = Patient 4000 "" "" "" [] []
 
 emptyEntry : Entry
-emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False
+emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False D.empty
 
 white : Options.Property c m
 white =

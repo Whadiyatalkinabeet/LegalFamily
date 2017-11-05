@@ -244,7 +244,7 @@ page model =
 
 
 emptyPatient : Patient
-emptyPatient = Patient 4000 "" "" "" [] []
+emptyPatient = Patient 4000 "" "" "" [] [] []
 
 
 
