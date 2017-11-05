@@ -19,6 +19,7 @@ import Material.Grid exposing (offset, grid, size, cell, Device (..) )
 import Dict as D exposing (get)
 import PatientPageTypes exposing (Patient, Entry, Drug)
 import Routing exposing (drugPath)
+import Routing exposing (letterPath)
 import Msgs exposing (Msg(..))
 
 emptyPatient : Patient
@@ -37,8 +38,11 @@ doctorViewOfPatient model id =
   let patient = (Maybe.withDefault emptyPatient) (D.get id model.patients)
       entries = patient.entries
       viewEntries = List.map entryView entries
-      path = drugPath id
-  in div [] [ div [] [ Button.render Mdl [0] model.mdl [Button.link path] [text "Drugs"], (newEntryInput model id),text "\n", div [style [("width", "100%")]] viewEntries]]
+      drugpath = drugPath id
+      letterpath = letterPath id
+  in div [] [ div [] [ Button.render Mdl [0] model.mdl [Button.link drugpath] [text "Drugs"], 
+                       Button.render Mdl [0] model.mdl [Button.link letterpath] [text "Letters"],
+                       (newEntryInput model id),text "\n", div [style [("width", "100%")]] viewEntries]]
 
 entryView : Entry -> Html Msg
 entryView entry =

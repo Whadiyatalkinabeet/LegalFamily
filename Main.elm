@@ -23,6 +23,7 @@ import Models exposing (Model, User)
 import DoctorViewOfPatient exposing (doctorViewOfPatient)
 import WardView exposing (wardView)
 import DrugView exposing (drugView)
+import LetterView exposing (letterView)
 import Msgs exposing (Msg(..))
 
 -- Model && Types
@@ -174,6 +175,16 @@ view model =
           , tabs = ((tabTitles model), [])
           , main = [ page model ]
         }
+    LetterRoute _ ->
+      Layout.render Mdl
+        model.mdl
+          [ Layout.fixedHeader
+          ]
+          { header = [header model]
+          , drawer = [myDrawer model]
+          , tabs = ((tabTitles model), [])
+          , main = [ page model ]
+        }
     NotFoundRoute ->
       Layout.render Mdl
         model.mdl
@@ -226,6 +237,8 @@ page model =
       doctorViewOfPatient model id
     DrugRoute id ->
       drugView model id
+    LetterRoute id ->
+      letterView model id
     NotFoundRoute ->
       notFoundView
 
