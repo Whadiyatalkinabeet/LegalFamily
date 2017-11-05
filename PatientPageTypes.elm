@@ -1,10 +1,11 @@
 module PatientPageTypes exposing (Doctype(..), Importance(..), Patient, Entry, Drug)
 
+import Dict exposing (Dict)
+
 type Doctype
     = GP
     | Inpatient
     | Letter
-    | Vitals
     | Results
 
 type Importance
@@ -28,6 +29,7 @@ type alias Entry = {
   , docType: Doctype
   , importance: Importance
   , acute: Bool
+  , result: Dict String Float
 }
 
 type alias Drug = {
