@@ -6,6 +6,7 @@ import UrlParser exposing (..)
 type Route
     = WardRoute
     | PatientRoute Int
+    | NewEntryRoute
     | NotFoundRoute
 
 matchers : Parser (Route -> a) a

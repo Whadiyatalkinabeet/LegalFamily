@@ -3,6 +3,7 @@ module PatientView exposing (patientView)
 import Models exposing (Model)
 import Html exposing (Html, text, h1, div, span, a)
 import Html.Attributes exposing (style)
+import Routing exposing (patientPath)
 import Material
 import Material.Scheme as Scheme
 import Material.Button as Button
@@ -33,10 +34,11 @@ patientView model id =
   let patient = (Maybe.withDefault emptyPatient) (D.get id model.patients)
       entries = patient.entries
       viewEntries = List.map entryView entries
+      path = (patientPath id) ++ "/newEntry"
   in div [] [ div [] [ Button.render Mdl [0] model.mdl
                         [ Button.raised
                         , Button.ripple
-                        , css "margin" "0 auto"
+                        , Button.link path
                         ]
                         [ text "New Entry"]
                       , text "\n"], div [style [("width", "100%")]] viewEntries]
