@@ -8,13 +8,21 @@
 
 .title {
     font-size: 36px;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.headerleft {
+    padding: 10px;
 }
 
 .centertext {
     text-align: center;
+    padding: 10px;
 }
 
-.righttext {
+.usertext {
     text-align: right;
     padding: 10px;
 }
