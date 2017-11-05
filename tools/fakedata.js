@@ -3,6 +3,8 @@ var numJobs=25;
 
 var PD = require("probability-distributions");
 
+
+
 function captext(s) {
     return s.charAt(0).toUpperCase() + s.slice(1);
 }
@@ -57,8 +59,15 @@ function mkdrug(n) {
     }
 }
 
+var titles = ["Hypertension", "Coeliac's Disesase", "Multiple Sclerosis",
+  "Diabetes", "Huntington's", "Depression", "Angina", "Atrial Fibrillation",
+  "Chronic Kidney Disease", "Interstitial Lung Disease", "Asthma", "COPD",
+  "IHD", "Hyperthyroidism", "Broken bone", "Lung Cancer", "Dermatitis",
+  "Psoriasis", "Abscess", "Gastroentiritis", "Phaeochromocytoma", "Pneumothorax",
+  "GORD", "Aortic Stenosis", "Ventricular Tachycardia", "Optic Neuritis", "Migraine"]
+
 function mkentry(n) {
-    var title=randomsentence()
+    var title=randompick(titles)
     var text=randomparagraph()
     var doctype=randompick(['GP','Inpatient','Letter','Vitals','Results'])
     var importance=randompick(['High','Intermediate','Low'])
@@ -73,7 +82,7 @@ function mkentry(n) {
     }
 }
 
-function mkpatient(n) {    
+function mkpatient(n) {
     var year=Math.floor(1918+100*Math.random())
     var month=Math.floor(1+12*Math.random())
     var day=Math.floor(1+31*Math.random())
