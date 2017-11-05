@@ -16,7 +16,7 @@ import Material.Options exposing (css, cs, onClick, attribute)  -- NB Avoiding i
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (offset, grid, size, cell, Device (..) )
-import Dict as D exposing (get)
+import Dict as D exposing (get, empty)
 import PatientPageTypes exposing (Patient, Entry, Drug)
 import Routing exposing (drugPath)
 import Routing exposing (letterPath)
@@ -26,7 +26,7 @@ emptyPatient : Patient
 emptyPatient = Patient 4000 "" "" "" [] []
 
 emptyEntry : Entry
-emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False
+emptyEntry = Entry 0 "" "" PatientPageTypes.GP PatientPageTypes.Low False D.empty
 
 white : Options.Property c m
 white =

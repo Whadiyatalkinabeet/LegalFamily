@@ -50,7 +50,7 @@ main =
 
 emptyEntry : Entry
 emptyEntry =
-  Entry -1 "" "" PatientPageTypes.Inpatient PatientPageTypes.High True
+  Entry -1 "" "" PatientPageTypes.Inpatient PatientPageTypes.High True D.empty
 
 -- initialisation
 
