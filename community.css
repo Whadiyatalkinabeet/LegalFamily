@@ -22,7 +22,12 @@
     padding: 10px;
 }
 
-.usertext {
+.usertext {  /* Maybe not used? .righttext instead */
+    text-align: right;
+    padding: 10px;
+}
+
+.righttext {
     text-align: right;
     padding: 10px;
 }
