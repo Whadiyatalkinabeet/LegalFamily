@@ -25,8 +25,6 @@ white : Options.Property c m
 white =
   Color.text Color.white
 
-emptyPatient : Patient
-emptyPatient = Patient 4000 "" "" "" [] [] []
 -- whole view
 
 patientViewOfPatient : Model -> Html Msg
