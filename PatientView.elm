@@ -39,8 +39,13 @@ patientView model id =
 
 entryView : Entry -> Html Msg
 entryView entry =
-  grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
-          [Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
+  let cardColor =
+    case entry.importance of
+      PatientPageTypes.High -> Color.Red
+      PatientPageTypes.Intermediate -> Color.Amber
+      PatientPageTypes.Low -> Color.Blue
+  in grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
+          [Card.view [ Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color cardColor Color.S500)]
             [Card.title [] [ Card.head [ white ] [ text entry.title ] ] , Card.text [] [ text entry.text ]]]]
 
 newEntryInput : Model -> Int -> Html Msg

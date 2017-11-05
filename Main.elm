@@ -5,14 +5,14 @@
 import Debug exposing (log)
 import Html exposing (Html, text, h1, div, span, a)
 import Html.Events exposing (onClick)
-import Html.Attributes exposing (href, style, class)
+import Html.Attributes exposing (style, class)
 import Json.Decode as JD
 import Dict as D exposing (Dict, empty, update)
-import Material.Layout as Layout
+import Material.Layout as Layout exposing (href)
 import Material
 import Material.Scheme as Scheme
 import Material.Button as Button
-import Material.Options exposing (cs)  -- NB Avoiding inline css; use cs to select community.css classes
+import Material.Options exposing (cs, css)  -- NB Avoiding inline css; use cs to select community.css classes
 import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (grid, size, cell, Device (..) )
@@ -139,23 +139,53 @@ updateJob id (jobID, job) =
 
 view : Model -> Html Msg
 view model =
-  Layout.render Mdl
-    model.mdl
-      [ Layout.fixedHeader
-      ]
-      { header = [header model]
-      , drawer = [myDrawer model]
-      , tabs = ([], [])
-      , main = [ page model ]
-    }
+  case model.route of
+    WardRoute ->
+      Layout.render Mdl
+        model.mdl
+          [ Layout.fixedHeader
+          ]
+          { header = [header model]
+          , drawer = [myDrawer model]
+          , tabs = ([], [])
+          , main = [ page model ]
+        }
+    PatientRoute _ ->
+      Layout.render Mdl
+        model.mdl
+          [ Layout.fixedHeader
+          ]
+          { header = [header model]
+          , drawer = [myDrawer model]
+          , tabs = (tabTitles, [])
+          , main = [ page model ]
+        }
+    NotFoundRoute ->
+      Layout.render Mdl
+        model.mdl
+          [ Layout.fixedHeader
+          ]
+          { header = [header model]
+          , drawer = [myDrawer model]
+          , tabs = ([], [])
+          , main = [ page model ]
+        }
 
 getPatientName: Patient->String
 getPatientName patient = patient.name
 
+tabTitles : List (Html Msg)
+tabTitles =
+  [text "Warnings", text "Records", text "Medications", text "Results"]
+
 
 myDrawer : Model -> Html Msg
 myDrawer model =
-  span [] [ Layout.title [] [text ("Hello " ++ model.user.name)] ]
+  span [] [ Layout.title [] [text ("Dev Mode")]
+          , Layout.navigation [] [
+              Layout.link [href ""] [text "Ward View"]
+            , Layout.link [href (patientPath 7)] [text "Patient View"]
+          ]]
 
 -- Header layout:
 --   Grid is 12 / 8 / 4 on Desktop/Tablet/Phone.
