@@ -69,7 +69,7 @@ var titles = ["Hypertension", "Coeliac's Disesase", "Multiple Sclerosis",
 function mkentry(n) {
     var title=randompick(titles)
     var text=randomparagraph()
-    var doctype=randompick(['GP','Inpatient','Letter','Vitals','Results'])
+    var doctype=randompick(['GP','Inpatient','Letter','Results'])
     var importance=randompick(['High','Intermediate','Low'])
     var acute=(Math.random()<0.75)
     return {
@@ -205,7 +205,7 @@ function entriesToString(entries) {
     var s='['
     for (var i=0;i<entries.length;i++) {
         if (i!=0) s+=' , '
-        s+=('Entry '+entries[i]['id']+' "'+entries[i]['title']+'" '+' "'+entries[i]['text']+'" '+entries[i]['docType']+' '+entries[i]['importance']+' '+(entries[i]['acute'] ? 'True' : 'False'))
+        s+=('Entry '+entries[i]['id']+' "'+entries[i]['title']+'" '+' "'+entries[i]['text']+'" '+entries[i]['docType']+' '+entries[i]['importance']+' '+(entries[i]['acute'] ? 'True' : 'False') + ' D.empty')
     }
     s+=']'
     return s
