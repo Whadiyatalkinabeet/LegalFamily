@@ -40,4 +40,4 @@ drugViewE : Drug -> Html Msg
 drugViewE drug =
   grid [Options.css "height" "150px", Options.css "padding-bottom" "1px"] [ cell [offset All 2, size All 10]
           [Card.view [Card.expand, Options.css "height" "inherit", Options.css "width" "inherit", Color.background (Color.color Color.Blue Color.S500)]
-            [Card.title [] [ Card.head [ white ] [ text drug.name ] ] , Card.text [] [ text drug.dose ]]]]
+            [Card.title [] [ Card.head [ white ] [ text drug.name ] ] , Card.text [] [ text (drug.dose ++ " " ++ drug.frequency) ]]]]
