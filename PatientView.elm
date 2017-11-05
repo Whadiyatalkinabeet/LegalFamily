@@ -38,8 +38,7 @@ patientView model id =
       entries = patient.entries
       viewEntries = List.map entryView entries
       path = drugPath id
-  in div [] [ div [] [ (newEntryInput model id), text "\n", div [style [("width", "100%")]] viewEntries,
-    Button.render Mdl [0] model.mdl [Button.link path] [text "Drugs"]]]
+  in div [] [ div [] [ Button.render Mdl [0] model.mdl [Button.link path] [text "Drugs"], (newEntryInput model id),text "\n", div [style [("width", "100%")]] viewEntries]]
 
 entryView : Entry -> Html Msg
 entryView entry =
