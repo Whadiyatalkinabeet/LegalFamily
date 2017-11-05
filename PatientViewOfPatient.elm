@@ -16,7 +16,7 @@ import Material.List as Lists
 import Material.Table as Table
 import Material.Grid exposing (offset, grid, size, cell, Device (..) )
 import Dict as D exposing (get)
-import PatientPageTypes exposing (Patient, Entry, Drug, Appointment)
+import PatientPageTypes exposing (Patient, Entry, Drug, Appointment, emptyPatient)
 import Routing exposing (drugPath)
 import Msgs exposing (Msg(..))
 
