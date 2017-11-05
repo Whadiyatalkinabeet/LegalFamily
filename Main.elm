@@ -7,7 +7,7 @@ import Html exposing (Html, text, h1, div, span, a)
 import Html.Events exposing (onClick)
 import Html.Attributes exposing (href, style, class)
 import Json.Decode as JD
-import Dict as D exposing (Dict, empty)
+import Dict as D exposing (Dict, empty, update)
 import Material.Layout as Layout
 import Material
 import Material.Scheme as Scheme
@@ -22,6 +22,7 @@ import Navigation exposing (Location)
 import Models exposing (Model, User)
 import PatientView exposing (patientView)
 import WardView exposing (wardView)
+import NewEntryView exposing (newEntryView)
 import Msgs exposing (Msg(..))
 
 -- Model && Types
@@ -46,12 +47,16 @@ main =
     , subscriptions = Material.subscriptions Mdl
     }
 
+emptyEntry : Entry
+emptyEntry =
+  Entry -1 "" "" PatientPageTypes.Inpatient PatientPageTypes.High True
+
 -- initialisation
 
 init : Location -> (Model, Cmd Msg)
 init location =
   let currentRoute = parseLocation location
-  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model currentRoute, Material.init Mdl)
+  in (Model patientList testUser JobList.jobList bedList Nothing "" Material.model currentRoute emptyEntry, Material.init Mdl)
 
 
 -- Msg and Update
@@ -83,6 +88,22 @@ update msg model =
       ({model | jobs =
           D.fromList (List.map (updateJob jobID) (D.toList model.jobs))}, Cmd.none)
 
+    Text text ->
+      ({model | newEntry = text |> asTextInEntry model.newEntry }, Cmd.none)
+
+    Title title ->
+      ({model | newEntry = title |> asTitleInEntry model.newEntry}, Cmd.none)
+
+    SubmitEntry id ->
+      case id of
+        Just x ->
+          let entries = Maybe.map (\patient -> patient.entries) (D.get x model.patients)
+              entryID = (List.length ((Maybe.withDefault []) entries )) + 1
+              newEntry = Maybe.map (updateEntryList model.newEntry) entries
+              newPatient = newEntry |> Maybe.map asEntryInPatient (D.get x model.patients)
+          in { model | patients = model.patients |> D.update x (Maybe.map (updateEntryList model.newEntry))} ! []
+        Nothing -> model ! []
+
     Mdl msg_ ->
       Material.update Mdl msg_ model
 
@@ -90,6 +111,30 @@ update msg model =
       let newRoute = parseLocation location
       in ({ model | route = newRoute}, Cmd.none)
 
+updatePatientEntry : Entry -> Patient -> Patient
+updatePatientEntry entry patient =
+  { patient | entries = entry :: patient.entries }
+
+asEntryInPatient : Patient -> Entry -> Patient
+asEntryInPatient = flip updatePatientEntry
+
+updateEntryText : String -> Entry -> Entry
+updateEntryText str entry =
+  { entry | text = str }
+
+updateEntryTitle : String -> Entry -> Entry
+updateEntryTitle title entry =
+  { entry | title = title }
+
+asTextInEntry : Entry -> String -> Entry
+asTextInEntry = flip updateEntryText
+
+asTitleInEntry : Entry -> String -> Entry
+asTitleInEntry = flip updateEntryTitle
+
+updateEntryList : Entry -> List Entry -> List Entry
+updateEntryList entry entryList =
+  entry :: entryList
 
 updateJob : Int -> (Int, Job) -> (Int, Job)
 updateJob id (jobID, job) =
@@ -141,6 +186,8 @@ page model =
       wardView model
     PatientRoute id ->
       patientView model id
+    NewEntryRoute ->
+      newEntryView model
     NotFoundRoute ->
       notFoundView
 
