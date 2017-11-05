@@ -20,7 +20,7 @@ import PatientPageTypes exposing (Doctype, Importance, Patient, Entry, Drug)
 import Routing exposing (Route(..), parseLocation, patientPath, patientsPath)
 import Navigation exposing (Location)
 import Models exposing (Model, User)
-import PatientView exposing (patientView)
+import DoctorViewOfPatient exposing (doctorViewOfPatient)
 import WardView exposing (wardView)
 import DrugView exposing (drugView)
 import Msgs exposing (Msg(..))
@@ -154,7 +154,7 @@ view model =
           , tabs = ([], [])
           , main = [ page model ]
         }
-    PatientRoute _ ->
+    DoctorRoute _ ->
       Layout.render Mdl
         model.mdl
           [ Layout.fixedHeader
@@ -222,8 +222,8 @@ page model =
   case model.route of
     WardRoute ->
       wardView model
-    PatientRoute id ->
-      patientView model id
+    DoctorRoute id ->
+      doctorViewOfPatient model id
     DrugRoute id ->
       drugView model id
     NotFoundRoute ->

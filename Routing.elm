@@ -5,7 +5,7 @@ import UrlParser exposing (..)
 
 type Route
     = WardRoute
-    | PatientRoute Int
+    | DoctorRoute Int
     | DrugRoute Int
     | NotFoundRoute
 
@@ -13,7 +13,7 @@ matchers : Parser (Route -> a) a
 matchers =
   oneOf
     [ map WardRoute top
-    , map PatientRoute (s "patients" </> int)
+    , map DoctorRoute (s "patients" </> int)
     , map WardRoute (s "ward")
     , map DrugRoute (s "drugs" </> int)
     ]

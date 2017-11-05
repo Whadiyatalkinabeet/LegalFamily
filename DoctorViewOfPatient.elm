@@ -1,4 +1,4 @@
-module PatientView exposing (patientView)
+module DoctorViewOfPatient exposing (doctorViewOfPatient)
 
 import Models exposing (Model)
 import Html exposing (Html, text, h1, div, span, a, input)
@@ -32,8 +32,8 @@ white =
   Color.text Color.white
 
 
-patientView : Model -> Int -> Html Msg
-patientView model id =
+doctorViewOfPatient : Model -> Int -> Html Msg
+doctorViewOfPatient model id =
   let patient = (Maybe.withDefault emptyPatient) (D.get id model.patients)
       entries = patient.entries
       viewEntries = List.map entryView entries
